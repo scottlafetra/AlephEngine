@@ -14,7 +14,8 @@ namespace AlephEngine
 	class Scene
 	{
 	private:
-		GLFWwindow* window;
+		static vector<Scene*> scenes;
+		static vector<GLFWwindow*> windows;
 		list<Entity*> entities;
 
 		void Error( const string& errorMessage );
@@ -23,9 +24,9 @@ namespace AlephEngine
 	public:
 		Scene();
 		~Scene();
-		void CreateAlephWindow( const int& width, const int& height );
-		void SetWindowTitle( const string& title );
-		void SetWindowIcon( const string& fileName );
+		int CreateAlephWindow( const int& width, const int& height );
+		void SetWindowTitle( const string& title, const unsigned short index = 0 );
+		void SetWindowIcon( const string& fileName, const unsigned short index = 0 );
 		void Play();
 
 		void AddEntity( Entity* entity );
@@ -34,5 +35,7 @@ namespace AlephEngine
 
 		Entity*         FindEntityWithTag( string tag );
 		vector<Entity*> FindEntitiesWithTag( string tag );
+
+		static void GLFWWindowClose( GLFWwindow* requestedClose );
 	};
 }

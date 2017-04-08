@@ -5,13 +5,23 @@
 #include "Utility.h"
 
 using namespace AlephEngine;
-	
+
+void GLFWError( int error, const char* description )
+{
+	cout << "GLFW Error - " << description << endl;
+}
+
+vector<Scene*> Scene::scenes;
+vector<GLFWwindow*> Scene::windows;
+
 Scene::Scene()
 {
+	scenes.push_back( this );
 	if (!glfwInit())
 	{
 		FatalError( "GLFW failed to load" );
 	}
+	glfwSetErrorCallback( GLFWError );
 }
 
 Scene::~Scene()
@@ -24,9 +34,10 @@ Scene::~Scene()
 	}
 }
 
-void Scene::CreateAlephWindow( const int& width, const int& height )
+// Returns window index
+int Scene::CreateAlephWindow( const int& width, const int& height )
 {
-	window = glfwCreateWindow( width, height, "Aleph Null", NULL, NULL );
+	GLFWwindow* window = glfwCreateWindow( width, height, "Aleph Null", NULL, NULL );
 	if ( !window )
 	{
 		FatalError("Window could not be created.");
@@ -34,30 +45,40 @@ void Scene::CreateAlephWindow( const int& width, const int& height )
 
 	glfwMakeContextCurrent( window );
 
+	// Add to list
+	unsigned short newIndex = windows.size();
+	windows.push_back( window );
+
+	// Ensure close callback is caught
+	glfwSetWindowCloseCallback( window, GLFWWindowClose );
+
 	// Default Icon
 	SetWindowIcon( "AlephIcon.png" );
+
+	return newIndex;
 }
 
-void Scene::SetWindowIcon( const string& filename )
+void Scene::SetWindowIcon( const string& filename, const unsigned short index )
 {
-	glfwSetWindowIcon( window, 1, Utility::LoadGLFWImage( filename ) );
+	glfwSetWindowIcon( windows[index], 1, Utility::LoadGLFWImage( filename ) );
 }
 
-void Scene::SetWindowTitle( const string& title )
+void Scene::SetWindowTitle( const string& title, const unsigned short index )
 {
-	glfwSetWindowTitle( window, title.c_str() );
+	glfwSetWindowTitle( windows[index], title.c_str() );
 }
 
 void Scene::Play()
 {
-	// Run until close
-	while( !glfwWindowShouldClose( window ) )
+	// Run until there are no more windows open
+	while( windows.size() > 0 )
 	{
 		// Test render
 		glClear( GL_COLOR_BUFFER_BIT );
 
 		// Push render to screen
-		glfwSwapBuffers( window );
+		// NOTE: all drawing will be done by camera components in the future
+		glfwSwapBuffers( windows[0] );
 
 		// Process Events
 		glfwPollEvents();
@@ -122,4 +143,11 @@ vector<Entity*> Scene::FindEntitiesWithTag( string tag )
 	}
 
 	return results;
+}
+
+void Scene::GLFWWindowClose( GLFWwindow* requestedClose )
+{
+	// Close window
+	windows.erase( remove( windows.begin(), windows.end(), requestedClose ), windows.end() );
+	glfwDestroyWindow( requestedClose );
 }
