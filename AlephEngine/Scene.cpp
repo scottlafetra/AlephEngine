@@ -113,6 +113,21 @@ list<Entity*> Scene::GetEntities()
 	return entities;
 }
 
+void Scene::AddRenderCallback( RenderCallback callback )
+{
+	renderCallbacks.push_back( callback );
+}
+
+void Scene::RemoveRenderCallback( RenderCallback callback )
+{
+	renderCallbacks.remove( callback );
+}
+
+list<RenderCallback>& Scene::GetRenderCallbacks()
+{
+	return renderCallbacks;
+}
+
 // Returns NULL if not found
 Entity* Scene::FindEntityWithTag( string tag )
 {

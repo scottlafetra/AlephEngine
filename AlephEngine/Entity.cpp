@@ -4,7 +4,7 @@ using namespace AlephEngine;
 unsigned int Entity::nextId = 0;
 
 Entity::Entity( string name )
-	: id( nextId ), name( name ), scene( NULL )
+	: id( nextId ), name( name ), scene( NULL ), renderMe( false )
 {
 	nextId++;
 }

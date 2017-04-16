@@ -15,6 +15,7 @@ namespace AlephEngine
 
 	public:
 		string tag;
+		bool renderMe;
 
 	private:
 		string name;
@@ -23,12 +24,14 @@ namespace AlephEngine
 		list<Component*> components;
 		Scene* scene;
 
+		// Private to make sure that only a scene can create it
+		Entity( string name );
+
 	protected:
 		void Error( string errorMessage );
 		void FatalError( string errorMessage );
 
 	public:
-		Entity( string name );
 		~Entity();
 
 		string GetName() const;
