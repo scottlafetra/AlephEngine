@@ -13,7 +13,7 @@ static CType Component::Type()
 
 		// find and store the name
 		string name = typeid(T).name();
-		int start = name.find_last_of( ":" ) + 1;
+		size_t start = name.find_last_of( ":" ) + 1;
 
 		typeNames[type] = name.substr( start, name.length() - start );
 		

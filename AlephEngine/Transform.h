@@ -1,8 +1,10 @@
 #pragma once
-#include <Matrix.h>
-#include <VecBase.h>
-#include <Vec.h>
-#include <Quat.h>
+
+#include <gmtl/Matrix.h>
+#include <gmtl/VecBase.h>
+#include <gmtl/Vec.h>
+#include <gmtl/Quat.h>
+#include <list>
 #include "Component.h"
 
 namespace AlephEngine
@@ -15,6 +17,9 @@ namespace AlephEngine
 		gmtl::Matrix<float, 4, 4> transformMatrix;
 
 		bool isUpdated;
+
+		Transform* parent;
+		list<Transform*> children;
 
 	public:
 		Transform(Entity* entity);
@@ -32,5 +37,11 @@ namespace AlephEngine
 		void SetRotation( const float& x, const float& y, const float& z = 0.0 );
 		void Rotate( const gmtl::Quat<float>& dRotation );
 		void Rotate( const float& dx, const float& dy, const float& dz = 0.0 );
+
+		void SetAsParent( Transform* newParent );
+		void SetAsChild( Transform* newChild );
+
+		inline Transform* GetParent() { return parent; }
+		inline list<Transform*> GetChildren() { return children; }
 	};
 }

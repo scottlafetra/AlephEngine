@@ -1,7 +1,12 @@
 #pragma once
 #include <cstdlib>
 #include <string>
+#include "TestRenderer.h"
 #include "Component.h"
+#include "Camera.h"
+#include "Rotates.h";
+
+#include "Transform.h"
 using namespace std;
 using namespace AlephEngine;
 
@@ -19,6 +24,7 @@ public:
 		Error( "Tester1 Error" );
 	}
 };
+
 class Tester2 : public Component
 {
 public:
@@ -46,17 +52,6 @@ void PrintScene( Scene* scene )
 		{
 			cout << "\t" << component->GetTypeName() << endl;
 		}
-
-		cout << "Has Tester1?: ";
-		Component* component = entity->FetchComponent<Tester1>();
-		if( component == NULL )
-		{
-			cout << "No" << endl;
-		}
-		else
-		{
-			cout << component->GetTypeName() << endl;
-		}
 	}
 }
 
@@ -72,9 +67,8 @@ void ECSTest()
 	// Add test entities and componets
 	for( int eNum = 0; eNum < 10; ++eNum )
 	{
-		Entity* entity = new Entity( string("Test Entity ") + string(1, 'A' + eNum ) );
+		Entity* entity = scene.AddEntity( string("Test Entity ") + string(1, 'A' + eNum ) );
 		entity->tag = to_string(eNum % 3);
-		scene.AddEntity( entity );
 	}
 
 	for( Entity* entity : scene.FindEntitiesWithTag( "0" ) )
@@ -110,10 +104,36 @@ void ECSTest()
 	scene.Play();
 }
 
+void RenderTest()
+{
+	// Create the scene
+	Scene scene;
+
+	// Setup the window
+	scene.CreateAlephWindow( 800, 600 );
+	scene.SetWindowTitle( "Render Test" );
+
+	Entity* camera = scene.AddEntity( "Camera" );
+	camera->AddComponent<Camera>();
+	camera->FetchComponent<Camera>()->SetPerspective( 45, 1, 20 );
+
+	Entity* testRenderEntity = scene.AddEntity( "TestRenderEntity" );
+	testRenderEntity->AddComponent<TestRenderer>();
+	testRenderEntity->FetchComponent<Transform>()->Move( 0, 0, -4 );
+	testRenderEntity->AddComponent<Rotates>();
+	testRenderEntity->FetchComponent<Rotates>()->SetSpeed(0.f, 0.5f, 0.f);
+
+	PrintScene( &scene );
+
+	// Play the scene
+	scene.Play();
+}
+
 int main(int argn, char* argc[])
 {
-	ECSTest();
-	
+	//ECSTest();
+	RenderTest();
+
 	//Scene is deleted on end
 	return EXIT_SUCCESS;
 }

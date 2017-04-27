@@ -1,20 +1,21 @@
 #include "Transform.h"
-#include <Generate.h>
-#include <EulerAngle.h>
-#include <QuatOps.h>
-#include <VecOps.h>
+#include <gmtl/Generate.h>
+#include <gmtl/EulerAngle.h>
+#include <gmtl/QuatOps.h>
+#include <gmtl/VecOps.h>
 using namespace AlephEngine;
 
 Transform::Transform( Entity* entity )
-	: Component( entity, Component::Type<Transform>() ), isUpdated( false ) { }
+	: Component( entity, Component::Type<Transform>() ), isUpdated( false ), parent( NULL ) { }
 
 gmtl::Matrix<float, 4, 4> Transform::GetTransfromMatrix()
 {
 	if( !isUpdated )
 	{
 		transformMatrix = 
-			gmtl::makeRot<gmtl::Matrix<float, 4, 4>>( rotation ) 
-			* gmtl::makeTrans<gmtl::Matrix<float, 4, 4>>( position );
+
+			gmtl::makeTrans<gmtl::Matrix<float, 4, 4>>( position ) *
+			gmtl::makeRot<gmtl::Matrix<float, 4, 4>>( rotation );
 
 		isUpdated = true;
 	}
@@ -29,7 +30,7 @@ void Transform::SetPosition( const gmtl::Vec<float, 3>& newPosition )
 	isUpdated = false;
 }
 
-void Transform::SetPosition( const float& x, const float& y, const float& z = 0.0 )
+void Transform::SetPosition( const float& x, const float& y, const float& z)
 {
 	position[0] = x;
 	position[1] = y;
@@ -45,7 +46,7 @@ void Transform::Move( const gmtl::Vec<float, 3>& dPosition )
 	isUpdated = false;
 }
 
-void Transform::Move( const float& dx, const float& dy, const float& dz = 0.0 )
+void Transform::Move( const float& dx, const float& dy, const float& dz)
 {
 	position[0] += dx;
 	position[1] += dy;
@@ -61,7 +62,7 @@ void Transform::SetRotation( const gmtl::Quat<float>& newRotation )
 	isUpdated = false;
 }
 
-void Transform::SetRotation( const float& x, const float& y, const float& z = 0.0 )
+void Transform::SetRotation( const float& x, const float& y, const float& z)
 {
 	gmtl::setRot( rotation, gmtl::EulerAngle<float, gmtl::XYZ>( x, y, z ) );
 
@@ -74,7 +75,7 @@ void Transform::Rotate( const gmtl::Quat<float>& dRotation )
 
 	isUpdated = false;
 }
-void Transform::Rotate( const float& dx, const float& dy, const float& dz = 0.0 )
+void Transform::Rotate( const float& dx, const float& dy, const float& dz )
 {
 	gmtl::Quat<float> dRotation;
 	gmtl::setRot( dRotation, gmtl::EulerAngle<float, gmtl::XYZ>( dx, dy, dz ) );
@@ -82,4 +83,28 @@ void Transform::Rotate( const float& dx, const float& dy, const float& dz = 0.0 
 	Rotate( dRotation );
 
 	isUpdated = false;
+}
+
+void Transform::SetAsParent( Transform* newParent )
+{
+
+	if( parent != NULL )
+	{
+		parent->children.remove( this );
+	}
+
+	parent = newParent;
+	newParent->children.push_back( this );
+}
+
+void Transform::SetAsChild( Transform* newChild )
+{
+	children.push_back( newChild );
+
+	if( newChild->parent != NULL )
+	{
+		newChild->parent->children.remove( newChild );
+	}
+
+	newChild->parent = this;
 }

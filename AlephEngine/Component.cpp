@@ -5,7 +5,7 @@ unordered_map< size_t, CType > Component::issuedTypes;
 unordered_map< CType, string > Component::typeNames;
 CType Component::nextType = 0;
 
-Component::Component( Entity* entity, unsigned int type )
+Component::Component( Entity* entity, CType type )
 	: isActive( true ), entity( entity ), type( type ) {}
 
 void Component::Error( const string& errorMessage )
@@ -21,8 +21,6 @@ void Component::FatalError( const string& errorMessage )
 
 	entity->DeleteComponent(this);
 }
-
-inline Scene* Component::GetScene() { return entity->GetScene(); }
 
 CType Component::GetType() const
 {

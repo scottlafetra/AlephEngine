@@ -26,11 +26,13 @@ namespace AlephEngine
 	protected:
 		void Error( const string& errorMessage );
 		void FatalError( const string& errorMessage );
-		inline Scene* GetScene();
 
 	public:
 		Component( Entity* entity, CType type );
+		virtual inline ~Component() {};
 
+		inline Entity* GetEntity() const { return entity; }
+		inline Scene* GetScene() { return entity->GetScene(); }
 		CType GetType() const;
 		string GetTypeName() const;
 		template <class T> static CType Type();

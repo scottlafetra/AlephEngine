@@ -1,12 +1,16 @@
 #include "Entity.h"
+#include "Transform.h"
 using namespace AlephEngine;
 
 unsigned int Entity::nextId = 0;
 
 Entity::Entity( string name )
-	: id( nextId ), name( name ), scene( NULL ), renderMe( false )
+	: id( nextId ), name( name ), scene( NULL ), renderMe( false ), renderable( false )
 {
 	nextId++;
+
+	// All entities have a Transform
+	AddComponent<Transform>();
 }
 
 Entity::~Entity()

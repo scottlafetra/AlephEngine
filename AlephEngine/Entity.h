@@ -16,9 +16,11 @@ namespace AlephEngine
 	public:
 		string tag;
 		bool renderMe;
+		bool renderable;
 
 	private:
 		string name;
+
 		unsigned int id;
 		static unsigned int nextId;
 		list<Component*> components;

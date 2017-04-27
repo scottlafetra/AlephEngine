@@ -1,5 +1,5 @@
 #pragma once
-#include <Matrix.h>
+#include <gmtl/Matrix.h>
 #include "Component.h"
 
 
@@ -9,6 +9,7 @@ namespace AlephEngine
 	{
 	public:
 		Renderer( Entity* entity );
-		virtual void RenderOn( GLFWwindow* window, gmtl::Matrix<float, 4, 4> view );
+		virtual void Render( gmtl::Matrix<float, 4, 4> view ) = NULL;
+		GLuint shaderProgram;
 	};
 }
