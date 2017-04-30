@@ -64,13 +64,14 @@ void GLFWError( int error, const char* description )
 
 vector<Scene*> Scene::scenes;
 vector<GLFWwindow*> Scene::windows;
+
 bool Scene::initialized = false;
 bool Scene::glewInitialized = false;
 
 Scene::Scene()
+	: rootTransform( new Transform( NULL ) )
 {
 	scenes.push_back( this );
-	rootTransform = new Transform( NULL );
 
 	if( !initialized )
 	{
@@ -102,8 +103,6 @@ size_t Scene::CreateAlephWindow( const int& width, const int& height )
 		FatalError("Window could not be created.");
 	}
 	
-	
-
 	glfwMakeContextCurrent( window );
 	glfwSwapInterval( 1 ); // Vsync
 	
@@ -190,7 +189,7 @@ void Scene::Play()
 		}
 
 		// Push render to screen
-		glfwSwapBuffers( windows[0] );
+		glfwSwapBuffers( windows[ 0 ] );
 
 		// Process Events
 		glfwPollEvents();
@@ -280,5 +279,5 @@ void Scene::GLFWWindowClose( GLFWwindow* requestedClose )
 {
 	// Close window
 	windows.erase( remove( windows.begin(), windows.end(), requestedClose ), windows.end() );
-	glfwDestroyWindow( requestedClose );
+	// GLFW handles actual window closure unless we say otherwise
 }

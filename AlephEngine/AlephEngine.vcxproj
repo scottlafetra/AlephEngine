@@ -144,7 +144,7 @@
     <ClInclude Include="lodepng.h" />
     <ClInclude Include="Rotates.h" />
     <ClInclude Include="Shaders.h" />
-    <ClInclude Include="TestRenderer.h" />
+    <ClInclude Include="MeshRenderer.h" />
     <ClInclude Include="Transform.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="Entity.h" />
@@ -162,7 +162,6 @@
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="Rotates.cpp" />
     <ClCompile Include="Scene.cpp" />
-    <ClCompile Include="TestRenderer.cpp" />
     <ClCompile Include="Transform.cpp" />
     <ClCompile Include="Utility.cpp" />
   </ItemGroup>
@@ -175,6 +174,7 @@
   <ItemGroup>
     <None Include="Component.inl" />
     <None Include="Entity.inl" />
+    <None Include="MeshRenderer.inl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
