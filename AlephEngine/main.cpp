@@ -5,7 +5,10 @@
 #include "Component.h"
 #include "Camera.h"
 #include "Rotates.h"
+#include "CatMotion.h"
 #include "Transform.h"
+#include "ctime"
+
 
 using namespace std;
 using namespace AlephEngine;
@@ -141,10 +144,76 @@ void RenderTest()
 	scene.Play();
 }
 
-int main(int argn, char* argc[])
+void LoadCat( string name, Scene* scene, GLFWimage* texture, float yPos = 0 )
+{
+	// Load cat cube
+	Entity* catRenderCube = scene->AddEntity( name );
+
+	MeshRenderer<Shaders::UnlitTexture>* catRenderer = catRenderCube->AddComponent<MeshRenderer<Shaders::UnlitTexture>>();
+	catRenderer->SetVertices( GL_TRIANGLES, 3 * 2 * 6, (GLfloat*) catCube );
+	catRenderer->SetTexture( texture, GL_CLAMP_TO_BORDER );
+
+	catRenderCube->FetchComponent<Transform>()->Move( 0, yPos, -3 );
+
+	catRenderCube->AddComponent<Rotates>();
+	catRenderCube->FetchComponent<Rotates>()->SetSpeed( 
+		(rand() % 200 - 100)/100.f,
+		( rand() % 200 - 100 ) / 100.f,
+		( rand() % 200 - 100 ) / 100.f );
+
+	catRenderCube->AddComponent<CatMotion>();
+	catRenderCube->FetchComponent<CatMotion>()->SetSpeed( ( rand() % 150 - 75 ) / 100.f + 1.f);
+	catRenderCube->FetchComponent<CatMotion>()->SetLimit( 5 );
+}
+
+void CatDemo( void )
+{
+	// Init rand
+	srand( time(0) );
+
+	// Create the scene
+	Scene scene;
+
+	// Setup the window
+	scene.CreateAlephWindow( 1152, 648 );
+	scene.SetWindowTitle( "Catfucius say give Scott A+" );
+
+	// Load Camera
+	Entity* camera = scene.AddEntity( "Camera" );
+
+	camera->AddComponent<Camera>();
+	camera->FetchComponent<Camera>()->SetPerspective( 45, 1, 20 );
+	camera->FetchComponent<Transform>()->Move( 0, 0, 2 );
+	
+	// Load Background
+	Entity* background = scene.AddEntity( "Background" );
+
+	MeshRenderer<Shaders::UnlitTexture>* backgroundRenderer = background->AddComponent<MeshRenderer<Shaders::UnlitTexture>>();
+	GLFWimage* catBackground = Utility::LoadGLFWImage( "catBackground.png" );
+	backgroundRenderer->SetVertices( GL_TRIANGLES, 6, (GLfloat*) texQuad );
+	backgroundRenderer->SetTexture( catBackground, GL_CLAMP_TO_BORDER );
+
+	background->FetchComponent<Transform>()->Move( 0, 0, -10 );
+	background->FetchComponent<Transform>()->SetScale( 11 );
+	
+	// Load Cats
+	GLFWimage* teacherCatTex = Utility::LoadGLFWImage( "CatTexture.png" );
+
+	LoadCat( "Teacher's Pet", &scene, teacherCatTex, ( rand() % 400 ) / 100.f - 2 );
+	LoadCat( "Teacher's Pet", &scene, teacherCatTex, ( rand() % 400 ) / 100.f - 2 );
+	LoadCat( "Teacher's Pet", &scene, teacherCatTex, ( rand() % 400 ) / 100.f - 2 );
+	LoadCat( "Teacher's Pet", &scene, teacherCatTex, ( rand() % 400 ) / 100.f - 2 );
+	
+
+	// Play the scene
+	scene.Play();
+}
+
+int WinMain(int argn, char* argc[])
 {
 	//ECSTest();
-	RenderTest();
+	//RenderTest();
+	CatDemo();
 
 	//Scene is deleted on end
 	return EXIT_SUCCESS;

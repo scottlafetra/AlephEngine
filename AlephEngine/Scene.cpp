@@ -96,6 +96,7 @@ Scene::~Scene()
 // Returns window index
 size_t Scene::CreateAlephWindow( const int& width, const int& height )
 {
+	glfwWindowHint( GLFW_RESIZABLE, GL_FALSE ); // Resizing not supported yet
 	glfwWindowHint( GLFW_OPENGL_DEBUG_CONTEXT, GL_TRUE );
 	GLFWwindow* window = glfwCreateWindow( width, height, "Aleph Null", NULL, NULL );
 	if ( !window )

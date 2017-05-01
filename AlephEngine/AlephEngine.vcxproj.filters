@@ -57,6 +57,9 @@
     <ClInclude Include="Testing.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="CatMotion.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -92,12 +95,18 @@
     <ClCompile Include="Scene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="CatMotion.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="AlephIcon.png">
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="CatTexture.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="catBackground.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

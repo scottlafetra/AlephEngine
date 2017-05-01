@@ -169,6 +169,16 @@ catCube[ 3 * 2 * 6 ] =
 	{ CUBE_VERT_BACK_BOTTOM_RIGHT,	CAT_TEX_BACK_RIGHT },
 	{ CUBE_VERT_BACK_BOTTOM_LEFT,	CAT_TEX_BACK_LEFT },
 	{ CUBE_VERT_BACK_TOP_LEFT,		CAT_TEX_TOP_LEFT }
+},
+texQuad[ 6 ] = 
+{//	  Verticies					    tex coord
+	{ CUBE_VERT_FRONT_TOP_LEFT,		0.f, 0.f },
+	{ CUBE_VERT_FRONT_BOTTOM_LEFT,	0.f, 1.f },
+	{ CUBE_VERT_FRONT_BOTTOM_RIGHT,	1.f, 1.f },
+										 
+	{ CUBE_VERT_FRONT_BOTTOM_RIGHT,	1.f, 1.f },
+	{ CUBE_VERT_FRONT_TOP_RIGHT,	1.f, 0.f },
+	{ CUBE_VERT_FRONT_TOP_LEFT,		0.f, 0.f },
 };
 
 // Test Components

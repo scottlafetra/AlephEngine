@@ -35,6 +35,7 @@ void MeshRenderer<T>::Render( gmtl::Matrix<float, 4, 4> view )
 
 	// Attach things
 	T::RebindVertexArray( vertexBuffer );
+	T::RebindTexture( texureBuffer, texureWrapMode );
 
 	glUseProgram( shaderProgram );
 

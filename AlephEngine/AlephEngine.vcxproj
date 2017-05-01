@@ -95,7 +95,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(ProjectDir)\..\Dependancies\x64</AdditionalLibraryDirectories>
       <AdditionalDependencies>opengl32.lib;glfw3.lib;glew32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
     </Link>
     <PostBuildEvent>
       <Command>copy $(ProjectDir)AlephIcon.png  $(OutDir)</Command>
@@ -131,7 +131,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalLibraryDirectories>$(ProjectDir)\..\Dependancies\x64</AdditionalLibraryDirectories>
       <AdditionalDependencies>opengl32.lib;glfw3.lib;glew32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
     </Link>
     <PostBuildEvent>
       <Command>copy $(ProjectDir)AlephIcon.png  $(OutDir)</Command>
@@ -139,6 +139,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="CatMotion.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="EngineTime.h" />
     <ClInclude Include="lodepng.h" />
@@ -155,6 +156,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="CatMotion.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="EngineTime.cpp" />
     <ClCompile Include="Entity.cpp" />
@@ -168,6 +170,9 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="AlephIcon.png">
+      <DeploymentContent>true</DeploymentContent>
+    </Image>
+    <Image Include="catBackground.png">
       <DeploymentContent>true</DeploymentContent>
     </Image>
     <Image Include="CatTexture.png">

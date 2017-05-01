@@ -131,12 +131,8 @@ namespace AlephEngine
 				glTexImage2D( GL_TEXTURE_2D, 0, GL_RGB, texture->width, texture->height, 
 							  0, GL_RGBA, GL_UNSIGNED_BYTE, texture->pixels );
 
-				return textureBuffer;
-			}
-
-			static void RebindTexture( const GLuint textureBuffer, GLenum wrapMode )
-			{
-				glBindTexture( GL_TEXTURE_2D, textureBuffer );
+				// Make mipmaps
+				glGenerateMipmap( GL_TEXTURE_2D );
 
 				// Set parameters
 				glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, wrapMode );
@@ -144,8 +140,12 @@ namespace AlephEngine
 				glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR );
 				glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR );
 
-				// Make mipmaps
-				glGenerateMipmap( GL_TEXTURE_2D );
+				return textureBuffer;
+			}
+
+			static void RebindTexture( const GLuint textureBuffer, GLenum wrapMode )
+			{
+				glBindTexture( GL_TEXTURE_2D, textureBuffer );
 			}
 		};
 
