@@ -139,8 +139,6 @@ size_t Scene::CreateAlephWindow( const int& width, const int& height )
 	// Version number
 	cout << "Using OpenGL " << glGetString( GL_VERSION ) << endl;
 
-
-
 	// Add to list
 	size_t newIndex = windows.size();
 	windows.push_back( window );
@@ -151,8 +149,7 @@ size_t Scene::CreateAlephWindow( const int& width, const int& height )
 	// Default Icon
 	SetWindowIcon( "AlephIcon.png" );
 
-	//TODO: Remove
-	glClearColor( 1.0f, 0.0f, 1.0f, 1.0f );
+	glClearColor( 0 / 255.f, 102 / 255.f, 255/255.f, 1.0f );
 
 	return newIndex;
 }
@@ -169,6 +166,9 @@ void Scene::SetWindowTitle( const string& title, const unsigned short index )
 
 void Scene::Play()
 {
+	// Reset time
+	glfwSetTime( 0 );
+
 	// Run until there are no more windows open
 	while( windows.size() > 0 )
 	{

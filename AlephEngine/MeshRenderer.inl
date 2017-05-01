@@ -1,10 +1,11 @@
 #pragma once
 #include "gmtl/Generate.h"
+#include "Utility.h"
 using namespace AlephEngine;
 
 template <class T>
 MeshRenderer<T>::MeshRenderer( AlephEngine::Entity* entity )
-	: Renderer( entity )
+	: Renderer( entity ), hasTexture( false )
 {
 	shaderProgram = Shaders::GetGLProgram<T>();
 }
@@ -19,6 +20,13 @@ void MeshRenderer<T>::SetVertices( const GLenum renderMode, GLint vertexCount, c
 	memcpy( this->vertices, vertices, T::GetVertexSize() * vertexCount );
 
 	vertexBuffer = T::AttachVertexArray( vertexCount, MeshRenderer<T>::vertices );
+}
+
+template <class T>
+void MeshRenderer<T>::SetTexture( GLFWimage* texture, GLenum wrapMode )
+{
+	hasTexture = true;
+	texureBuffer = T::AttachTexture( texture, wrapMode );
 }
 
 template <class T>

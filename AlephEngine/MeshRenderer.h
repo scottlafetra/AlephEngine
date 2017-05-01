@@ -15,10 +15,15 @@ namespace AlephEngine
 		GLfloat* vertices;
 		GLuint vertexBuffer;
 
+		bool hasTexture;
+		GLuint texureBuffer;
+		GLenum texureWrapMode;
+
 	public:
 		MeshRenderer( AlephEngine::Entity* entity );
 		void Render( gmtl::Matrix<float, 4, 4> view ) override;
 		void SetVertices( const GLenum renderMode, GLint vertexCount, const GLfloat* vertexArray);
+		void SetTexture( GLFWimage* texture, GLenum wrapMode = GL_REPEAT );
 	};
 }
 

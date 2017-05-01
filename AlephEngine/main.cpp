@@ -5,127 +5,13 @@
 #include "Component.h"
 #include "Camera.h"
 #include "Rotates.h"
-
-
 #include "Transform.h"
+
 using namespace std;
 using namespace AlephEngine;
 
-// Make testcube life easier
-//				Name				       Verticies
-#define CUBE_VERT_FRONT_BOTTOM_RIGHT   0.5f,  0.5f,  0.5f
-#define CUBE_VERT_FRONT_BOTTOM_LEFT    0.5f,  0.5f, -0.5f
-#define CUBE_VERT_FRONT_TOP_RIGHT      0.5f, -0.5f,  0.5f
-#define CUBE_VERT_FRONT_TOP_LEFT       0.5f, -0.5f, -0.5f
-#define CUBE_VERT_BACK_BOTTOM_RIGHT   -0.5f,  0.5f,  0.5f
-#define CUBE_VERT_BACK_BOTTOM_LEFT    -0.5f,  0.5f, -0.5f
-#define CUBE_VERT_BACK_TOP_RIGHT      -0.5f, -0.5f,  0.5f
-#define CUBE_VERT_BACK_TOP_LEFT       -0.5f, -0.5f, -0.5f
+#include "Testing.h"
 
-// Colors		  RGB data
-#define RED		1.f, 0.f, 0.f
-#define GREEN	0.f, 1.f, 0.f
-#define BLUE	0.f, 0.f, 1.f
-
-#define CYAN	0.f, 1.f, 1.f
-#define MAGENTA	1.f, 0.f, 1.f
-#define YELLOW	1.f, 1.f, 0.f
-
-static const struct
-{
-	float x, y, z;			float r, g, b;
-}
-testTri[ 3 ] =
-{//	      Verticies             Colors
-	{ -0.6f, -0.4f, 0.f,	1.f, 0.f, 0.f },
-	{  0.6f, -0.4f, 0.f,	0.f, 1.f, 0.f },
-	{   0.f,  0.6f, 0.f,	0.f, 0.f, 1.f }
-},
-testCube[ 3*2*6 ] =
-{
-	// Face 1
-	{ CUBE_VERT_FRONT_TOP_LEFT,		RED },
-	{ CUBE_VERT_FRONT_BOTTOM_LEFT,	RED },
-	{ CUBE_VERT_FRONT_BOTTOM_RIGHT,	RED },
-	  
-	{ CUBE_VERT_FRONT_BOTTOM_RIGHT,	RED },
-	{ CUBE_VERT_FRONT_TOP_RIGHT,	RED },
-	{ CUBE_VERT_FRONT_TOP_LEFT,		RED },
-	
-	// Face 2
-	{ CUBE_VERT_FRONT_BOTTOM_LEFT,	GREEN },
-	{ CUBE_VERT_BACK_BOTTOM_LEFT,	GREEN },
-	{ CUBE_VERT_BACK_BOTTOM_RIGHT,	GREEN },
-	  
-	{ CUBE_VERT_BACK_BOTTOM_RIGHT,	GREEN },
-	{ CUBE_VERT_FRONT_BOTTOM_RIGHT,	GREEN },
-	{ CUBE_VERT_FRONT_BOTTOM_LEFT,	GREEN },
-	
-	// Face 3
-	{ CUBE_VERT_FRONT_TOP_RIGHT,	BLUE },
-	{ CUBE_VERT_FRONT_BOTTOM_RIGHT, BLUE },
-	{ CUBE_VERT_BACK_BOTTOM_RIGHT,	BLUE },
-	  
-	{ CUBE_VERT_BACK_BOTTOM_RIGHT,	BLUE },
-	{ CUBE_VERT_BACK_TOP_RIGHT,		BLUE },
-	{ CUBE_VERT_FRONT_TOP_RIGHT,	BLUE },
-	
-	// Face 4
-	{ CUBE_VERT_FRONT_TOP_LEFT,		CYAN },
-	{ CUBE_VERT_BACK_TOP_LEFT,		CYAN },
-	{ CUBE_VERT_BACK_BOTTOM_LEFT,	CYAN },
-	  
-	{ CUBE_VERT_BACK_BOTTOM_LEFT,	CYAN },
-	{ CUBE_VERT_FRONT_BOTTOM_LEFT,	CYAN },
-	{ CUBE_VERT_FRONT_TOP_LEFT,		CYAN },
-	
-	// Face 5
-	{ CUBE_VERT_FRONT_TOP_LEFT,		MAGENTA },
-	{ CUBE_VERT_FRONT_TOP_RIGHT,	MAGENTA },
-	{ CUBE_VERT_BACK_TOP_RIGHT,		MAGENTA },
-	 
-	{ CUBE_VERT_BACK_TOP_RIGHT,		MAGENTA },
-	{ CUBE_VERT_BACK_TOP_LEFT,		MAGENTA },
-	{ CUBE_VERT_FRONT_TOP_LEFT,		MAGENTA },
-	
-	// Face 6
-	{ CUBE_VERT_BACK_TOP_LEFT,		YELLOW },
-	{ CUBE_VERT_BACK_TOP_RIGHT,		YELLOW },
-	{ CUBE_VERT_BACK_BOTTOM_RIGHT,	YELLOW },
-	  
-	{ CUBE_VERT_BACK_BOTTOM_RIGHT,	YELLOW },
-	{ CUBE_VERT_BACK_BOTTOM_LEFT,	YELLOW },
-	{ CUBE_VERT_BACK_TOP_LEFT,		YELLOW }
-};
-
-// Test Components
-class Tester1 : public Component
-{
-public:
-	Tester1( Entity* entity )
-		: Component( entity, Type<Tester1>() )
-	{
-	}
-
-	void CauseError()
-	{
-		Error( "Tester1 Error" );
-	}
-};
-
-class Tester2 : public Component
-{
-public:
-	Tester2( Entity* entity )
-		: Component( entity, Type<Tester2>() )
-	{
-	}
-
-	void CauseFatalError()
-	{
-		FatalError( "Tester2 Fatal Error" );
-	}
-};
 
 void PrintScene( Scene* scene )
 {
@@ -206,29 +92,43 @@ void RenderTest()
 
 	camera->AddComponent<Camera>();
 	camera->FetchComponent<Camera>()->SetPerspective( 45, 1, 20 );
+	camera->FetchComponent<Transform>()->Move( 0, 0, 2 );
 	
 
 	
-
+	
 	// Load test cube
 	Entity* testRenderCube = scene.AddEntity( "TestRenderCube" );
 
 	MeshRenderer<Shaders::StdUnlit>* cubeRenderer = testRenderCube->AddComponent<MeshRenderer<Shaders::StdUnlit>>();
 	cubeRenderer->SetVertices( GL_TRIANGLES, 3 * 2 * 6, (GLfloat*) testCube );
-	
 
-	testRenderCube->FetchComponent<Transform>()->Move(-1, 0, -4 );
+	testRenderCube->FetchComponent<Transform>()->Move( 0, 0, -4 );
 
 	testRenderCube->AddComponent<Rotates>();
 	testRenderCube->FetchComponent<Rotates>()->SetSpeed(0.f, 0.6f, 0.5);
 	
+	///*
+	// Load cat cube
+	Entity* catRenderCube = scene.AddEntity( "TestCatCube" );
+
+	MeshRenderer<Shaders::UnlitTexture>* catRenderer = catRenderCube->AddComponent<MeshRenderer<Shaders::UnlitTexture>>();
+	GLFWimage* catTexture = Utility::LoadGLFWImage( "CatTexture.png" );
+	catRenderer->SetVertices( GL_TRIANGLES, 3 * 2 * 6, (GLfloat*) catCube );
+	catRenderer->SetTexture( catTexture, GL_CLAMP_TO_BORDER );
+
+	catRenderCube->FetchComponent<Transform>()->Move( 2, 0, -4 );
+	
+	catRenderCube->AddComponent<Rotates>();
+	catRenderCube->FetchComponent<Rotates>()->SetSpeed( 0.5f, 0.7f, 0.f );
+	//*/
 	// Load test tri
 	Entity* testRenderTri = scene.AddEntity( "TestRenderTri" );
 
 	MeshRenderer<Shaders::StdUnlit>* triRenderer = testRenderTri->AddComponent<MeshRenderer<Shaders::StdUnlit>>();
 	triRenderer->SetVertices( GL_TRIANGLES, 3, (GLfloat*) testTri );
 
-	testRenderTri->FetchComponent<Transform>()->Move( 1, 0, -4 );
+	testRenderTri->FetchComponent<Transform>()->Move( -2, 0, -4 );
 
 	testRenderTri->AddComponent<Rotates>();
 	testRenderTri->FetchComponent<Rotates>()->SetSpeed( 0.f, -0.5f, -0.6f );

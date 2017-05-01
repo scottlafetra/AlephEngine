@@ -54,6 +54,9 @@
     <ClInclude Include="MeshRenderer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Testing.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -92,6 +95,9 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="AlephIcon.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="CatTexture.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
