@@ -12,6 +12,7 @@ namespace AlephEngine
 	class Transform : public Component
 	{
 	private:
+		float scale;
 		gmtl::Quat<float> rotation;
 		gmtl::Vec<float, 3> position;
 		gmtl::Matrix<float, 4, 4> transformMatrix;
@@ -27,6 +28,9 @@ namespace AlephEngine
 		gmtl::Matrix<float, 4, 4> GetTransfromMatrix();
 		inline gmtl::Quat<float> GetRotation() { return rotation; }
 		inline gmtl::Vec<float, 3> GetPosition() { return position; }
+
+		void SetScale( float newScale );
+		void Scale( float factor );
 
 		void SetPosition( const gmtl::Vec<float, 3>& newPosition );
 		void SetPosition( const float& x, const float& y, const float& z = 0.0 );

@@ -6,7 +6,7 @@
 using namespace AlephEngine;
 
 Transform::Transform( Entity* entity )
-	: Component( entity, Component::Type<Transform>() ), isUpdated( false ), parent( NULL ) { }
+	: Component( entity, Component::Type<Transform>() ), scale( 1.f ), isUpdated( false ), parent( NULL ) { }
 
 gmtl::Matrix<float, 4, 4> Transform::GetTransfromMatrix()
 {
@@ -15,12 +15,25 @@ gmtl::Matrix<float, 4, 4> Transform::GetTransfromMatrix()
 		transformMatrix = 
 
 			gmtl::makeTrans<gmtl::Matrix<float, 4, 4>>( position ) *
-			gmtl::makeRot<gmtl::Matrix<float, 4, 4>>( rotation );
+			gmtl::makeRot<gmtl::Matrix<float, 4, 4>>( rotation ) *
+			gmtl::makeScale<gmtl::Matrix<float, 4, 4>>( scale );
 
 		isUpdated = true;
 	}
 
 	return transformMatrix;
+}
+
+void Transform::SetScale( float newScale )
+{
+	scale = newScale;
+	isUpdated = false;
+}
+
+void Transform::Scale( float factor )
+{
+	scale *= factor;
+	isUpdated = false;
 }
 
 void Transform::SetPosition( const gmtl::Vec<float, 3>& newPosition )
