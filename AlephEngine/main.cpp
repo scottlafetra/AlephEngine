@@ -144,7 +144,7 @@ void RenderTest()
 	scene.Play();
 }
 
-void LoadCat( string name, Scene* scene, GLFWimage* texture, float yPos = 0 )
+void LoadCat( string name, Scene* scene, GLFWimage* texture, float xPos = 0, float yPos = 0 )
 {
 	// Load cat cube
 	Entity* catRenderCube = scene->AddEntity( name );
@@ -153,7 +153,8 @@ void LoadCat( string name, Scene* scene, GLFWimage* texture, float yPos = 0 )
 	catRenderer->SetVertices( GL_TRIANGLES, 3 * 2 * 6, (GLfloat*) catCube );
 	catRenderer->SetTexture( texture, GL_CLAMP_TO_BORDER );
 
-	catRenderCube->FetchComponent<Transform>()->Move( 0, yPos, -3 );
+	catRenderCube->FetchComponent<Transform>()->Move( -5, yPos, -3 );
+	catRenderCube->FetchComponent<Transform>()->Scale( ( rand() % 100 ) / 100.f + 0.2 );
 
 	catRenderCube->AddComponent<Rotates>();
 	catRenderCube->FetchComponent<Rotates>()->SetSpeed( 
@@ -176,7 +177,7 @@ void CatDemo( void )
 
 	// Setup the window
 	scene.CreateAlephWindow( 1152, 648 );
-	scene.SetWindowTitle( "Catfucius say give Scott A+" );
+	scene.SetWindowTitle( "The Cat's Meow" );
 
 	// Load Camera
 	Entity* camera = scene.AddEntity( "Camera" );
@@ -195,14 +196,29 @@ void CatDemo( void )
 
 	background->FetchComponent<Transform>()->Move( 0, 0, -10 );
 	background->FetchComponent<Transform>()->SetScale( 11 );
-	
-	// Load Cats
-	GLFWimage* teacherCatTex = Utility::LoadGLFWImage( "CatTexture.png" );
 
-	LoadCat( "Teacher's Pet", &scene, teacherCatTex, ( rand() % 400 ) / 100.f - 2 );
-	LoadCat( "Teacher's Pet", &scene, teacherCatTex, ( rand() % 400 ) / 100.f - 2 );
-	LoadCat( "Teacher's Pet", &scene, teacherCatTex, ( rand() % 400 ) / 100.f - 2 );
-	LoadCat( "Teacher's Pet", &scene, teacherCatTex, ( rand() % 400 ) / 100.f - 2 );
+
+	// Load Cats
+	float yPos = -3;
+	int yIncrement = 1.3f;
+
+	GLFWimage* catTex[ 3 ];
+	catTex[ 0 ] = Utility::LoadGLFWImage( "CatTexture.png" );
+	catTex[ 1 ] = Utility::LoadGLFWImage( "KitCat.png" );
+	catTex[ 2 ] = Utility::LoadGLFWImage( "KalynCat.png" );
+
+	for(int i = 0; i < 5; ++i)
+	{
+		yPos += yIncrement + ( rand() % 100 ) / 200.f - 0.25f;
+		LoadCat( "Cat", &scene, catTex[ rand() % 3 ], -( rand()% 500 )/ 100.f - 4,  yPos );
+	}
+
+	yPos = -3;
+	for(int i = 0; i < 5; ++i)
+	{
+		yPos += yIncrement + ( rand() % 100 ) / 200.f - 0.25f;
+		LoadCat( "Cat", &scene, catTex[ rand() % 3 ], -( rand() % 500 ) / 100.f - 6, yPos );
+	}
 	
 
 	// Play the scene

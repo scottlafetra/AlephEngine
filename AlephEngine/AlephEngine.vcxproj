@@ -178,6 +178,12 @@
     <Image Include="CatTexture.png">
       <DeploymentContent>true</DeploymentContent>
     </Image>
+    <Image Include="KalynCat.png">
+      <DeploymentContent>true</DeploymentContent>
+    </Image>
+    <Image Include="KitCat.png">
+      <DeploymentContent>true</DeploymentContent>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="AlephEngine.rc" />
