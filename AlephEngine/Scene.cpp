@@ -9,18 +9,18 @@
 
 using namespace AlephEngine;
 
-// Ripped from some tutorial TODO: Read
-void APIENTRY glDebugOutput( GLenum source,
-	GLenum type,
-	GLuint id,
-	GLenum severity,
-	GLsizei length,
-	const GLchar *message,
-	void *userParam )
+/// <summary>
+/// Gracefully handle OpenGL errors.
+/// </summary>
+/// <param name="source"></param>
+/// <param name="type"></param>
+/// <param name="id"></param>
+/// <param name="severity"></param>
+/// <param name="length"></param>
+/// <param name="message"></param>
+/// <param name="userParam"></param>
+void APIENTRY glDebugOutput( GLenum source, GLenum type, GLuint id, GLenum severity, GLsizei length, const GLchar *message, void *userParam )
 {
-	// ignore non-significant error/warning codes
-	//if( id == 131169 || id == 131185 || id == 131218 || id == 131204 ) return;
-
 	std::cout << "---------------" << std::endl;
 	std::cout << "Debug message (" << id << "): " << message << std::endl;
 
@@ -57,6 +57,11 @@ void APIENTRY glDebugOutput( GLenum source,
 	std::cout << std::endl;
 }
 
+/// <summary>
+/// Gracefully handle GLFW errors.
+/// </summary>
+/// <param name="error">Error code.</param>
+/// <param name="description">Description.</param>
 void GLFWError( int error, const char* description )
 {
 	cout << "GLFW Error - " << description << endl;
@@ -68,6 +73,9 @@ vector<GLFWwindow*> Scene::windows;
 bool Scene::initialized = false;
 bool Scene::glewInitialized = false;
 
+/// <summary>
+/// Scene ctor.
+/// </summary>
 Scene::Scene()
 	: rootTransform( new Transform( NULL ) )
 {
@@ -83,6 +91,9 @@ Scene::Scene()
 	}
 }
 
+/// <summary>
+/// Scene dtor.
+/// </summary>
 Scene::~Scene()
 {
 	glfwTerminate();
@@ -93,7 +104,12 @@ Scene::~Scene()
 	}
 }
 
-// Returns window index
+/// <summary>
+/// Creates a graphics window.
+/// </summary>
+/// <param name="width">Width of the window, in pixels.</param>
+/// <param name="height">Height of the window, in pixels.</param>
+/// <returns>The index of the created window.</returns>
 size_t Scene::CreateAlephWindow( const int& width, const int& height )
 {
 	glfwWindowHint( GLFW_RESIZABLE, GL_FALSE ); // Resizing not supported yet
@@ -155,16 +171,29 @@ size_t Scene::CreateAlephWindow( const int& width, const int& height )
 	return newIndex;
 }
 
+/// <summary>
+/// Set the icon of the window.
+/// </summary>
+/// <param name="filename">The relitive filename/path where the image is located.</param>
+/// <param name="index">The index identifying the window.</param>
 void Scene::SetWindowIcon( const string& filename, const unsigned short index )
 {
 	glfwSetWindowIcon( windows[index], 1, Utility::LoadGLFWImage( filename ) );
 }
 
+/// <summary>
+/// Set the title of the window.
+/// </summary>
+/// <param name="title">The new title of the window.</param>
+/// <param name="index">The index identifying the window.</param>
 void Scene::SetWindowTitle( const string& title, const unsigned short index )
 {
 	glfwSetWindowTitle( windows[index], title.c_str() );
 }
 
+/// <summary>
+/// Run the scene.
+/// </summary>
 void Scene::Play()
 {
 	// Reset time
@@ -197,17 +226,30 @@ void Scene::Play()
 	}
 }
 
+/// <summary>
+/// Log a non-fatal error.
+/// </summary>
+/// <param name="errorMessage">A description of the error.</param>
 void Scene::Error( const string& errorMessage )
 {
 	cout << "Error - " << errorMessage << endl;
 }
 
+/// <summary>
+/// Log a fatal error. The scene will delete itsself as it can no longer run.
+/// </summary>
+/// <param name="errorMessage">A description of the error.</param>
 void Scene::FatalError( const string& errorMessage )
 {
 	cout << "Fatal Error - " << errorMessage << endl;
 	delete this;
 }
 
+/// <summary>
+/// Create an entity and add it to the scene.
+/// </summary>
+/// <param name="name">The name of the entity to create.</param>
+/// <returns>A pointer to the entity.</returns>
 Entity* Scene::AddEntity( const string& name )
 {
 	Entity* entity = new Entity( name );
@@ -224,12 +266,20 @@ Entity* Scene::AddEntity( const string& name )
 	return entity;
 }
 
+/// <summary>
+/// Delete an entity and remove it from the scene.
+/// </summary>
+/// <param name="entity">A pointer to the entity to delete.</param>
 void Scene::DeleteEntity( Entity* entity )
 {
 	entities.remove( entity );
 	delete entity;
 }
 
+/// <summary>
+/// Get a list of all the entities in the scene.
+/// </summary>
+/// <returns></returns>
 list<Entity*> Scene::GetEntities()
 {
 	return entities;
@@ -244,7 +294,11 @@ void Scene::RemoveUpdateCallback( UpdateCallback* callback ) { updateCallbacks.r
 list<RenderCallback*> Scene::GetRenderCallbacks() { return renderCallbacks; }
 list<UpdateCallback*> Scene::GetUpdateCallbacks() { return updateCallbacks; }
 
-// Returns NULL if not found
+/// <summary>
+/// Returns the first entity matching a given tag.
+/// </summary>
+/// <param name="tag">The tag to search for.</param>
+/// <returns>The entity, NULL if no entity was found for the given tag.</returns>
 Entity* Scene::FindEntityWithTag( string tag )
 {
 	 auto result = find_if( entities.begin(), entities.end(), [&]( const Entity* entity ) { return entity->tag == tag; } );
@@ -258,6 +312,11 @@ Entity* Scene::FindEntityWithTag( string tag )
 	 return *result;
 }
 
+/// <summary>
+/// Returns a list of all entities matching a given tag.
+/// </summary>
+/// <param name="tag">The tag to search for.</param>
+/// <returns>A vector of all entities matching the given tag.</returns>
 vector<Entity*> Scene::FindEntitiesWithTag( string tag )
 {
 	auto checkTag = [&]( const Entity* entity ) { return entity->tag.compare(tag) == 0; };
@@ -276,6 +335,10 @@ vector<Entity*> Scene::FindEntitiesWithTag( string tag )
 	return results;
 }
 
+/// <summary>
+/// Process the close window request from the user.
+/// </summary>
+/// <param name="requestedClose">A pointer to the window that had the close requested.</param>
 void Scene::GLFWWindowClose( GLFWwindow* requestedClose )
 {
 	// Close window
