@@ -161,7 +161,7 @@
     <ClCompile Include="EngineTime.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="lodepng.cpp" />
-    <ClCompile Include="main.cpp" />
+    <ClCompile Include="CatDemoMain.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="Rotates.cpp" />
     <ClCompile Include="Scene.cpp" />

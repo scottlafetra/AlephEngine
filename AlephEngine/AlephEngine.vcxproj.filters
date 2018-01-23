@@ -13,107 +13,128 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\Core">
+      <UniqueIdentifier>{3c457c0a-cd06-4361-840d-a334fd564fed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Demo">
+      <UniqueIdentifier>{da51fa2e-fdf3-4623-b884-7089330ce01e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Rendering">
+      <UniqueIdentifier>{4be404f3-eb2f-49b3-8aae-ff3275f094e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Core">
+      <UniqueIdentifier>{5ecd5a52-2826-4827-95f4-607d18324d6f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Demo">
+      <UniqueIdentifier>{7a347195-d29e-4093-b216-8011829b7e3a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Rendering">
+      <UniqueIdentifier>{2c5f44eb-d20f-40d0-86be-560ac826decb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Demo">
+      <UniqueIdentifier>{9312725b-a94b-4672-8b03-e00335bd4f02}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Scene.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Utility.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="resource.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Component.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Entity.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Camera.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Transform.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Renderer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Shaders.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="lodepng.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="EngineTime.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Rotates.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MeshRenderer.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Utility.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Component.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineTime.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Transform.h">
+      <Filter>Header Files\Core</Filter>
     </ClInclude>
     <ClInclude Include="Testing.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Demo</Filter>
     </ClInclude>
     <ClInclude Include="CatMotion.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Demo</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Header Files\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="MeshRenderer.h">
+      <Filter>Header Files\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer.h">
+      <Filter>Header Files\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Shaders.h">
+      <Filter>Header Files\Rendering</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Utility.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="lodepng.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Entity.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Component.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Transform.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Renderer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Camera.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="EngineTime.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Rotates.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Scene.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="CatDemoMain.cpp">
+      <Filter>Source Files\Demo</Filter>
     </ClCompile>
     <ClCompile Include="CatMotion.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Demo</Filter>
+    </ClCompile>
+    <ClCompile Include="Component.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineTime.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Entity.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Transform.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Utility.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Source Files\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer.cpp">
+      <Filter>Source Files\Rendering</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="AlephIcon.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="CatTexture.png">
-      <Filter>Resource Files</Filter>
-    </Image>
     <Image Include="catBackground.png">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\Demo</Filter>
+    </Image>
+    <Image Include="CatTexture.png">
+      <Filter>Resource Files\Demo</Filter>
     </Image>
     <Image Include="KalynCat.png">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\Demo</Filter>
     </Image>
     <Image Include="KitCat.png">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\Demo</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>
@@ -123,13 +144,13 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Entity.inl">
-      <Filter>Header Files</Filter>
-    </None>
-    <None Include="Component.inl">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Core</Filter>
     </None>
     <None Include="MeshRenderer.inl">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Rendering</Filter>
+    </None>
+    <None Include="Component.inl">
+      <Filter>Header Files\Core</Filter>
     </None>
   </ItemGroup>
 </Project>
