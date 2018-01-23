@@ -1,6 +1,11 @@
 #include "Utility.h"
 using namespace AlephEngine;
 
+/// <summary>
+/// Load a png image into a format that GLFW can read.
+/// </summary>
+/// <param name="filename">The filename/path to load.</param>
+/// <returns>The imported GlFW image.</returns>
 GLFWimage* Utility::LoadGLFWImage( const string& filename )
 {
 	GLFWimage* outImage = new GLFWimage;
