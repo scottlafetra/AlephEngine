@@ -2,7 +2,6 @@
 #include <vector>
 #include <algorithm>
 #include "Scene.h"
-using namespace std;
 
 namespace AlephEngine
 {
@@ -14,31 +13,31 @@ namespace AlephEngine
 		friend class Scene;
 
 	public:
-		string tag;
+		std::string tag;
 		bool renderMe;
 		bool renderable;
 
 	private:
-		string name;
+		std::string name;
 
 		unsigned int id;
 		static unsigned int nextId;
-		list<Component*> components;
+		std::list<Component*> components;
 		Scene* scene;
 
 		// Private to make sure that only a scene can create it
-		Entity( string name );
+		Entity(std::string name );
 
 	protected:
-		void Error( string errorMessage );
-		void FatalError( string errorMessage );
+		void Error(std::string errorMessage );
+		void FatalError(std::string errorMessage );
 
 	public:
 		~Entity();
 
-		string GetName() const;
+		std::string GetName() const;
 		unsigned int GetID() const;
-		list<Component*> GetComponents();
+		std::list<Component*> GetComponents();
 		Scene* GetScene() const;
 
 		template <class T> T* AddComponent();

@@ -7,7 +7,6 @@
 #include <list>
 #include <functional>
 
-using namespace std;
 
 namespace AlephEngine
 {
@@ -28,44 +27,44 @@ namespace AlephEngine
 		static bool initialized;
 		static bool glewInitialized;
 
-		static vector<Scene*> scenes;
-		static vector<GLFWwindow*> windows;
-		list<Entity*> entities;
+		static std::vector<Scene*> scenes;
+		static std::vector<GLFWwindow*> windows;
+		std::list<Entity*> entities;
 
 		Transform* rootTransform;
 
-		list<RenderCallback*> renderCallbacks;
-		list<UpdateCallback*> updateCallbacks;
+		std::list<RenderCallback*> renderCallbacks;
+		std::list<UpdateCallback*> updateCallbacks;
 
-		void Error( const string& errorMessage );
-		void FatalError( const string& errorMessage );
+		void Error( const std::string& errorMessage );
+		void FatalError( const std::string& errorMessage );
 
 	public:
 		Scene();
 		~Scene();
 		size_t CreateAlephWindow( const int& width, const int& height );
-		void SetWindowTitle( const string& title, const unsigned short index = 0 );
-		void SetWindowIcon( const string& fileName, const unsigned short index = 0 );
+		void SetWindowTitle( const std::string& title, const unsigned short index = 0 );
+		void SetWindowIcon( const std::string& fileName, const unsigned short index = 0 );
 		void Play();
 
-		Entity* AddEntity( const string& name );
+		Entity* AddEntity( const std::string& name );
 		void DeleteEntity( Entity * entity );
-		list<Entity*> GetEntities();
+		std::list<Entity*> GetEntities();
 
 		// Render Callbacks
 		void AddRenderCallback( RenderCallback* callback );
 		void RemoveRenderCallback( RenderCallback* callback );
-		list<RenderCallback*> GetRenderCallbacks();
+		std::list<RenderCallback*> GetRenderCallbacks();
 
 		// Update Callbacks
 		void AddUpdateCallback( UpdateCallback* callback );
 		void RemoveUpdateCallback( UpdateCallback* callback );
-		list<UpdateCallback*> GetUpdateCallbacks();
+		std::list<UpdateCallback*> GetUpdateCallbacks();
 
-		Entity*         FindEntityWithTag( string tag );
-		vector<Entity*> FindEntitiesWithTag( string tag );
+		Entity*         FindEntityWithTag(std::string tag );
+		std::vector<Entity*> FindEntitiesWithTag(std::string tag );
 
-		inline vector<GLFWwindow*> GetWindows() { return windows; }
+		inline std::vector<GLFWwindow*> GetWindows() { return windows; }
 
 		static void GLFWWindowClose( GLFWwindow* requestedClose );
 	};
