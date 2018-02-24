@@ -1,5 +1,6 @@
 #include "Entity.h"
 #include "Transform.h"
+using namespace std;
 using namespace AlephEngine;
 
 unsigned int Entity::nextId = 0;

@@ -12,7 +12,7 @@ static CType Component::Type()
 		issuedTypes[typeid(T).hash_code()] = type = nextType;
 
 		// find and store the name
-		string name = typeid(T).name();
+		std::string name = typeid(T).name();
 		size_t start = name.find_last_of( ":" ) + 1;
 
 		typeNames[type] = name.substr( start, name.length() - start );
@@ -28,7 +28,7 @@ static CType Component::Type()
 }
 
 template <class T>
-static string Component::TypeName()
+static std::string Component::TypeName()
 {
 	return typeNames[Type<T>()];
 }
