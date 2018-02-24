@@ -69,7 +69,7 @@ void Camera::RenderSubnodes( Transform* root, gmtl::Matrix<float, 4, 4> mvp )
 	}
 
 	// Render children
-	list<Transform*> children = root->GetChildren();
+	std::list<Transform*> children = root->GetChildren();
 	for(Transform* child : children)
 	{
 		RenderSubnodes( child, mvp );
@@ -125,8 +125,8 @@ void Camera::SetPerspective( float fov, float nearLimit, float farLimit )
 {
 	orthographic = false;
 	Camera::fov = fov;
-	Camera::nearLimit = max( nearLimit, 0.0001f ); // Perspective limits cannot be 0 or below
-	Camera::farLimit  = max(  farLimit, 0.0001f );
+	Camera::nearLimit = std::max( nearLimit, 0.0001f ); // Perspective limits cannot be 0 or below
+	Camera::farLimit  = std::max(  farLimit, 0.0001f );
 
 	HandleResize();
 }

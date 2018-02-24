@@ -4,13 +4,12 @@
 #include "lodepng.h"
 #include <iostream>
 #include <string>
-using namespace std;
 
 namespace AlephEngine
 {
 	class Utility
 	{
 	public:
-		static GLFWimage* LoadGLFWImage( const string& filename );
+		static GLFWimage* LoadGLFWImage( const std::string& filename );
 	};
 }

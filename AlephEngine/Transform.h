@@ -20,7 +20,7 @@ namespace AlephEngine
 		bool isUpdated;
 
 		Transform* parent;
-		list<Transform*> children;
+		std::list<Transform*> children;
 
 	public:
 		Transform(Entity* entity);
@@ -46,6 +46,6 @@ namespace AlephEngine
 		void SetAsChild( Transform* newChild );
 
 		inline Transform* GetParent() { return parent; }
-		inline list<Transform*> GetChildren() { return children; }
+		inline std::list<Transform*> GetChildren() { return children; }
 	};
 }

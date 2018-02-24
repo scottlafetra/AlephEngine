@@ -1,4 +1,5 @@
 #include "Component.h"
+using namespace std;
 using namespace AlephEngine;
 
 unordered_map< size_t, CType > Component::issuedTypes;

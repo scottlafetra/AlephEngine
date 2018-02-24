@@ -17,15 +17,15 @@ namespace AlephEngine
 		Entity* entity;
 
 	private:
-		static unordered_map< size_t, CType  > issuedTypes;
-		static unordered_map< CType,  string > typeNames;
+		static std::unordered_map< size_t, CType  > issuedTypes;
+		static std::unordered_map< CType, std::string > typeNames;
 		static CType nextType;
 
 		unsigned int type;
 
 	protected:
-		void Error( const string& errorMessage );
-		void FatalError( const string& errorMessage );
+		void Error( const std::string& errorMessage );
+		void FatalError( const std::string& errorMessage );
 
 	public:
 		Component( Entity* entity, CType type );
@@ -34,9 +34,9 @@ namespace AlephEngine
 		inline Entity* GetEntity() const { return entity; }
 		inline Scene* GetScene() { return entity->GetScene(); }
 		CType GetType() const;
-		string GetTypeName() const;
+		std::string GetTypeName() const;
 		template <class T> static CType Type();
-		template <class T> static string TypeName();
+		template <class T> static std::string TypeName();
 	};
 }
 
