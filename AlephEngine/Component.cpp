@@ -1,9 +1,8 @@
 #include "Component.h"
-using namespace std;
 using namespace AlephEngine;
 
-unordered_map< size_t, CType > Component::issuedTypes;
-unordered_map< CType, string > Component::typeNames;
+std::unordered_map< size_t, CType > Component::issuedTypes;
+std::unordered_map< CType, std::string > Component::typeNames;
 CType Component::nextType = 0;
 
 /// <summary>
@@ -18,20 +17,20 @@ Component::Component( Entity* entity, CType type )
 /// Log a non-fatal error message.
 /// </summary>
 /// <param name="errorMessage">A description of the error.</param>
-void Component::Error( const string& errorMessage )
+void Component::Error( const std::string& errorMessage )
 {
-	cout << "Error - " << errorMessage << " in entity #" << entity->GetID()
-		<< "( \"" << GetTypeName() << "\" on \"" << entity->GetName() << "\" )" << endl;;
+	std::cout << "Error - " << errorMessage << " in entity #" << entity->GetID()
+		<< "( \"" << GetTypeName() << "\" on \"" << entity->GetName() << "\" )" << std::endl;;
 }
 
 /// <summary>
 /// Log a fatal error. The entity will be removed since it cannot continue to run.
 /// </summary>
 /// <param name="errorMessage">A description of the error.</param>
-void Component::FatalError( const string& errorMessage )
+void Component::FatalError( const std::string& errorMessage )
 {
-	cout << "Fatal Error - " << errorMessage << " in entity #" << entity->GetID()
-		<< "( \"" << GetTypeName() << "\" on \"" << entity->GetName() << "\" )" << endl;;
+	std::cout << "Fatal Error - " << errorMessage << " in entity #" << entity->GetID()
+		<< "( \"" << GetTypeName() << "\" on \"" << entity->GetName() << "\" )" << std::endl;;
 
 	entity->DeleteComponent(this);
 }
@@ -49,7 +48,7 @@ CType Component::GetType() const
 /// Get the human readable name for this component type.
 /// </summary>
 /// <returns>The human readable name for this component type.</returns>
-string Component::GetTypeName() const
+std::string Component::GetTypeName() const
 {
 	return typeNames[ type ];
 }
