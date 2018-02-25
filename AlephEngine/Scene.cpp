@@ -6,6 +6,7 @@
 #include "Transform.h"
 #include "Scene.h"
 #include "EngineTime.h"
+#include "Kinematics.h"
 
 using namespace AlephEngine;
 
@@ -208,6 +209,15 @@ void Scene::Play()
 		for(UpdateCallback* updateCallback : updateCallbacks)
 		{
 			updateCallback->Update();
+		}
+
+		// Move objects acording to physics
+		Kinematics::MoveStep();
+
+		// Call post move updates
+		for (PostMoveCallback* postMoveCallback : postMoveCallbacks)
+		{
+			postMoveCallback->PostMove();
 		}
 
 		// Render
