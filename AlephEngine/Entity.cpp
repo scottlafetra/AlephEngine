@@ -71,7 +71,7 @@ Scene* Entity::GetScene() const
 void Entity::Error(std::string errorMessage )
 {
 	std::cout << "Error - " << errorMessage << " in entity #" << GetID()
-		<< "( \"" << GetName() << "\" )" << endl;
+		<< "( \"" << GetName() << "\" )" << std::endl;
 }
 
 /// <summary>
