@@ -142,8 +142,10 @@
     <ClInclude Include="CatMotion.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="EngineTime.h" />
+    <ClInclude Include="Gravity.h" />
     <ClInclude Include="Kinematics.h" />
     <ClInclude Include="lodepng.h" />
+    <ClInclude Include="Point3D.h" />
     <ClInclude Include="Rotates.h" />
     <ClInclude Include="Shaders.h" />
     <ClInclude Include="MeshRenderer.h" />
@@ -161,6 +163,7 @@
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="EngineTime.cpp" />
     <ClCompile Include="Entity.cpp" />
+    <ClCompile Include="Gravity.cpp" />
     <ClCompile Include="Kinematics.cpp" />
     <ClCompile Include="lodepng.cpp" />
     <ClCompile Include="CatDemoMain.cpp" />
