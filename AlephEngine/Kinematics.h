@@ -11,11 +11,11 @@ namespace AlephEngine
 		Kinematics(Entity* entity);
 		
 		// meters/second use like vector x, y, z
-		AlephEngine::Point3D velocity;
+		gmtl::vector<float, 3> velocity;
 		// meters Collision and gravity epicenters
-		AlephEngine::Point3D centerOfMass;
+		gmtl::vector<float, 3> centerOfMass;
 		// Kg. used for momentum, collisions, 
-		double mass;
+		float mass;
 		
 		static void MoveStep(); // Moves the enitity acording to its physics
 	};
