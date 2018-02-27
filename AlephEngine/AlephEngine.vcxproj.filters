@@ -34,6 +34,12 @@
     <Filter Include="Resource Files\Demo">
       <UniqueIdentifier>{9312725b-a94b-4672-8b03-e00335bd4f02}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Physics">
+      <UniqueIdentifier>{9d8ce147-ae91-419e-b0c1-e07eb13b91cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Physics">
+      <UniqueIdentifier>{70bbd1a3-3b27-421c-bfcb-0182375d5e8e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h">
@@ -82,7 +88,13 @@
       <Filter>Header Files\Rendering</Filter>
     </ClInclude>
     <ClInclude Include="Kinematics.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Gravity.h">
+      <Filter>Header Files\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Point3D.h">
+      <Filter>Header Files\Physics</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -123,7 +135,10 @@
       <Filter>Source Files\Rendering</Filter>
     </ClCompile>
     <ClCompile Include="Kinematics.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Gravity.cpp">
+      <Filter>Source Files\Physics</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
