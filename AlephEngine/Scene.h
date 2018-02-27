@@ -16,8 +16,10 @@ namespace AlephEngine
 	class Camera;
 	class Transform;
 
-	class RenderCallback { public: virtual void Render() = 0; };
-	class UpdateCallback { public: virtual void Update() = 0; };
+	
+	class UpdateCallback  { public: virtual void Update() = 0; }; // Updates the game state once per frame
+	class PostMoveCallback{ public: virtual void PostMove() = 0; }; // Updates that need to occur after objects have moved
+	class RenderCallback { public: virtual void Render() = 0; }; // Used to call everything that should do some rendering
 
 	class Scene
 	{
@@ -35,6 +37,7 @@ namespace AlephEngine
 
 		std::list<RenderCallback*> renderCallbacks;
 		std::list<UpdateCallback*> updateCallbacks;
+		std::list<PostMoveCallback*> postMoveCallbacks;
 
 		void Error( const std::string& errorMessage );
 		void FatalError( const std::string& errorMessage );
@@ -60,6 +63,11 @@ namespace AlephEngine
 		void AddUpdateCallback( UpdateCallback* callback );
 		void RemoveUpdateCallback( UpdateCallback* callback );
 		std::list<UpdateCallback*> GetUpdateCallbacks();
+
+		// Post Move Callbacks
+		void AddPostMoveeCallback(PostMoveCallback* callback);
+		void RemovePostMoveCallback(PostMoveCallback* callback);
+		std::list<PostMoveCallback*> GetPostMoveCallbacks();
 
 		Entity*         FindEntityWithTag(std::string tag );
 		std::vector<Entity*> FindEntitiesWithTag(std::string tag );

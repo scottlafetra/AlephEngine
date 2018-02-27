@@ -1,5 +1,4 @@
 #include "Utility.h"
-using namespace std;
 using namespace AlephEngine;
 
 /// <summary>
@@ -7,7 +6,7 @@ using namespace AlephEngine;
 /// </summary>
 /// <param name="filename">The filename/path to load.</param>
 /// <returns>The imported GlFW image.</returns>
-GLFWimage* Utility::LoadGLFWImage( const string& filename )
+GLFWimage* Utility::LoadGLFWImage( const std::string& filename )
 {
 	GLFWimage* outImage = new GLFWimage;
 	unsigned width;
@@ -18,7 +17,7 @@ GLFWimage* Utility::LoadGLFWImage( const string& filename )
 
 	if( error )
 	{
-		cout << "Error decoding image " << error << ": " << lodepng_error_text( error ) << endl;
+		std::cout << "Error decoding image " << error << ": " << lodepng_error_text( error ) << std::endl;
 	}
 
 	// Convert to signed ints for GLFW

@@ -10,7 +10,6 @@
 #include "ctime"
 
 
-using namespace std;
 using namespace AlephEngine;
 
 #include "Testing.h"
@@ -21,13 +20,13 @@ void PrintScene( Scene* scene )
 	// Print contents of scene
 	for( Entity* entity : scene->GetEntities() )
 	{
-		cout << "\nName: " << entity->GetName() << endl;
-		cout << "ID: " << entity->GetID() << endl;
-		cout << "Components:" << endl;
+		std::cout << "\nName: " << entity->GetName() << std::endl;
+		std::cout << "ID: " << entity->GetID() << std::endl;
+		std::cout << "Components:" << std::endl;
 
 		for( Component* component : entity->GetComponents() )
 		{
-			cout << "\t" << component->GetTypeName() << endl;
+			std::cout << "\t" << component->GetTypeName() << std::endl;
 		}
 	}
 }
@@ -44,8 +43,8 @@ void ECSTest()
 	// Add test entities and componets
 	for( int eNum = 0; eNum < 10; ++eNum )
 	{
-		Entity* entity = scene.AddEntity( string("Test Entity ") + string(1, 'A' + eNum ) );
-		entity->tag = to_string(eNum % 3);
+		Entity* entity = scene.AddEntity(std::string("Test Entity ") + std::string(1, 'A' + eNum ) );
+		entity->tag = std::to_string(eNum % 3);
 	}
 
 	for( Entity* entity : scene.FindEntitiesWithTag( "0" ) )
@@ -67,13 +66,13 @@ void ECSTest()
 	PrintScene( &scene );
 
 	// Gennerate errors
-	cout << "\nCausing an error on the Tester1 Compoent on Entity A" << endl;
+	std::cout << "\nCausing an error on the Tester1 Compoent on Entity A" << std::endl;
 	scene.GetEntities().front()->FetchComponent<Tester1>()->CauseError();
 
-	cout << "\nCausing a fatal error on the Tester2 Compoent on Entity B" << endl;
+	std::cout << "\nCausing a fatal error on the Tester2 Compoent on Entity B" << std::endl;
 	scene.FindEntitiesWithTag( "1" ).front()->FetchComponent<Tester2>()->CauseFatalError();
 
-	cout << "\nNow note how Tester2 on entity B deleted itsself.\n" << endl;
+	std::cout << "\nNow note how Tester2 on entity B deleted itsself.\n" << std::endl;
 
 	PrintScene( &scene );
 
@@ -96,9 +95,6 @@ void RenderTest()
 	camera->AddComponent<Camera>();
 	camera->FetchComponent<Camera>()->SetPerspective( 45, 1, 20 );
 	camera->FetchComponent<Transform>()->Move( 0, 0, 2 );
-	
-
-	
 	
 	// Load test cube
 	Entity* testRenderCube = scene.AddEntity( "TestRenderCube" );
@@ -144,7 +140,7 @@ void RenderTest()
 	scene.Play();
 }
 
-void LoadCat( string name, Scene* scene, GLFWimage* texture, float xPos = 0, float yPos = 0 )
+void LoadCat(std::string name, Scene* scene, GLFWimage* texture, float xPos = 0, float yPos = 0 )
 {
 	// Load cat cube
 	Entity* catRenderCube = scene->AddEntity( name );

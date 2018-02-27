@@ -6,8 +6,8 @@
 #include "Transform.h"
 #include "Scene.h"
 #include "EngineTime.h"
+#include "Kinematics.h"
 
-using namespace std;
 using namespace AlephEngine;
 
 /// <summary>
@@ -65,11 +65,11 @@ void APIENTRY glDebugOutput( GLenum source, GLenum type, GLuint id, GLenum sever
 /// <param name="description">Description.</param>
 void GLFWError( int error, const char* description )
 {
-	cout << "GLFW Error - " << description << endl;
+	std::cout << "GLFW Error - " << description << std::endl;
 }
 
-vector<Scene*> Scene::scenes;
-vector<GLFWwindow*> Scene::windows;
+std::vector<Scene*> Scene::scenes;
+std::vector<GLFWwindow*> Scene::windows;
 
 bool Scene::initialized = false;
 bool Scene::glewInitialized = false;
@@ -151,11 +151,11 @@ size_t Scene::CreateAlephWindow( const int& width, const int& height )
 	}
 	else
 	{
-		cout << "Warning: Couldn't create OpenGL debug context." << endl;
+		std::cout << "Warning: Couldn't create OpenGL debug context." << std::endl;
 	}
 
 	// Version number
-	cout << "Using OpenGL " << glGetString( GL_VERSION ) << endl;
+	std::cout << "Using OpenGL " << glGetString( GL_VERSION ) << std::endl;
 
 	// Add to list
 	size_t newIndex = windows.size();
@@ -177,7 +177,7 @@ size_t Scene::CreateAlephWindow( const int& width, const int& height )
 /// </summary>
 /// <param name="filename">The relitive filename/path where the image is located.</param>
 /// <param name="index">The index identifying the window.</param>
-void Scene::SetWindowIcon( const string& filename, const unsigned short index )
+void Scene::SetWindowIcon( const std::string& filename, const unsigned short index )
 {
 	glfwSetWindowIcon( windows[index], 1, Utility::LoadGLFWImage( filename ) );
 }
@@ -187,7 +187,7 @@ void Scene::SetWindowIcon( const string& filename, const unsigned short index )
 /// </summary>
 /// <param name="title">The new title of the window.</param>
 /// <param name="index">The index identifying the window.</param>
-void Scene::SetWindowTitle( const string& title, const unsigned short index )
+void Scene::SetWindowTitle( const std::string& title, const unsigned short index )
 {
 	glfwSetWindowTitle( windows[index], title.c_str() );
 }
@@ -211,6 +211,15 @@ void Scene::Play()
 			updateCallback->Update();
 		}
 
+		// Move objects acording to physics
+		Kinematics::MoveStep();
+
+		// Call post move updates
+		for (PostMoveCallback* postMoveCallback : postMoveCallbacks)
+		{
+			postMoveCallback->PostMove();
+		}
+
 		// Render
 		glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 
@@ -231,18 +240,18 @@ void Scene::Play()
 /// Log a non-fatal error.
 /// </summary>
 /// <param name="errorMessage">A description of the error.</param>
-void Scene::Error( const string& errorMessage )
+void Scene::Error( const std::string& errorMessage )
 {
-	cout << "Error - " << errorMessage << endl;
+	std::cout << "Error - " << errorMessage << std::endl;
 }
 
 /// <summary>
 /// Log a fatal error. The scene will delete itsself as it can no longer run.
 /// </summary>
 /// <param name="errorMessage">A description of the error.</param>
-void Scene::FatalError( const string& errorMessage )
+void Scene::FatalError( const std::string& errorMessage )
 {
-	cout << "Fatal Error - " << errorMessage << endl;
+	std::cout << "Fatal Error - " << errorMessage << std::endl;
 	delete this;
 }
 
@@ -251,7 +260,7 @@ void Scene::FatalError( const string& errorMessage )
 /// </summary>
 /// <param name="name">The name of the entity to create.</param>
 /// <returns>A pointer to the entity.</returns>
-Entity* Scene::AddEntity( const string& name )
+Entity* Scene::AddEntity( const std::string& name )
 {
 	Entity* entity = new Entity( name );
 	entity->scene = this;
@@ -281,7 +290,7 @@ void Scene::DeleteEntity( Entity* entity )
 /// Get a list of all the entities in the scene.
 /// </summary>
 /// <returns></returns>
-list<Entity*> Scene::GetEntities()
+std::list<Entity*> Scene::GetEntities()
 {
 	return entities;
 }
@@ -292,15 +301,15 @@ void Scene::AddUpdateCallback( UpdateCallback* callback ) { updateCallbacks.push
 void Scene::RemoveRenderCallback( RenderCallback* callback ) { renderCallbacks.remove( callback ); }
 void Scene::RemoveUpdateCallback( UpdateCallback* callback ) { updateCallbacks.remove( callback ); }
 
-list<RenderCallback*> Scene::GetRenderCallbacks() { return renderCallbacks; }
-list<UpdateCallback*> Scene::GetUpdateCallbacks() { return updateCallbacks; }
+std::list<RenderCallback*> Scene::GetRenderCallbacks() { return renderCallbacks; }
+std::list<UpdateCallback*> Scene::GetUpdateCallbacks() { return updateCallbacks; }
 
 /// <summary>
 /// Returns the first entity matching a given tag.
 /// </summary>
 /// <param name="tag">The tag to search for.</param>
 /// <returns>The entity, NULL if no entity was found for the given tag.</returns>
-Entity* Scene::FindEntityWithTag( string tag )
+Entity* Scene::FindEntityWithTag(std::string tag )
 {
 	 auto result = find_if( entities.begin(), entities.end(), [&]( const Entity* entity ) { return entity->tag == tag; } );
 
@@ -318,12 +327,12 @@ Entity* Scene::FindEntityWithTag( string tag )
 /// </summary>
 /// <param name="tag">The tag to search for.</param>
 /// <returns>A vector of all entities matching the given tag.</returns>
-vector<Entity*> Scene::FindEntitiesWithTag( string tag )
+std::vector<Entity*> Scene::FindEntitiesWithTag(std::string tag )
 {
 	auto checkTag = [&]( const Entity* entity ) { return entity->tag.compare(tag) == 0; };
 	auto end = entities.end();
 	auto current = find_if( entities.begin(), end,  checkTag);
-	vector<Entity*> results;
+	std::vector<Entity*> results;
 
 	while( current != end )
 	{

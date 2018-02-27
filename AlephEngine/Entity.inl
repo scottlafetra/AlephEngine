@@ -7,7 +7,7 @@ T* Entity::AddComponent()
 {
 	if( FetchComponent<T>() != NULL )
 	{
-		Error( string( "Could not add component of type " ) + Component::TypeName<T>() );
+		Error(std::string( "Could not add component of type " ) + Component::TypeName<T>() );
 	}
 
 	T* newComponent = new T( this );

@@ -1,6 +1,5 @@
 #include "Entity.h"
 #include "Transform.h"
-using namespace std;
 using namespace AlephEngine;
 
 unsigned int Entity::nextId = 0;
@@ -9,7 +8,7 @@ unsigned int Entity::nextId = 0;
 /// Entity ctor.
 /// </summary>
 /// <param name="name">Name to give the entity.</param>
-Entity::Entity( string name )
+Entity::Entity(std::string name )
 	: id( nextId ), name( name ), scene( NULL ), renderMe( false ), renderable( false )
 {
 	nextId++;
@@ -33,7 +32,7 @@ Entity::~Entity()
 /// Get the name of the Enity.
 /// </summary>
 /// <returns>The name of the Enity.</returns>
-string Entity::GetName() const
+std::string Entity::GetName() const
 {
 	return name;
 }
@@ -51,7 +50,7 @@ unsigned int Entity::GetID() const
 /// Get the components attached to this entity.
 /// </summary>
 /// <returns>A list of the components attached to this entity.</returns>
-list<Component*> Entity::GetComponents()
+std::list<Component*> Entity::GetComponents()
 {
 	return components;
 }
@@ -69,20 +68,20 @@ Scene* Entity::GetScene() const
 /// Log a non-fatal error.
 /// </summary>
 /// <param name="errorMessage">A description of the error.</param>
-void Entity::Error( string errorMessage )
+void Entity::Error(std::string errorMessage )
 {
-	cout << "Error - " << errorMessage << " in entity #" << GetID()
-		<< "( \"" << GetName() << "\" )" << endl;
+	std::cout << "Error - " << errorMessage << " in entity #" << GetID()
+		<< "( \"" << GetName() << "\" )" << std::endl;
 }
 
 /// <summary>
 /// Log a fatal error. The entity will be removed as it can't continue running.
 /// </summary>
 /// <param name="errorMessage">A description of the error.</param>
-void Entity::FatalError( string errorMessage )
+void Entity::FatalError(std::string errorMessage )
 {
-	cout << "Fatal Error - " << errorMessage << " in entity #" << GetID()
-		<< "( \"" << GetName() << "\" )" << endl;
+	std::cout << "Fatal Error - " << errorMessage << " in entity #" << GetID()
+		<< "( \"" << GetName() << "\" )" << std::endl;
 
 	scene->DeleteEntity( this );
 }
