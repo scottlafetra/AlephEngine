@@ -145,7 +145,6 @@
     <ClInclude Include="Gravity.h" />
     <ClInclude Include="Kinematics.h" />
     <ClInclude Include="lodepng.h" />
-    <ClInclude Include="Point3D.h" />
     <ClInclude Include="Rotates.h" />
     <ClInclude Include="Shaders.h" />
     <ClInclude Include="MeshRenderer.h" />

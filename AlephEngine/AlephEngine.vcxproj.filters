@@ -93,9 +93,6 @@
     <ClInclude Include="Gravity.h">
       <Filter>Header Files\Physics</Filter>
     </ClInclude>
-    <ClInclude Include="Point3D.h">
-      <Filter>Header Files\Physics</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="lodepng.cpp">

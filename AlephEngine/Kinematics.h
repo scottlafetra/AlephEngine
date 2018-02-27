@@ -1,7 +1,7 @@
 #pragma once
 
+#include <gmtl/Vec.h>
 #include "Component.h"
-#include "Point3D.h"
 
 namespace AlephEngine
 {
@@ -11,9 +11,9 @@ namespace AlephEngine
 		Kinematics(Entity* entity);
 		
 		// meters/second use like vector x, y, z
-		gmtl::vector<float, 3> velocity;
+		gmtl::Vec<float, 3> velocity;
 		// meters Collision and gravity epicenters
-		gmtl::vector<float, 3> centerOfMass;
+		gmtl::Vec<float, 3> centerOfMass;
 		// Kg. used for momentum, collisions, 
 		float mass;
 		
