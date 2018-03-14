@@ -23,7 +23,7 @@ AlephEngine::Kinematics::Kinematics(Entity * entity, gmtl::Vec<float, 3> vel, gm
 void AlephEngine::Kinematics::MoveStep()
 {
 	// TODO: Fill in code here
-	centerOfMass[0] += velocity[0] * EngineTime::GetDeltaTime();
+	centerOfMass[0] += velocity[0]*EngineTime::GetDeltaTime();
 	centerOfMass[1] += velocity[1] * EngineTime::GetDeltaTime();
 	centerOfMass[2] += velocity[2] * EngineTime::GetDeltaTime();
 
