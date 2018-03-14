@@ -1,5 +1,4 @@
 #include "Kinematics.h"
-#include "EngineTime.h"
 
 AlephEngine::Kinematics::Kinematics(Entity * entity) :
 	Component(entity, Component::Type<Kinematics>()),
