@@ -1,7 +1,5 @@
 #pragma once
 
-#include <gmtl/VecOps.h>
-
 #include "Kinematics.h"
 
 namespace AlephEngine

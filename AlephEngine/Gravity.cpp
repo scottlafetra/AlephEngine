@@ -11,14 +11,11 @@ void AlephEngine::Gravity::attract(Kinematics & yourKin)
 	for (int i = 0; i < m_myKin->centerOfMass.Size; i++) {
 		dcomps.push_back(m_myKin->centerOfMass[i] - yourKin.centerOfMass[i]);
 	}
-	gmtl::Vec<float, 3> direction = m_myKin->centerOfMass - yourKin.centerOfMass;
 	
 	//distance
 	float d = sqrt( pow( dcomps[0], 2 ) + pow( dcomps[1], 2 ) + pow( dcomps[2], 2 ) ); 
-	float distance = sqrt( pow(direction[0], 2 ) + pow(direction[1], 2 ) + pow(direction[2], 2 ) );
 	// force kg*m/s/s
 	float f = ( G * m_myKin->mass * yourKin.mass / pow( d, 2 ) ); 
-	float forceMagnitude = ( G * m_myKin->mass * yourKin.mass / pow(distance, 2 ) );
 
 	// vec of acc. for yourKin
 	std::vector< float > accvec = { dcomps[0]*f / ( d*yourKin.mass ),
@@ -35,8 +32,4 @@ void AlephEngine::Gravity::attract(Kinematics & yourKin)
 	for (int i = 0; i < m_myKin->velocity.Size; i++) {
 		m_myKin->velocity[i] += accvec[i];
 	}
-	gmtl::Vec<float, 3> newForce = direction / distance * forceMagnitude;
-
-	m_myKin->AddForce(newForce);
-	yourKin.AddForce(newForce * (float) -1);
 }
