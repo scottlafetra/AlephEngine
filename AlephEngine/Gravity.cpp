@@ -18,13 +18,17 @@ void AlephEngine::Gravity::attract(Kinematics & yourKin)
 	float f = ( G * m_myKin->mass * yourKin.mass / pow( d, 2 ) ); 
 
 	// vec of acc. for yourKin
-	std::vector< float > accvec = { dcomps[0]*f / ( d*yourKin.mass ), dcomps[1]*f / (d*yourKin.mass), dcomps[2]*f / (d*yourKin.mass) }; 
+	std::vector< float > accvec = { dcomps[0]*f / ( d*yourKin.mass ),
+									dcomps[1]*f / ( d*yourKin.mass ),
+									dcomps[2]*f / ( d*yourKin.mass ) }; 
 	for (int i = 0; i < m_myKin->velocity.Size; i++) {
 		yourKin.velocity[i] += accvec[i];
 	}
 
 	// vec of acc. for myKin
-	accvec = std::vector<float>{-dcomps[0]*f / ( d*m_myKin->mass ), -dcomps[1]*f / (d*m_myKin->mass), -dcomps[2]*f / (d*m_myKin->mass) };
+	accvec = {	-dcomps[0]*f / ( d*m_myKin->mass ),
+				-dcomps[1]*f / ( d*m_myKin->mass ),
+				-dcomps[2]*f / ( d*m_myKin->mass ) };
 	for (int i = 0; i < m_myKin->velocity.Size; i++) {
 		m_myKin->velocity[i] += accvec[i];
 	}
