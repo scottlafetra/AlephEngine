@@ -17,19 +17,29 @@ void AlephEngine::Gravity::attract(Kinematics & yourKin)
 	// force kg*m/s/s
 	float f = ( G * m_myKin->mass * yourKin.mass / pow( d, 2 ) ); 
 
+<<<<<<< HEAD
 	// vec of acc. for yourKin
 	std::vector< float > accvec = { dcomps[0]*f / ( d*yourKin.mass ),
 									dcomps[1]*f / ( d*yourKin.mass ),
 									dcomps[2]*f / ( d*yourKin.mass ) }; 
+=======
+	// vec of meters^s / second for yourKin
+	std::vector< float > Nmm_s = { dcomps[0]*f / ( d*yourKin.mass ), dcomps[1]*f / (d*yourKin.mass), dcomps[2]*f / (d*yourKin.mass) }; 
+>>>>>>> Kinematics
 	for (int i = 0; i < m_myKin->velocity.Size; i++) {
-		yourKin.velocity[i] += accvec[i];
+		yourKin.velocity[i] += Nmm_s[i];
 	}
 
+<<<<<<< HEAD
 	// vec of acc. for myKin
 	accvec = {	-dcomps[0]*f / ( d*m_myKin->mass ),
 				-dcomps[1]*f / ( d*m_myKin->mass ),
 				-dcomps[2]*f / ( d*m_myKin->mass ) };
+=======
+	// vec of Newton meters^s / second for myKin
+	Nmm_s = std::vector<float>{-dcomps[0]*f / ( d*m_myKin->mass ), -dcomps[1]*f / (d*m_myKin->mass), -dcomps[2]*f / (d*m_myKin->mass) };
+>>>>>>> Kinematics
 	for (int i = 0; i < m_myKin->velocity.Size; i++) {
-		m_myKin->velocity[i] += accvec[i];
+		m_myKin->velocity[i] += Nmm_s[i];
 	}
 }
