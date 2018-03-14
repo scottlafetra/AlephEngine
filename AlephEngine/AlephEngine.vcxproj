@@ -145,6 +145,7 @@
     <ClInclude Include="Gravity.h" />
     <ClInclude Include="Kinematics.h" />
     <ClInclude Include="lodepng.h" />
+    <ClInclude Include="PhysicsMaster.h" />
     <ClInclude Include="Rotates.h" />
     <ClInclude Include="Shaders.h" />
     <ClInclude Include="MeshRenderer.h" />
@@ -166,6 +167,7 @@
     <ClCompile Include="Kinematics.cpp" />
     <ClCompile Include="lodepng.cpp" />
     <ClCompile Include="CatDemoMain.cpp" />
+    <ClCompile Include="PhysicsMaster.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="Rotates.cpp" />
     <ClCompile Include="Scene.cpp" />

@@ -1,4 +1,5 @@
 #include "Entity.h"
+#include "Kinematics.h"
 #include "Transform.h"
 using namespace AlephEngine;
 
@@ -22,6 +23,12 @@ Entity::Entity(std::string name )
 /// </summary>
 Entity::~Entity()
 {
+	// Remove a kinematics from scene if possible
+	if (FetchComponent<Kinematics>() != NULL)
+	{
+		DeleteComponent<Kinematics>();
+	}
+
 	for( Component* component : components )
 	{
 		delete component;
@@ -99,6 +106,40 @@ void Entity::DeleteComponent( Component* toDelete )
 	else
 	{
 		components.remove( toDelete );
+		delete toDelete;
+	}
+}
+
+// Automaticly add Kinematics to physics master
+template<>
+Kinematics* Entity::AddComponent<Kinematics>()
+{
+	if (FetchComponent<Kinematics>() != NULL)
+	{
+		Error(std::string("Could not add component of type ") + Component::TypeName<Kinematics>());
+	}
+
+	Kinematics* newComponent = new Kinematics(this);
+	scene->physicsMaster.TrackPhysics(newComponent);
+
+	components.push_back((Component*) newComponent);
+
+	return newComponent;
+}
+
+template <>
+void Entity::DeleteComponent<Kinematics>()
+{
+	Kinematics* toDelete = FetchComponent<Kinematics>();
+
+	if (toDelete == NULL)
+	{
+		scene->Error("Could not delete compoment of type " + Component::TypeName<Kinematics>());
+	}
+	else
+	{
+		scene->physicsMaster.StopTrackingPhysics(toDelete);
+		components.remove((Component*)toDelete);
 		delete toDelete;
 	}
 }

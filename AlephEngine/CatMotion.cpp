@@ -12,7 +12,7 @@ CatMotion::CatMotion( Entity* entity )
 
 void CatMotion::Update()
 {
-	myTransform->Move( speed * EngineTime::GetDeltaTime(), 0 );
+	entity->FetchComponent<Kinematics>()->velocity = { speed, 0, 0 };
 
 	if(myTransform->GetPosition()[ 0 ] > limit)
 	{
@@ -28,6 +28,7 @@ void CatMotion::SetSpeed( float xSpeed )
 {
 	speed = xSpeed;
 }
+
 void CatMotion::SetLimit( float xLimit )
 {
 	limit = xLimit;

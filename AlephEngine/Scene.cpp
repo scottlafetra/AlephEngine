@@ -7,6 +7,7 @@
 #include "Scene.h"
 #include "EngineTime.h"
 #include "Kinematics.h"
+#include "PhysicsMaster.h"
 
 using namespace AlephEngine;
 
@@ -212,7 +213,7 @@ void Scene::Play()
 		}
 
 		// Move objects acording to physics
-		Kinematics::MoveStep();
+		physicsMaster.StepPhysics();
 
 		// Call post move updates
 		for (PostMoveCallback* postMoveCallback : postMoveCallbacks)
@@ -297,12 +298,15 @@ std::list<Entity*> Scene::GetEntities()
 
 void Scene::AddRenderCallback( RenderCallback* callback ) { renderCallbacks.push_back( callback ); }
 void Scene::AddUpdateCallback( UpdateCallback* callback ) { updateCallbacks.push_back( callback ); }
+void Scene::AddPostMoveCallback(PostMoveCallback* callback) { postMoveCallbacks.push_back(callback); }
 
 void Scene::RemoveRenderCallback( RenderCallback* callback ) { renderCallbacks.remove( callback ); }
 void Scene::RemoveUpdateCallback( UpdateCallback* callback ) { updateCallbacks.remove( callback ); }
+void Scene::RemovePostMoveCallback( PostMoveCallback* callback) { postMoveCallbacks.remove(callback); }
 
 std::list<RenderCallback*> Scene::GetRenderCallbacks() { return renderCallbacks; }
 std::list<UpdateCallback*> Scene::GetUpdateCallbacks() { return updateCallbacks; }
+std::list<PostMoveCallback*> Scene::GetPostMoveCallbacks() { return postMoveCallbacks; }
 
 /// <summary>
 /// Returns the first entity matching a given tag.
@@ -355,3 +359,4 @@ void Scene::GLFWWindowClose( GLFWwindow* requestedClose )
 	windows.erase( remove( windows.begin(), windows.end(), requestedClose ), windows.end() );
 	// GLFW handles actual window closure unless we say otherwise
 }
+

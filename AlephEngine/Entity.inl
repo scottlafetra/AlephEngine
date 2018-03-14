@@ -1,6 +1,7 @@
 #pragma once
 using namespace AlephEngine;
 
+
 // May only use one of each type of component
 template <class T>
 T* Entity::AddComponent()
@@ -16,6 +17,8 @@ T* Entity::AddComponent()
 
 	return newComponent;
 }
+
+
 
 template <class T>
 T* Entity::FetchComponent()
@@ -42,7 +45,7 @@ void Entity::DeleteComponent()
 
 	if( toDelete == NULL )
 	{
-		scene.Error( "Could not delete compoment of type " + Component::TypeName<T>() );
+		scene->Error( "Could not delete compoment of type " + Component::TypeName<T>() );
 	}
 	else
 	{
@@ -50,3 +53,4 @@ void Entity::DeleteComponent()
 		delete toDelete;
 	}
 }
+

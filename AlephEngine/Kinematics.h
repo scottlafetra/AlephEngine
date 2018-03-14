@@ -7,6 +7,17 @@ namespace AlephEngine
 {
 	class Kinematics : public Component
 	{
+		friend class PhysicsMaster;
+
+	private:
+		// Force totals to be reset at move step
+		gmtl::Vec<float, 3> forceTotal;
+		
+		Transform* myTransform;
+
+		// Moves this Kinematic object
+		void MoveStep();
+
 	public:
 		Kinematics(Entity* entity);
 		
@@ -16,8 +27,9 @@ namespace AlephEngine
 		gmtl::Vec<float, 3> centerOfMass;
 		// Kg. used for momentum, collisions, 
 		float mass;
-		
-		static void MoveStep(); // Moves the enitity acording to its physics
+
+		// Add Force as if it was directed through the center of mass
+		void AddForce(gmtl::Vec<float, 3> forceVector);
 	};
 }
 

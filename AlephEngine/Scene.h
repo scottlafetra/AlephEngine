@@ -1,11 +1,11 @@
 #pragma once
 #include <iostream>
 #include <string>
-
 #include <gmtl/Matrix.h>
 #include <GLFW/glfw3.h>
 #include <list>
 #include <functional>
+#include "PhysicsMaster.h"
 
 
 namespace AlephEngine
@@ -15,7 +15,7 @@ namespace AlephEngine
 	class Renderer;
 	class Camera;
 	class Transform;
-
+	class Kinematics;
 	
 	class UpdateCallback  { public: virtual void Update() = 0; }; // Updates the game state once per frame
 	class PostMoveCallback{ public: virtual void PostMove() = 0; }; // Updates that need to occur after objects have moved
@@ -24,6 +24,7 @@ namespace AlephEngine
 	class Scene
 	{
 		friend class Camera;
+		friend class Entity;
 
 	private:
 		static bool initialized;
@@ -33,7 +34,10 @@ namespace AlephEngine
 		static std::vector<GLFWwindow*> windows;
 		std::list<Entity*> entities;
 
+		std::list<Kinematics* > allKinematics;
+
 		Transform* rootTransform;
+		PhysicsMaster physicsMaster;
 
 		std::list<RenderCallback*> renderCallbacks;
 		std::list<UpdateCallback*> updateCallbacks;
@@ -65,7 +69,7 @@ namespace AlephEngine
 		std::list<UpdateCallback*> GetUpdateCallbacks();
 
 		// Post Move Callbacks
-		void AddPostMoveeCallback(PostMoveCallback* callback);
+		void AddPostMoveCallback(PostMoveCallback* callback);
 		void RemovePostMoveCallback(PostMoveCallback* callback);
 		std::list<PostMoveCallback*> GetPostMoveCallbacks();
 
