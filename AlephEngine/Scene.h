@@ -24,7 +24,7 @@ namespace AlephEngine
 	class Scene
 	{
 		friend class Camera;
-		friend class Entity;
+		friend class Kinematics;
 
 	private:
 		static bool initialized;

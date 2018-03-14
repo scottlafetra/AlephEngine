@@ -8,6 +8,7 @@
 #include "CatMotion.h"
 #include "Transform.h"
 #include "ctime"
+#include "Kinematics.h"
 
 
 using namespace AlephEngine;
@@ -158,6 +159,8 @@ void LoadCat(std::string name, Scene* scene, GLFWimage* texture, float xPos = 0,
 		( rand() % 200 - 100 ) / 100.f,
 		( rand() % 200 - 100 ) / 100.f );
 
+
+	catRenderCube->AddComponent<Kinematics>();
 	catRenderCube->AddComponent<CatMotion>();
 	catRenderCube->FetchComponent<CatMotion>()->SetSpeed( ( rand() % 150 - 75 ) / 100.f + 1.f);
 	catRenderCube->FetchComponent<CatMotion>()->SetLimit( 5 );

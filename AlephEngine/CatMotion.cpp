@@ -1,6 +1,7 @@
 #include "CatMotion.h"
 #include "Transform.h"
 #include "EngineTime.h"
+#include "Kinematics.h"
 
 CatMotion::CatMotion( Entity* entity )
 	: Component( entity, Type<CatMotion>() ), myTransform( entity->FetchComponent<Transform>() )
@@ -12,7 +13,7 @@ CatMotion::CatMotion( Entity* entity )
 
 void CatMotion::Update()
 {
-	entity->FetchComponent<Kinematics>()->velocity = { speed, 0, 0 };
+	entity->FetchComponent<Kinematics>()->velocity = gmtl::Vec<float, 3>{ speed, 0, 0 };
 
 	if(myTransform->GetPosition()[ 0 ] > limit)
 	{

@@ -45,7 +45,7 @@ void Entity::DeleteComponent()
 
 	if( toDelete == NULL )
 	{
-		scene->Error( "Could not delete compoment of type " + Component::TypeName<T>() );
+		Error( "Could not delete compoment of type " + Component::TypeName<T>() );
 	}
 	else
 	{
