@@ -160,6 +160,7 @@
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="CatMotion.cpp" />
+    <ClCompile Include="Collision.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="EngineTime.cpp" />
     <ClCompile Include="Entity.cpp" />
