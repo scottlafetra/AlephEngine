@@ -10,15 +10,18 @@ void Collision::getMomentum(){
 
 Coll* Collision::checkCollision(Collision other){
 	
-	//if either of our points are between other's X bounds
-	if (checkXBounds(other)) {
-		//if either of our points are between other's Y bounds
-		if (checkYBounds(other)) {
-			//if either of our points are between other's Z bounds
-			if (checkZBounds(other)) {
+	//if X overlaps
+	float X_Overlap = checkXOverlap(other);
+	if (X_Overlap > 0) {
+		//if X overlaps
+		float Y_Overlap = checkYOverlap(other);
+		if (Y_Overlap > 0) {
+			//if Z overlaps
+			float Z_Overlap = checkZOverlap(other);
+			if (Z_Overlap > 0) {
 				//if we get here then the two objects have collided
 				//TODO: return usefull info with Coll
-				return new Coll();
+				return new Coll(this, &other, X_Overlap, Y_Overlap, Z_Overlap);
 			}
 		}
 	}
@@ -26,22 +29,51 @@ Coll* Collision::checkCollision(Collision other){
 	return nullptr;
 }
 
-bool Collision::checkXBounds(Collision other){
+float Collision::checkXOverlap(Collision other){
 	gmtl::Vec<float, 2> other_X = *other.getXBounds();
 	gmtl::Vec<float, 2> this_X = *getXBounds();
-	return (other_X[0] > this_X[0] && other_X[0] < this_X[1]) || (other_X[1] > this_X[0] && other_X[1] < this_X[1]);
+	float overlap = 0;
+	if (this_X[0] < other_X[0] && other_X[0] < this_X[1]) {
+		//which ever is lower
+		(this_X[1] - other_X[0]) > (other.getBoundingBoxDems()[0]) ? overlap = other.getBoundingBoxDems()[0] : overlap = this_X[1] - other_X[0];
+
+	} else if (this_X[0] < other_X[1] && other_X[1] < this_X[1]) {
+		overlap = other_X[1] - this_X[0];
+	}
+
+	return overlap;
 }
 
-bool Collision::checkYBounds(Collision other){
+float Collision::checkYOverlap(Collision other){
 	gmtl::Vec<float, 2> other_Y = *other.getYBounds();
 	gmtl::Vec<float, 2> this_Y = *getYBounds();
-	return (other_Y[0] > this_Y[0] && other_Y[0] < this_Y[1]) || (other_Y[1] > this_Y[0] && other_Y[1] < this_Y[1]);
+	float overlap = 0;
+	if (this_Y[0] < other_Y[0] && other_Y[0] < this_Y[1]) {
+		//which ever is lower
+		(this_Y[1] - other_Y[0]) > (other.getBoundingBoxDems()[1]) ? overlap = other.getBoundingBoxDems()[1] : overlap = this_Y[1] - other_Y[0];
+
+	}
+	else if (this_Y[0] < other_Y[1] && other_Y[1] < this_Y[1]) {
+		overlap = other_Y[1] - this_Y[0];
+	}
+
+	return overlap;
 }
 
-bool Collision::checkZBounds(Collision other){
+float Collision::checkZOverlap(Collision other){
 	gmtl::Vec<float, 2> other_Z = *other.getZBounds();
 	gmtl::Vec<float, 2> this_Z = *getZBounds();
-	return (other_Z[0] > this_Z[0] && other_Z[0] < this_Z[1]) || (other_Z[1] > this_Z[0] && other_Z[1] < this_Z[1]);
+	float overlap = 0;
+	if (this_Z[0] < other_Z[0] && other_Z[0] < this_Z[1]) {
+		//which ever is lower
+		(this_Z[1] - other_Z[0]) > (other.getBoundingBoxDems()[2]) ? overlap = other.getBoundingBoxDems()[2] : overlap = this_Z[1] - other_Z[0];
+
+	}
+	else if (this_Z[0] < other_Z[1] && other_Z[1] < this_Z[1]) {
+		overlap = other_Z[1] - this_Z[0];
+	}
+
+	return overlap;
 }
 
 gmtl::Vec<float, 2>* Collision::getXBounds(){
