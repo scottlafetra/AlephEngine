@@ -23,3 +23,8 @@ void AlephEngine::Kinematics::MoveStep()
 {
 	// TODO: Fill in code here
 }
+
+void AlephEngine::Kinematics::AddForce(gmtl::Vec<float, 3> addedForce)
+{
+	force += addedForce;
+}

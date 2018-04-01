@@ -20,7 +20,7 @@ void PhysicsMaster::StepPhysics()
 {
 	for (AlephEngine::Kinematics* k : tracking)
 	{
-		gmtl::Vec<float, 3> accel = k->forceTotal;
+		gmtl::Vec<float, 3> accel = k->force;
 
 		accel /= k->mass;
 
