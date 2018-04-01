@@ -1,11 +1,31 @@
 #include "Collision.h"
 
-Collision::Collision(Kinematics * kin){
-
-}
+Collision::Collision(Entity* entity, Kinematics * kin) :
+	Component(entity, Component::Type<Kinematics>()),
+	myKin(kin)
+{}
 
 void Collision::getMomentum(){
 
+}
+
+void Collision::updateBounds(std::vector<gmtl::Vec<float, 3>> points){
+	float xMin = points[0][0];
+	float xMax = points[0][0];
+	float yMin = points[0][1];
+	float yMax = points[0][1];
+	float zMin = points[0][2];
+	float zMax = points[0][2];
+	
+	for (int i = 1; i < points.size(); i++) {
+		gmtl::Vec<float, 3> p = points[i];
+		if (p[0] > xMax) { xMax = p[0]; } else if (p[0] < xMin) xMin = p[0];
+		if (p[1] > yMax) { yMax = p[1]; } else if (p[1] < yMin) yMin = p[1];
+		if (p[2] > zMax) { zMax = p[2]; } else if (p[2] < zMin) zMin = p[2];
+	}
+
+	BoundingBoxDems = *new gmtl::Vec<float, 3>(std::abs(xMax - xMin), std::abs(yMax - yMin), std::abs(zMax - zMin));
+	BoundingBoxCenter = *new gmtl::Vec<float, 3>(xMax - BoundingBoxDems[0] / 2, yMax - BoundingBoxDems[1] / 2, zMax - BoundingBoxDems[2] / 2);
 }
 
 Coll* Collision::checkCollision(Collision other){

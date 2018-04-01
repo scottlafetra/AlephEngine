@@ -4,6 +4,9 @@
 #include "Kinematics.h"
 
 #include <gmtl/Vec.h>
+#include <cmath>
+
+class Collision;
 
 class Coll { // MetaData about a collision
 public:
@@ -24,14 +27,15 @@ public:
 	//should contain instantanious velocity and/or current + last seen positions
 };
 
-class Collision : public Component
-{
+class Collision : public Component{
 public:
-	Collision(Kinematics* kin);
+	Collision(Entity* entity, Kinematics* kin);
 
 	// Total momentum velocity + angular
 	void getMomentum();
 	Kinematics* myKin;
+
+	void updateBounds(std::vector<gmtl::Vec<float, 3>> points);
 
 	Coll* checkCollision(Collision other); // This is run by physics master
 
@@ -54,7 +58,6 @@ public:
 	bool isTrigger = false; //set true if we wnt to keep track of collision but not actually use physics based collision
 
 private:
-	Collision(){}
 	float momentum;
 	gmtl::Vec<float, 3> BoundingBoxCenter; //centerpoint
 	gmtl::Vec<float, 3> BoundingBoxDems; //x,y,z
