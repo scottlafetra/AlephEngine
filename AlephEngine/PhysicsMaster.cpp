@@ -1,25 +1,35 @@
 #include "PhysicsMaster.h"
 
+#include "Collision.h"
 #include "Kinematics.h"
 #include "Transform.h"
 #include "EngineTime.h"
 #include <gmtl/Vec.h>
 #include <gmtl/VecOps.h>
+#include <iterator> 
 
-void PhysicsMaster::TrackPhysics(AlephEngine::Kinematics* toAdd)
-{
-	tracking.push_back(toAdd);
+void PhysicsMaster::collideObjects(Coll c){
+	//TODO actually do the collision
 }
 
-void PhysicsMaster::StopTrackingPhysics(AlephEngine::Kinematics* toAdd)
-{
-	tracking.remove(toAdd);
+void PhysicsMaster::TrackPhysics(AlephEngine::Kinematics* toAdd){
+	KinematicsList.push_back(toAdd);
 }
 
-void PhysicsMaster::StepPhysics()
-{
-	for (AlephEngine::Kinematics* k : tracking)
-	{
+void PhysicsMaster::StopTrackingPhysics(AlephEngine::Kinematics* toAdd){
+	KinematicsList.remove(toAdd);
+}
+
+void PhysicsMaster::TrackCollision(Collision* toAdd){
+	CollisionList.push_back(toAdd);
+}
+
+void PhysicsMaster::StopTrackingCollision(Collision* toAdd) {
+	CollisionList.remove(toAdd);
+}
+
+void PhysicsMaster::StepPhysics(){
+	for (AlephEngine::Kinematics* k : KinematicsList){
 		gmtl::Vec<float, 3> accel = k->force;
 
 		accel /= k->mass;
@@ -31,5 +41,20 @@ void PhysicsMaster::StepPhysics()
 
 		// Reset
 		k->force = gmtl::Vec<float, 3>(0, 0, 0);
+	}
+
+	std::list<Collision*>::iterator i = CollisionList.begin();
+	std::list<Collision*>::iterator j = CollisionList.begin();
+	while ( i != CollisionList.end()) {//super ineffient way
+		while (j != CollisionList.end()) {
+			if ((*i) != (*j)) {//if it is not the same Collision
+				Coll* c = (*i)->checkCollision(**j);
+				if (c != nullptr) {//if there was a collision
+					collideObjects(*c);
+				}
+			}
+			j++;
+		}
+		i++;
 	}
 }
