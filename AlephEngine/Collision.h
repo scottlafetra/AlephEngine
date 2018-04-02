@@ -58,10 +58,22 @@ namespace AlephEngine
 		}
 
 		bool isTrigger = false; //set true if we wnt to keep track of collision but not actually use physics based collision
+		float bouncyness;
+		float friction;
+
+		void setDirty(bool val) {
+			dirty = val;
+		}
+
+		bool getDirty() {
+			return dirty;
+		}
 
 	private:
 		float momentum;
 		gmtl::Vec<float, 3> BoundingBoxCenter; //centerpoint
 		gmtl::Vec<float, 3> BoundingBoxDems; //x,y,z
+
+		bool dirty = false; //dirty bit to end infinite loops
 	};
 }
