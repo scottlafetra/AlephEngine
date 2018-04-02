@@ -95,7 +95,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(ProjectDir)\..\Dependancies\lib</AdditionalLibraryDirectories>
       <AdditionalDependencies>opengl32.lib;glfw3.lib;glew32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
     </Link>
     <PostBuildEvent>
       <Command>copy $(ProjectDir)AlephIcon.png  $(OutDir)</Command>
@@ -139,6 +139,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="CatGravity.h" />
     <ClInclude Include="CatMotion.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="EngineTime.h" />
@@ -159,6 +160,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="CatGravity.cpp" />
     <ClCompile Include="CatMotion.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="EngineTime.cpp" />

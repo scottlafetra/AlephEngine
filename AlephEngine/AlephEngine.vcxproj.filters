@@ -96,6 +96,9 @@
     <ClInclude Include="PhysicsMaster.h">
       <Filter>Header Files\Physics</Filter>
     </ClInclude>
+    <ClInclude Include="CatGravity.h">
+      <Filter>Header Files\Demo</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="lodepng.cpp">
@@ -142,6 +145,9 @@
     </ClCompile>
     <ClCompile Include="PhysicsMaster.cpp">
       <Filter>Source Files\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="CatGravity.cpp">
+      <Filter>Source Files\Demo</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

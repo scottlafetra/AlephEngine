@@ -8,7 +8,8 @@ namespace AlephEngine
 	class Gravity : public Component{
 	public:
 		// m^3 / kg / s^2
-		const float G = 6.67 * pow(10, -11);
+		static float G;
+		static float maxImpulse;
 		Kinematics* myKinematics;
 		Transform* myTransform;
 		Gravity(Entity* entity);

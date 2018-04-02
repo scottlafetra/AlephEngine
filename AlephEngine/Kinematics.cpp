@@ -2,7 +2,7 @@
 #include "Transform.h"
 
 AlephEngine::Kinematics::Kinematics(Entity * entity)
-	: Component(entity, Component::Type<Kinematics>()), mass(1)
+	: Component(entity, Component::Type<Kinematics>()), mass(1), force(gmtl::Vec<float, 3>(0, 0, 0))
 { 
 	myTransform = entity->FetchComponent<Transform>();
 
