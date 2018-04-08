@@ -1,0 +1,26 @@
+﻿  Scene.cpp
+  PhysicsMaster.cpp
+  Kinematics.cpp
+  Gravity.cpp
+c:\users\us3rs\documents\github\alephengine\alephengine\gravity.cpp(7): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  Entity.cpp
+  Collision.cpp
+  CatMotion.cpp
+  CatGravity.cpp
+  CatDemoMain.cpp
+c:\users\us3rs\documents\github\alephengine\alephengine\shaders.h(55): warning C4091: 'static ': ignored on left of 'AlephEngine::Shaders::StdUnlit' when no variable is declared
+c:\users\us3rs\documents\github\alephengine\alephengine\shaders.h(150): warning C4091: 'static ': ignored on left of 'AlephEngine::Shaders::UnlitTexture' when no variable is declared
+c:\users\us3rs\documents\github\alephengine\alephengine\catdemomain.cpp(157): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\us3rs\documents\github\alephengine\alephengine\catdemomain.cpp(180): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+c:\users\us3rs\documents\github\alephengine\alephengine\catdemomain.cpp(222): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\us3rs\documents\github\alephengine\alephengine\catdemomain.cpp(224): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+c:\users\us3rs\documents\github\alephengine\alephengine\catdemomain.cpp(248): warning C4305: '=': truncation from 'double' to 'float'
+  Generating Code...
+  Skipping... (no relevant changes detected)
+  Transform.cpp
+  Rotates.cpp
+  Renderer.cpp
+  Component.cpp
+  Camera.cpp
+  AlephEngine.vcxproj -> C:\Users\us3rs\Documents\GitHub\AlephEngine\AlephEngine\x64\Debug\AlephEngine.exe
+          1 file(s) copied.
