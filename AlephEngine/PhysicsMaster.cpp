@@ -28,5 +28,8 @@ void PhysicsMaster::StepPhysics()
 
 		// Move step
 		k->myTransform->Move(k->velocity * (float) EngineTime::GetDeltaTime());
+
+		// Reset
+		k->force = gmtl::Vec<float, 3>(0, 0, 0);
 	}
 }
