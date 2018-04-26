@@ -4,11 +4,6 @@ Collision::Collision(Entity* entity, Kinematics * kin) : Component(entity, Compo
 
 }
 
-Collision::Collision(Entity* entity, Kinematics * kin) : Component(entity, Component::Type<Kinematics>()),myKin(kin){
-
-}
-
-
 void Collision::getMomentum(){
 
 }
