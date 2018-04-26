@@ -3,6 +3,7 @@
 <<<<<<< HEAD
 Collision::Collision(Entity* entity, Kinematics * kin) :
 =======
+Collider::Collider(Entity* entity, Kinematics * kin) :
 >>>>>>> master
 	Component(entity, Component::Type<Kinematics>()),
 	myKin(kin)
@@ -24,6 +25,20 @@ void Collision::updateBounds(std::vector<gmtl::Vec<float, 3>> points){
 	for (int i = 1; i < points.size(); i++) {
 		gmtl::Vec<float, 3> p = points[i];
 =======
+void Collider::getMomentum(){
+
+}
+
+void Collider::updateBounds(std::vector<float> points){
+	float xMin = points[0];
+	float xMax = points[0];
+	float yMin = points[1];
+	float yMax = points[1];
+	float zMin = points[2];
+	float zMax = points[2];
+	
+	for (int i = 1; i < points.size(); i += 3) {
+		gmtl::Vec<float, 3> p = gmtl::Vec<float, 3>(points[i], points[i + 1], points[i + 2]);
 >>>>>>> master
 		if (p[0] > xMax) { xMax = p[0]; } else if (p[0] < xMin) xMin = p[0];
 		if (p[1] > yMax) { yMax = p[1]; } else if (p[1] < yMin) yMin = p[1];
@@ -37,6 +52,7 @@ void Collision::updateBounds(std::vector<gmtl::Vec<float, 3>> points){
 <<<<<<< HEAD
 Coll* Collision::checkCollision(Collision other){
 =======
+Collision* Collider::checkCollision(Collider other){
 >>>>>>> master
 	
 	//if X overlaps
@@ -53,6 +69,7 @@ Coll* Collision::checkCollision(Collision other){
 <<<<<<< HEAD
 				return new Coll(this, &other, X_Overlap, Y_Overlap, Z_Overlap);
 =======
+				return new Collision(this, &other, X_Overlap, Y_Overlap, Z_Overlap);
 >>>>>>> master
 			}
 		}
@@ -64,6 +81,7 @@ Coll* Collision::checkCollision(Collision other){
 <<<<<<< HEAD
 float Collision::checkXOverlap(Collision other){
 =======
+float Collider::checkXOverlap(Collider other){
 >>>>>>> master
 	gmtl::Vec<float, 2> other_X = *other.getXBounds();
 	gmtl::Vec<float, 2> this_X = *getXBounds();
@@ -82,6 +100,7 @@ float Collision::checkXOverlap(Collision other){
 <<<<<<< HEAD
 float Collision::checkYOverlap(Collision other){
 =======
+float Collider::checkYOverlap(Collider other){
 >>>>>>> master
 	gmtl::Vec<float, 2> other_Y = *other.getYBounds();
 	gmtl::Vec<float, 2> this_Y = *getYBounds();
@@ -101,6 +120,7 @@ float Collision::checkYOverlap(Collision other){
 <<<<<<< HEAD
 float Collision::checkZOverlap(Collision other){
 =======
+float Collider::checkZOverlap(Collider other){
 >>>>>>> master
 	gmtl::Vec<float, 2> other_Z = *other.getZBounds();
 	gmtl::Vec<float, 2> this_Z = *getZBounds();
@@ -120,6 +140,7 @@ float Collision::checkZOverlap(Collision other){
 <<<<<<< HEAD
 gmtl::Vec<float, 2>* Collision::getXBounds(){
 =======
+gmtl::Vec<float, 2>* Collider::getXBounds(){
 >>>>>>> master
 	float Lower = BoundingBoxCenter[0] - BoundingBoxDems[0] / 2;
 	float Upper = BoundingBoxCenter[0] + BoundingBoxDems[0] / 2;
@@ -129,6 +150,7 @@ gmtl::Vec<float, 2>* Collision::getXBounds(){
 <<<<<<< HEAD
 gmtl::Vec<float, 2>* Collision::getYBounds(){
 =======
+gmtl::Vec<float, 2>* Collider::getYBounds(){
 >>>>>>> master
 	float Lower = BoundingBoxCenter[1] - BoundingBoxDems[1] / 2;
 	float Upper = BoundingBoxCenter[1] + BoundingBoxDems[1] / 2;
@@ -138,6 +160,7 @@ gmtl::Vec<float, 2>* Collision::getYBounds(){
 <<<<<<< HEAD
 gmtl::Vec<float, 2>* Collision::getZBounds(){
 =======
+gmtl::Vec<float, 2>* Collider::getZBounds(){
 >>>>>>> master
 	float Lower = BoundingBoxCenter[2] - BoundingBoxDems[2] / 2;
 	float Upper = BoundingBoxCenter[2] + BoundingBoxDems[2] / 2;

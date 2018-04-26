@@ -33,8 +33,6 @@ namespace AlephEngine
         // Kg. used for momentum, collisions,
         float mass;
 
-        void MoveStep(); // Moves the entity acording to its physics
-
         void AddForce(gmtl::Vec<float, 3> addedForce);
     };
 }
