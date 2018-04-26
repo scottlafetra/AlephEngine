@@ -42,7 +42,6 @@ void PhysicsMaster::StepPhysics(){
 
 		// Reset
 		k->force = gmtl::Vec<float, 3>(0, 0, 0);
-<<<<<<< HEAD
 	}
 
 	std::list<Collision*> updatedObjects;
@@ -85,8 +84,6 @@ void PhysicsMaster::StepPhysics(){
 			j = CollisionList.begin();
 			i++;
 		}
-=======
->>>>>>> master
 	}
 	
 }

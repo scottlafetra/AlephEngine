@@ -6,7 +6,6 @@
 #include <gmtl/Vec.h>
 #include <cmath>
 
-<<<<<<< HEAD
 namespace AlephEngine
 {
 	class Collision;
@@ -77,5 +76,4 @@ namespace AlephEngine
 
 		bool dirty = false; //dirty bit to end infinite loops
 	};
-}=======
->>>>>>> master
+}

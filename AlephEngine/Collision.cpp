@@ -1,14 +1,15 @@
 #include "Collision.h"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 Collision::Collision(Entity* entity, Kinematics * kin) : Component(entity, Component::Type<Kinematics>()), myKin(kin){
 
 }
 =======
 <<<<<<< HEAD
-Collision::Collision(Entity* entity, Kinematics * kin) :
 =======
->>>>>>> master
+>>>>>>> parent of 2911ec8... Merge branch 'master' into collision
+Collision::Collision(Entity* entity, Kinematics * kin) :
 	Component(entity, Component::Type<Kinematics>()),
 	myKin(kin)
 {}
@@ -28,6 +29,7 @@ void Collision::updateBounds(std::vector<gmtl::Vec<float, 3>> points){
 	
 	for (int i = 1; i < points.size(); i++) {
 		gmtl::Vec<float, 3> p = points[i];
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 void Collider::getMomentum(){
@@ -49,6 +51,8 @@ void Collider::updateBounds(std::vector<float> points){
 =======
 >>>>>>> master
 >>>>>>> parent of f60d1a0... Merged refactoring from master
+=======
+>>>>>>> parent of 2911ec8... Merge branch 'master' into collision
 		if (p[0] > xMax) { xMax = p[0]; } else if (p[0] < xMin) xMin = p[0];
 		if (p[1] > yMax) { yMax = p[1]; } else if (p[1] < yMin) yMin = p[1];
 		if (p[2] > zMax) { zMax = p[2]; } else if (p[2] < zMin) zMin = p[2];
@@ -58,6 +62,7 @@ void Collider::updateBounds(std::vector<float> points){
 	BoundingBoxCenter = *new gmtl::Vec<float, 3>(xMax - BoundingBoxDems[0] / 2, yMax - BoundingBoxDems[1] / 2, zMax - BoundingBoxDems[2] / 2);
 }
 
+<<<<<<< HEAD
 
 Coll* Collision::checkCollision(Collision other){
 <<<<<<< HEAD
@@ -68,6 +73,9 @@ Collision* Collider::checkCollision(Collider other){
 =======
 >>>>>>> master
 >>>>>>> parent of f60d1a0... Merged refactoring from master
+=======
+Coll* Collision::checkCollision(Collision other){
+>>>>>>> parent of 2911ec8... Merge branch 'master' into collision
 	
 	//if X overlaps
 	float X_Overlap = checkXOverlap(other);
@@ -82,12 +90,15 @@ Collision* Collider::checkCollision(Collider other){
 				//TODO: return usefull info with Coll
 				return new Coll(this, &other, X_Overlap, Y_Overlap, Z_Overlap);
 <<<<<<< HEAD
+<<<<<<< HEAD
 				return new Collision(this, &other, X_Overlap, Y_Overlap, Z_Overlap);
 
 =======
 =======
 >>>>>>> master
 >>>>>>> parent of f60d1a0... Merged refactoring from master
+=======
+>>>>>>> parent of 2911ec8... Merge branch 'master' into collision
 			}
 		}
 	}
@@ -95,10 +106,7 @@ Collision* Collider::checkCollision(Collider other){
 	return nullptr;
 }
 
-<<<<<<< HEAD
 float Collision::checkXOverlap(Collision other){
-=======
->>>>>>> master
 	gmtl::Vec<float, 2> other_X = *other.getXBounds();
 	gmtl::Vec<float, 2> this_X = *getXBounds();
 	float overlap = 0;
@@ -113,10 +121,7 @@ float Collision::checkXOverlap(Collision other){
 	return overlap;
 }
 
-<<<<<<< HEAD
 float Collision::checkYOverlap(Collision other){
-=======
->>>>>>> master
 	gmtl::Vec<float, 2> other_Y = *other.getYBounds();
 	gmtl::Vec<float, 2> this_Y = *getYBounds();
 	float overlap = 0;
@@ -132,10 +137,7 @@ float Collision::checkYOverlap(Collision other){
 	return overlap;
 }
 
-<<<<<<< HEAD
 float Collision::checkZOverlap(Collision other){
-=======
->>>>>>> master
 	gmtl::Vec<float, 2> other_Z = *other.getZBounds();
 	gmtl::Vec<float, 2> this_Z = *getZBounds();
 	float overlap = 0;
@@ -151,28 +153,19 @@ float Collision::checkZOverlap(Collision other){
 	return overlap;
 }
 
-<<<<<<< HEAD
 gmtl::Vec<float, 2>* Collision::getXBounds(){
-=======
->>>>>>> master
 	float Lower = BoundingBoxCenter[0] - BoundingBoxDems[0] / 2;
 	float Upper = BoundingBoxCenter[0] + BoundingBoxDems[0] / 2;
 	return new gmtl::Vec<float, 2>(Lower, Upper);
 }
 
-<<<<<<< HEAD
 gmtl::Vec<float, 2>* Collision::getYBounds(){
-=======
->>>>>>> master
 	float Lower = BoundingBoxCenter[1] - BoundingBoxDems[1] / 2;
 	float Upper = BoundingBoxCenter[1] + BoundingBoxDems[1] / 2;
 	return new gmtl::Vec<float, 2>(Lower, Upper);
 }
 
-<<<<<<< HEAD
 gmtl::Vec<float, 2>* Collision::getZBounds(){
-=======
->>>>>>> master
 	float Lower = BoundingBoxCenter[2] - BoundingBoxDems[2] / 2;
 	float Upper = BoundingBoxCenter[2] + BoundingBoxDems[2] / 2;
 	return new gmtl::Vec<float, 2>(Lower, Upper);
