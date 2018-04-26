@@ -5,7 +5,7 @@ class CatMotion : public Component, UpdateCallback
 {
 private:
 	Transform* myTransform;
-	float xLimit, yLimit;
+	float limit;
 	float speed;
 
 public:
@@ -13,6 +13,6 @@ public:
 	void Update() override;
 
 	void SetSpeed( float xSpeed );
-	void SetLimit( float xLimit, float yLimit );
+	void SetLimit( float xLimit );
 
 };

@@ -9,8 +9,6 @@
 #include "Transform.h"
 #include "ctime"
 #include "Kinematics.h"
-#include "CatGravity.h"
-#include <cmath>
 
 
 using namespace AlephEngine;
@@ -136,7 +134,6 @@ void RenderTest()
 	testRenderTri->FetchComponent<Rotates>()->SetSpeed( 0.f, -0.5f, -0.6f );
 	
 	
-	
 
 	PrintScene( &scene );
 	
@@ -144,7 +141,7 @@ void RenderTest()
 	scene.Play();
 }
 
-void LoadCat(std::string name, Scene* scene, GLFWimage* texture, float xPos = 0, float yPos = 0, float zPos = 0)
+void LoadCat(std::string name, Scene* scene, GLFWimage* texture, float xPos = 0, float yPos = 0 )
 {
 	// Load cat cube
 	Entity* catRenderCube = scene->AddEntity( name );
@@ -153,9 +150,8 @@ void LoadCat(std::string name, Scene* scene, GLFWimage* texture, float xPos = 0,
 	catRenderer->SetVertices( GL_TRIANGLES, 3 * 2 * 6, (GLfloat*) catCube );
 	catRenderer->SetTexture( texture, GL_CLAMP_TO_BORDER );
 
-	catRenderCube->FetchComponent<Transform>()->Move( xPos, yPos, -3 + zPos );
-	float scale = (rand() % 100) / 100.f + 0.2;
-	catRenderCube->FetchComponent<Transform>()->Scale( scale );
+	catRenderCube->FetchComponent<Transform>()->Move( -5, yPos, -3 );
+	catRenderCube->FetchComponent<Transform>()->Scale( ( rand() % 100 ) / 100.f + 0.2 );
 
 	catRenderCube->AddComponent<Rotates>();
 	catRenderCube->FetchComponent<Rotates>()->SetSpeed( 
@@ -164,18 +160,14 @@ void LoadCat(std::string name, Scene* scene, GLFWimage* texture, float xPos = 0,
 		( rand() % 200 - 100 ) / 100.f );
 
 
-	catRenderCube->AddComponent<Kinematics>()->mass = scale;
-	//catRenderCube->AddComponent<CatMotion>();
-	//catRenderCube->FetchComponent<CatMotion>()->SetSpeed( ( rand() % 150 - 75 ) / 100.f + 1.f);
-	//catRenderCube->FetchComponent<CatMotion>()->SetLimit( 5, 3 );
-	
-	catRenderCube->AddComponent<Gravity>();
-	catRenderCube->AddComponent<CatGravity>();
+	catRenderCube->AddComponent<Kinematics>();
+	catRenderCube->AddComponent<CatMotion>();
+	catRenderCube->FetchComponent<CatMotion>()->SetSpeed( ( rand() % 150 - 75 ) / 100.f + 1.f);
+	catRenderCube->FetchComponent<CatMotion>()->SetLimit( 5 );
 }
 
 void CatDemo( void )
 {
-	std::cout << "Starting Cat Demo" << std::endl;
 	// Init rand
 	srand( time(0) );
 
@@ -190,7 +182,7 @@ void CatDemo( void )
 	Entity* camera = scene.AddEntity( "Camera" );
 
 	camera->AddComponent<Camera>();
-	camera->FetchComponent<Camera>()->SetPerspective( 45, 1, 1000);
+	camera->FetchComponent<Camera>()->SetPerspective( 45, 1, 20 );
 	camera->FetchComponent<Transform>()->Move( 0, 0, 2 );
 	
 	// Load Background
@@ -201,34 +193,18 @@ void CatDemo( void )
 	backgroundRenderer->SetVertices( GL_TRIANGLES, 6, (GLfloat*) texQuad );
 	backgroundRenderer->SetTexture( catBackground, GL_CLAMP_TO_BORDER );
 
-	background->FetchComponent<Transform>()->Move( 0, 0, -18);
-	background->FetchComponent<Transform>()->SetScale( 18 );
+	background->FetchComponent<Transform>()->Move( 0, 0, -10 );
+	background->FetchComponent<Transform>()->SetScale( 11 );
 
 
 	// Load Cats
-
-	GLFWimage* catTex[3];
-	catTex[0] = Utility::LoadGLFWImage("CatTexture.png");
-	catTex[1] = Utility::LoadGLFWImage("KitCat.png");
-	catTex[2] = Utility::LoadGLFWImage("KalynCat.png");
-
-	// Circle spawn
-	float radius = 2;
-	int maxCats = 8;
-	float angle = 0;
-	for (int catNum = 0; catNum < maxCats; ++catNum)
-	{
-		
-		LoadCat("Cat", &scene, catTex[rand() % 3], cos(angle) * radius,  sin(angle) * radius,  -((rand() % 3000 ) / 1000.0)  );
-
-		angle += ((2*3.14) / maxCats);
-	}
-
-
-
-	/* Outdated line cat method
 	float yPos = -3;
 	int yIncrement = 1.3f;
+
+	GLFWimage* catTex[ 3 ];
+	catTex[ 0 ] = Utility::LoadGLFWImage( "CatTexture.png" );
+	catTex[ 1 ] = Utility::LoadGLFWImage( "KitCat.png" );
+	catTex[ 2 ] = Utility::LoadGLFWImage( "KalynCat.png" );
 
 	for(int i = 0; i < 5; ++i)
 	{
@@ -242,27 +218,13 @@ void CatDemo( void )
 		yPos += yIncrement + ( rand() % 100 ) / 200.f - 0.25f;
 		LoadCat( "Cat", &scene, catTex[ rand() % 3 ], -( rand() % 500 ) / 100.f - 6, yPos );
 	}
-	*/
 	
-	// set gravity to be resonable
-	Gravity::G = 0.01;
-	Gravity::maxImpulse = 80;
 
 	// Play the scene
 	scene.Play();
 }
 
 int WinMain(int argn, char* argc[])
-{
-	//ECSTest();
-	//RenderTest();
-	CatDemo();
-
-	//Scene is deleted on end
-	return EXIT_SUCCESS;
-}
-
-int main(int argn, char* argc[])
 {
 	//ECSTest();
 	//RenderTest();

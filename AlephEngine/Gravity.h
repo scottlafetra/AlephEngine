@@ -5,14 +5,12 @@
 
 namespace AlephEngine
 {
-	class Gravity : public Component{
+	class Gravity {
 	public:
 		// m^3 / kg / s^2
-		static float G;
-		static float maxImpulse;
-		Kinematics* myKinematics;
-		Transform* myTransform;
-		Gravity(Entity* entity);
+		const float G = 6.67 * pow(10, -11);
+		Kinematics* m_myKin;
+		Gravity(Kinematics& myKin);
 		void attract(Kinematics& yourKin);
 
 	};
