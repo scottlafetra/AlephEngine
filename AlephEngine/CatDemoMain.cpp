@@ -158,12 +158,12 @@ void LoadCat(std::string name, Scene* scene, GLFWimage* texture, float xPos = 0,
 	catRenderCube->FetchComponent<Transform>()->Move( xPos, yPos, -3 + zPos );
 	float scale = (rand() % 100) / 100.f + 0.2;
 	catRenderCube->FetchComponent<Transform>()->Scale( scale );
-
+	/*
 	catRenderCube->AddComponent<Rotates>();
 	catRenderCube->FetchComponent<Rotates>()->SetSpeed( 
 		(rand() % 200 - 100)/100.f,
 		( rand() % 200 - 100 ) / 100.f,
-		( rand() % 200 - 100 ) / 100.f );
+		( rand() % 200 - 100 ) / 100.f );*/
 
 
 	catRenderCube->AddComponent<Kinematics>()->mass = scale;

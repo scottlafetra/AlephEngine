@@ -4,6 +4,7 @@
 #include "Transform.h"
 #include "EngineTime.h"
 #include "Collision.h"
+#include "Gravity.h"
 #include <gmtl/Vec.h>
 #include <gmtl/VecOps.h>
 
@@ -47,9 +48,17 @@ void PhysicsMaster::StepPhysics()
 				{
 					Collision* hit = myCollider->checkCollision( *otherCollider );
 					if( hit != NULL )
-					{
+					{/*
 						// Resolve hit here
-
+						Gravity::G = 0;
+						k->myTransform->Move( gmtl::Vec<float, 3>(
+											hit->X_overlap * 1.1,
+											hit->Y_overlap * 1.1,
+											hit->Z_overlap * 1.1
+											));
+						k->velocity *= 0;*/
+						k->velocity *= 0;
+						Gravity::G = 0;
 						free( hit );
 					}
 				}

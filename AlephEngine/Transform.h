@@ -48,6 +48,9 @@ namespace AlephEngine
 		gmtl::Vec<float, 3> LocalToGlobal( gmtl::Vec<float, 3> localPosition );
 		gmtl::Quat<float>   LocalToGlobal( gmtl::Quat<float>   localRotation );
 
+		gmtl::Vec<float, 3> GlobalToLocal( gmtl::Vec<float, 3> globalPosition );
+		gmtl::Quat<float>   GlobalToLocal( gmtl::Quat<float>   globalRotation );
+
 		inline Transform* GetParent() { return parent; }
 		inline std::list<Transform*> GetChildren() { return children; }
 	};

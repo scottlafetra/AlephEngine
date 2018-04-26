@@ -84,7 +84,7 @@ void Transform::SetPosition( const float& x, const float& y, const float& z)
 /// <param name="dPosition">The amount to move by.</param>
 void Transform::Move( const gmtl::Vec<float, 3>& dPosition )
 {
-	Move( dPosition[0], dPosition[1], dPosition[2] );
+	position +=  dPosition;
 
 	isUpdated = false;
 }
@@ -97,9 +97,7 @@ void Transform::Move( const gmtl::Vec<float, 3>& dPosition )
 /// <param name="dz">The amount to move on the z axis.</param>
 void Transform::Move( const float& dx, const float& dy, const float& dz)
 {
-	position[0] += dx;
-	position[1] += dy;
-	position[2] += dz;
+	Move( gmtl::Vec<float, 3>( dx, dy, dz ) );
 
 	isUpdated = false;
 }
@@ -207,6 +205,30 @@ gmtl::Quat<float>   Transform::LocalToGlobal( gmtl::Quat<float>   localRotation 
 	}
 	else
 	{
-		return parent->LocalToGlobal( localRotation ) * rotation;
+		return parent->LocalToGlobal( localRotation * rotation );
+	}
+}
+
+gmtl::Vec<float, 3> Transform::GlobalToLocal( gmtl::Vec<float, 3> globalPosition ) 
+{
+	if( parent == NULL )
+	{
+		return (globalPosition - position) / scale ;
+	}
+	else
+	{
+		return ( parent->LocalToGlobal( globalPosition ) - position ) / scale;
+	}
+}
+
+gmtl::Quat<float>   Transform::GlobalToLocal( gmtl::Quat<float>   globalRotation )
+{
+	if( parent == NULL )
+	{
+		return globalRotation / rotation;
+	}
+	else
+	{
+		return parent->LocalToGlobal( globalRotation ) / rotation;
 	}
 }
