@@ -186,3 +186,27 @@ void Transform::SetAsChild( Transform* newChild )
 
 	newChild->parent = this;
 }
+
+gmtl::Vec<float, 3> Transform::LocalToGlobal( gmtl::Vec<float, 3> localPosition )
+{
+	if( parent == NULL )
+	{
+		return localPosition + position;
+	}
+	else
+	{
+		return parent->LocalToGlobal( localPosition ) + position;
+	}
+}
+
+gmtl::Quat<float>   Transform::LocalToGlobal( gmtl::Quat<float>   localRotation )
+{
+	if( parent == NULL )
+	{
+		return localRotation * rotation;
+	}
+	else
+	{
+		return parent->LocalToGlobal( localRotation ) * rotation;
+	}
+}

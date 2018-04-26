@@ -45,6 +45,9 @@ namespace AlephEngine
 		void SetAsParent( Transform* newParent );
 		void SetAsChild( Transform* newChild );
 
+		gmtl::Vec<float, 3> LocalToGlobal( gmtl::Vec<float, 3> localPosition );
+		gmtl::Quat<float>   LocalToGlobal( gmtl::Quat<float>   localRotation );
+
 		inline Transform* GetParent() { return parent; }
 		inline std::list<Transform*> GetChildren() { return children; }
 	};
