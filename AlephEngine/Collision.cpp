@@ -1,15 +1,9 @@
 #include "Collision.h"
 
-<<<<<<< HEAD
-Collision::Collision(Entity* entity, Kinematics * kin) :
-=======
-Collider::Collider(Entity* entity, Kinematics * kin) :
->>>>>>> master
-	Component(entity, Component::Type<Kinematics>()),
-	myKin(kin)
-{}
+Collision::Collision(Entity* entity, Kinematics * kin) : Component(entity, Component::Type<Kinematics>()), myKin(kin){
 
-<<<<<<< HEAD
+}
+
 void Collision::getMomentum(){
 
 }
@@ -24,7 +18,7 @@ void Collision::updateBounds(std::vector<gmtl::Vec<float, 3>> points){
 	
 	for (int i = 1; i < points.size(); i++) {
 		gmtl::Vec<float, 3> p = points[i];
-=======
+
 void Collider::getMomentum(){
 
 }
@@ -39,7 +33,7 @@ void Collider::updateBounds(std::vector<float> points){
 	
 	for (int i = 1; i < points.size(); i += 3) {
 		gmtl::Vec<float, 3> p = gmtl::Vec<float, 3>(points[i], points[i + 1], points[i + 2]);
->>>>>>> master
+
 		if (p[0] > xMax) { xMax = p[0]; } else if (p[0] < xMin) xMin = p[0];
 		if (p[1] > yMax) { yMax = p[1]; } else if (p[1] < yMin) yMin = p[1];
 		if (p[2] > zMax) { zMax = p[2]; } else if (p[2] < zMin) zMin = p[2];
@@ -49,11 +43,11 @@ void Collider::updateBounds(std::vector<float> points){
 	BoundingBoxCenter = *new gmtl::Vec<float, 3>(xMax - BoundingBoxDems[0] / 2, yMax - BoundingBoxDems[1] / 2, zMax - BoundingBoxDems[2] / 2);
 }
 
-<<<<<<< HEAD
+
 Coll* Collision::checkCollision(Collision other){
-=======
+
 Collision* Collider::checkCollision(Collider other){
->>>>>>> master
+
 	
 	//if X overlaps
 	float X_Overlap = checkXOverlap(other);
@@ -66,11 +60,9 @@ Collision* Collider::checkCollision(Collider other){
 			if (Z_Overlap > 0) {
 				//if we get here then the two objects have collided
 				//TODO: return usefull info with Coll
-<<<<<<< HEAD
 				return new Coll(this, &other, X_Overlap, Y_Overlap, Z_Overlap);
-=======
 				return new Collision(this, &other, X_Overlap, Y_Overlap, Z_Overlap);
->>>>>>> master
+
 			}
 		}
 	}
