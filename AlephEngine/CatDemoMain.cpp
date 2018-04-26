@@ -10,7 +10,9 @@
 #include "ctime"
 #include "Kinematics.h"
 #include "CatGravity.h"
+#include "Collision.h"
 #include <cmath>
+#include <vector>
 
 
 using namespace AlephEngine;
@@ -171,6 +173,8 @@ void LoadCat(std::string name, Scene* scene, GLFWimage* texture, float xPos = 0,
 	
 	catRenderCube->AddComponent<Gravity>();
 	catRenderCube->AddComponent<CatGravity>();
+
+	catRenderCube->AddComponent<Collider>()->SetMesh( std::vector<float>( (float*) catCube, (float*) catCube + 3 * 2 * 6 ) );
 }
 
 void CatDemo( void )
@@ -214,7 +218,7 @@ void CatDemo( void )
 
 	// Circle spawn
 	float radius = 2;
-	int maxCats = 8;
+	int maxCats = 6;
 	float angle = 0;
 	for (int catNum = 0; catNum < maxCats; ++catNum)
 	{

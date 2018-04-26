@@ -214,7 +214,6 @@ void Scene::Play()
 
 		// Move objects acording to physics
 		physicsMaster.StepPhysics();
-		//Kinematics::MoveStep(); //this was fixed in kinematic branch
 
 		// Call post move updates
 		for (PostMoveCallback* postMoveCallback : postMoveCallbacks)

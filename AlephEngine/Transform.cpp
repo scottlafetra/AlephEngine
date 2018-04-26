@@ -191,11 +191,11 @@ gmtl::Vec<float, 3> Transform::LocalToGlobal( gmtl::Vec<float, 3> localPosition 
 {
 	if( parent == NULL )
 	{
-		return localPosition + position;
+		return localPosition * scale + position;
 	}
 	else
 	{
-		return parent->LocalToGlobal( localPosition ) + position;
+		return parent->LocalToGlobal( localPosition * scale + position ) ;
 	}
 }
 

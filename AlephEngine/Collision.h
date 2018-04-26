@@ -27,21 +27,23 @@ public:
 	//should contain instantanious velocity and/or current + last seen positions
 };
 
-class Collider : public Component{
+class Collider : public Component,  UpdateCallback{
 public:
-	Collider(Entity* entity, Kinematics* kin);
+	Collider(Entity* entity);
+	void Update() override;
 
 	// Total momentum velocity + angular
 	void getMomentum();
 	Kinematics* myKin;
 
-	void updateBounds(std::vector<float> points);
+	void SetMesh( const std::vector<float>& collisionMesh );
+	void updateBounds();
 
-	Collision* checkCollision(Collider other); // This is run by physics master
+	Collision* checkCollision (Collider& other); // This is run by physics master
 
-	float checkXOverlap(Collider other);
-	float checkYOverlap(Collider other);
-	float checkZOverlap(Collider other);
+	float checkXOverlap( Collider& other);
+	float checkYOverlap( Collider& other);
+	float checkZOverlap( Collider& other);
 
 	gmtl::Vec<float, 2>* getXBounds();
 	gmtl::Vec<float, 2>* getYBounds();
@@ -59,6 +61,8 @@ public:
 
 private:
 	float momentum;
+	Transform* myTransform;
+	std::vector<float> collisionMesh;
 	gmtl::Vec<float, 3> BoundingBoxCenter; //centerpoint
 	gmtl::Vec<float, 3> BoundingBoxDems; //x,y,z
 };
