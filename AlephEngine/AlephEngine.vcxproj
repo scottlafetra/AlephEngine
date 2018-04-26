@@ -21,11 +21,8 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{D7F4F677-937D-42BA-854D-2639544E658D}</ProjectGuid>
     <RootNamespace>AlephEngine</RootNamespace>
-<<<<<<< HEAD
     <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
-=======
     <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
->>>>>>> 69e2279b8e16d7e0c9355dbaa19ea4c9061c77d1
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
