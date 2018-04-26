@@ -1,15 +1,15 @@
 #include "Collision.h"
 
-Collision::Collision(Entity* entity, Kinematics * kin) :
+Collider::Collider(Entity* entity, Kinematics * kin) :
 	Component(entity, Component::Type<Kinematics>()),
 	myKin(kin)
 {}
 
-void Collision::getMomentum(){
+void Collider::getMomentum(){
 
 }
 
-void Collision::updateBounds(std::vector<gmtl::Vec<float, 3>> points){
+void Collider::updateBounds(std::vector<gmtl::Vec<float, 3>> points){
 	float xMin = points[0][0];
 	float xMax = points[0][0];
 	float yMin = points[0][1];
@@ -28,7 +28,7 @@ void Collision::updateBounds(std::vector<gmtl::Vec<float, 3>> points){
 	BoundingBoxCenter = *new gmtl::Vec<float, 3>(xMax - BoundingBoxDems[0] / 2, yMax - BoundingBoxDems[1] / 2, zMax - BoundingBoxDems[2] / 2);
 }
 
-Coll* Collision::checkCollision(Collision other){
+Collision* Collider::checkCollision(Collider other){
 	
 	//if X overlaps
 	float X_Overlap = checkXOverlap(other);
@@ -41,7 +41,7 @@ Coll* Collision::checkCollision(Collision other){
 			if (Z_Overlap > 0) {
 				//if we get here then the two objects have collided
 				//TODO: return usefull info with Coll
-				return new Coll(this, &other, X_Overlap, Y_Overlap, Z_Overlap);
+				return new Collision(this, &other, X_Overlap, Y_Overlap, Z_Overlap);
 			}
 		}
 	}
@@ -49,7 +49,7 @@ Coll* Collision::checkCollision(Collision other){
 	return nullptr;
 }
 
-float Collision::checkXOverlap(Collision other){
+float Collider::checkXOverlap(Collider other){
 	gmtl::Vec<float, 2> other_X = *other.getXBounds();
 	gmtl::Vec<float, 2> this_X = *getXBounds();
 	float overlap = 0;
@@ -64,7 +64,7 @@ float Collision::checkXOverlap(Collision other){
 	return overlap;
 }
 
-float Collision::checkYOverlap(Collision other){
+float Collider::checkYOverlap(Collider other){
 	gmtl::Vec<float, 2> other_Y = *other.getYBounds();
 	gmtl::Vec<float, 2> this_Y = *getYBounds();
 	float overlap = 0;
@@ -80,7 +80,7 @@ float Collision::checkYOverlap(Collision other){
 	return overlap;
 }
 
-float Collision::checkZOverlap(Collision other){
+float Collider::checkZOverlap(Collider other){
 	gmtl::Vec<float, 2> other_Z = *other.getZBounds();
 	gmtl::Vec<float, 2> this_Z = *getZBounds();
 	float overlap = 0;
@@ -96,19 +96,19 @@ float Collision::checkZOverlap(Collision other){
 	return overlap;
 }
 
-gmtl::Vec<float, 2>* Collision::getXBounds(){
+gmtl::Vec<float, 2>* Collider::getXBounds(){
 	float Lower = BoundingBoxCenter[0] - BoundingBoxDems[0] / 2;
 	float Upper = BoundingBoxCenter[0] + BoundingBoxDems[0] / 2;
 	return new gmtl::Vec<float, 2>(Lower, Upper);
 }
 
-gmtl::Vec<float, 2>* Collision::getYBounds(){
+gmtl::Vec<float, 2>* Collider::getYBounds(){
 	float Lower = BoundingBoxCenter[1] - BoundingBoxDems[1] / 2;
 	float Upper = BoundingBoxCenter[1] + BoundingBoxDems[1] / 2;
 	return new gmtl::Vec<float, 2>(Lower, Upper);
 }
 
-gmtl::Vec<float, 2>* Collision::getZBounds(){
+gmtl::Vec<float, 2>* Collider::getZBounds(){
 	float Lower = BoundingBoxCenter[2] - BoundingBoxDems[2] / 2;
 	float Upper = BoundingBoxCenter[2] + BoundingBoxDems[2] / 2;
 	return new gmtl::Vec<float, 2>(Lower, Upper);

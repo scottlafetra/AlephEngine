@@ -6,19 +6,19 @@
 #include <gmtl/Vec.h>
 #include <cmath>
 
-class Collision;
+class Collider;
 
-class Coll { // MetaData about a collision
+class Collision { // MetaData about a collision
 public:
 
-	Coll(Collision* c1, Collision* c2, float x, float y, float z) {
+	Collision(Collider* c1, Collider* c2, float x, float y, float z) {
 		X_overlap = x;
 		Y_overlap = y;
 		Z_overlap = z;
 	}
 
-	Collision* col_1;
-	Collision* col_2;
+	Collider* col_1;
+	Collider* col_2;
 
 	float X_overlap;
 	float Y_overlap;
@@ -27,9 +27,9 @@ public:
 	//should contain instantanious velocity and/or current + last seen positions
 };
 
-class Collision : public Component{
+class Collider : public Component{
 public:
-	Collision(Entity* entity, Kinematics* kin);
+	Collider(Entity* entity, Kinematics* kin);
 
 	// Total momentum velocity + angular
 	void getMomentum();
@@ -37,11 +37,11 @@ public:
 
 	void updateBounds(std::vector<gmtl::Vec<float, 3>> points);
 
-	Coll* checkCollision(Collision other); // This is run by physics master
+	Collision* checkCollision(Collider other); // This is run by physics master
 
-	float checkXOverlap(Collision other);
-	float checkYOverlap(Collision other);
-	float checkZOverlap(Collision other);
+	float checkXOverlap(Collider other);
+	float checkYOverlap(Collider other);
+	float checkZOverlap(Collider other);
 
 	gmtl::Vec<float, 2>* getXBounds();
 	gmtl::Vec<float, 2>* getYBounds();
