@@ -35,7 +35,7 @@ public:
 	void getMomentum();
 	Kinematics* myKin;
 
-	void updateBounds(std::vector<gmtl::Vec<float, 3>> points);
+	void updateBounds(std::vector<float> points);
 
 	Collision* checkCollision(Collider other); // This is run by physics master
 

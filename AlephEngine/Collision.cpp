@@ -9,16 +9,16 @@ void Collider::getMomentum(){
 
 }
 
-void Collider::updateBounds(std::vector<gmtl::Vec<float, 3>> points){
-	float xMin = points[0][0];
-	float xMax = points[0][0];
-	float yMin = points[0][1];
-	float yMax = points[0][1];
-	float zMin = points[0][2];
-	float zMax = points[0][2];
+void Collider::updateBounds(std::vector<float> points){
+	float xMin = points[0];
+	float xMax = points[0];
+	float yMin = points[1];
+	float yMax = points[1];
+	float zMin = points[2];
+	float zMax = points[2];
 	
-	for (int i = 1; i < points.size(); i++) {
-		gmtl::Vec<float, 3> p = points[i];
+	for (int i = 1; i < points.size(); i += 3) {
+		gmtl::Vec<float, 3> p = gmtl::Vec<float, 3>(points[i], points[i + 1], points[i + 2]);
 		if (p[0] > xMax) { xMax = p[0]; } else if (p[0] < xMin) xMin = p[0];
 		if (p[1] > yMax) { yMax = p[1]; } else if (p[1] < yMin) yMin = p[1];
 		if (p[2] > zMax) { zMax = p[2]; } else if (p[2] < zMin) zMin = p[2];
