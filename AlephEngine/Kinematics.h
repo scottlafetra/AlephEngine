@@ -20,7 +20,6 @@ namespace AlephEngine
 
     public:
         Kinematics(Entity* entity);
-        Kinematics(Entity* entity, gmtl::Vec<float, 3> vel, gmtl::Quat<float> AV, gmtl::Vec<float, 3> CofM, float M, gmtl::Vec<float, 3> F);
 		~Kinematics();
         
         // meters/second use like vector [index]
