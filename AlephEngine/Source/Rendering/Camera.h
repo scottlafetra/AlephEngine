@@ -3,8 +3,8 @@
 #include <gmtl/Matrix.h>
 #include <gmtl/MatrixOps.h>
 #include <gmtl/Generate.h>
-#include "Component.h"
-#include "Transform.h"
+#include "../Core/Component.h"
+#include "../Core/Transform.h"
 
 namespace AlephEngine
 {

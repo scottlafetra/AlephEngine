@@ -1,6 +1,6 @@
 #pragma once
 #include <gmtl/Matrix.h>
-#include "Component.h"
+#include "../Core/Component.h"
 
 
 namespace AlephEngine

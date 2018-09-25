@@ -1,7 +1,7 @@
 #pragma once
 #include <list>
-#include "Component.h"
-#include "Gravity.h"
+#include "../Core/Component.h"
+#include "../Physics/Gravity.h"
 
 class CatGravity : public Component, UpdateCallback
 {

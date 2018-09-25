@@ -1,5 +1,5 @@
 #include "Collision.h"
-#include "Transform.h"
+#include "../Core/Transform.h"
 
 Collider::Collider(Entity* entity) :
 	Component(entity, Component::Type<Collider>())

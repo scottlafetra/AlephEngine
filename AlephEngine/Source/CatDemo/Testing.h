@@ -1,8 +1,8 @@
 #pragma once
-#include "MeshRenderer.h"
-#include "Component.h"
-#include "Camera.h"
-#include "Rotates.h"
+#include "../Rendering/MeshRenderer.h"
+#include "../Core/Component.h"
+#include "../Rendering/Camera.h"
+#include "../Rotates.h"
 
 // Make testcube life easier
 //				Name				       Verticies

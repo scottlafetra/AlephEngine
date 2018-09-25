@@ -138,45 +138,49 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Camera.h" />
-    <ClInclude Include="CatGravity.h" />
-    <ClInclude Include="CatMotion.h" />
-    <ClInclude Include="Collision.h" />
-    <ClInclude Include="Component.h" />
-    <ClInclude Include="EngineTime.h" />
-    <ClInclude Include="Gravity.h" />
-    <ClInclude Include="Kinematics.h" />
-    <ClInclude Include="lodepng.h" />
-    <ClInclude Include="PhysicsMaster.h" />
-    <ClInclude Include="Rotates.h" />
-    <ClInclude Include="Shaders.h" />
-    <ClInclude Include="MeshRenderer.h" />
-    <ClInclude Include="Testing.h" />
-    <ClInclude Include="Transform.h" />
-    <ClInclude Include="Renderer.h" />
-    <ClInclude Include="Entity.h" />
+    <ClInclude Include="..\Dependancies\rapidxml-1.13\rapidxml.hpp" />
+    <ClInclude Include="..\Dependancies\rapidxml-1.13\rapidxml_iterators.hpp" />
+    <ClInclude Include="..\Dependancies\rapidxml-1.13\rapidxml_print.hpp" />
+    <ClInclude Include="..\Dependancies\rapidxml-1.13\rapidxml_utils.hpp" />
+    <ClInclude Include="Source\Rendering\Camera.h" />
+    <ClInclude Include="Source\CatDemo\CatGravity.h" />
+    <ClInclude Include="Source\CatDemo\CatMotion.h" />
+    <ClInclude Include="Source\Physics\Collision.h" />
+    <ClInclude Include="Source\Core\Component.h" />
+    <ClInclude Include="Source\Core\EngineTime.h" />
+    <ClInclude Include="Source\Physics\Gravity.h" />
+    <ClInclude Include="Source\Physics\Kinematics.h" />
+    <ClInclude Include="Source\lodepng.h" />
+    <ClInclude Include="Source\Physics\PhysicsMaster.h" />
+    <ClInclude Include="Source\Rotates.h" />
+    <ClInclude Include="Source\Rendering\Shaders.h" />
+    <ClInclude Include="Source\Rendering\MeshRenderer.h" />
+    <ClInclude Include="Source\CatDemo\Testing.h" />
+    <ClInclude Include="Source\Core\Transform.h" />
+    <ClInclude Include="Source\Rendering\Renderer.h" />
+    <ClInclude Include="Source\Core\Entity.h" />
     <ClInclude Include="resource.h" />
-    <ClInclude Include="Scene.h" />
-    <ClInclude Include="Utility.h" />
+    <ClInclude Include="Source\Core\Scene.h" />
+    <ClInclude Include="Source\Core\Utility.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Camera.cpp" />
-    <ClCompile Include="CatGravity.cpp" />
-    <ClCompile Include="CatMotion.cpp" />
-    <ClCompile Include="Collision.cpp" />
-    <ClCompile Include="Component.cpp" />
-    <ClCompile Include="EngineTime.cpp" />
-    <ClCompile Include="Entity.cpp" />
-    <ClCompile Include="Gravity.cpp" />
-    <ClCompile Include="Kinematics.cpp" />
-    <ClCompile Include="lodepng.cpp" />
-    <ClCompile Include="CatDemoMain.cpp" />
-    <ClCompile Include="PhysicsMaster.cpp" />
-    <ClCompile Include="Renderer.cpp" />
-    <ClCompile Include="Rotates.cpp" />
-    <ClCompile Include="Scene.cpp" />
-    <ClCompile Include="Transform.cpp" />
-    <ClCompile Include="Utility.cpp" />
+    <ClCompile Include="Source\Rendering\Camera.cpp" />
+    <ClCompile Include="Source\CatDemo\CatGravity.cpp" />
+    <ClCompile Include="Source\CatDemo\CatMotion.cpp" />
+    <ClCompile Include="Source\Physics\Collision.cpp" />
+    <ClCompile Include="Source\Core\Component.cpp" />
+    <ClCompile Include="Source\Core\EngineTime.cpp" />
+    <ClCompile Include="Source\Core\Entity.cpp" />
+    <ClCompile Include="Source\Physics\Gravity.cpp" />
+    <ClCompile Include="Source\Physics\Kinematics.cpp" />
+    <ClCompile Include="Source\lodepng.cpp" />
+    <ClCompile Include="Source\CatDemo\CatDemoMain.cpp" />
+    <ClCompile Include="Source\Physics\PhysicsMaster.cpp" />
+    <ClCompile Include="Source\Rendering\Renderer.cpp" />
+    <ClCompile Include="Source\Rotates.cpp" />
+    <ClCompile Include="Source\Core\Scene.cpp" />
+    <ClCompile Include="Source\Core\Transform.cpp" />
+    <ClCompile Include="Source\Core\Utility.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="AlephIcon.png">
@@ -199,9 +203,9 @@
     <ResourceCompile Include="AlephEngine.rc" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Component.inl" />
-    <None Include="Entity.inl" />
-    <None Include="MeshRenderer.inl" />
+    <None Include="Source\Core\Component.inl" />
+    <None Include="Source\Core\Entity.inl" />
+    <None Include="Source\Rendering\MeshRenderer.inl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

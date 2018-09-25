@@ -1,6 +1,6 @@
 #pragma once
 #include "gmtl/Generate.h"
-#include "Utility.h"
+#include "../Core/Utility.h"
 using namespace AlephEngine;
 
 template <class T>

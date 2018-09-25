@@ -1,5 +1,5 @@
 #include "Camera.h"
-#include "Component.h"
+#include "../Core/Component.h"
 #include "Renderer.h"
 using namespace AlephEngine;
 

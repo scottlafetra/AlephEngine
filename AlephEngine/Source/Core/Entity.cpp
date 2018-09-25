@@ -1,5 +1,5 @@
 #include "Entity.h"
-#include "Kinematics.h"
+#include "../Physics/Kinematics.h"
 #include "Transform.h"
 using namespace AlephEngine;
 

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Component.h"
+#include "../Core/Component.h"
 #include "Kinematics.h"
 
 #include <gmtl/Vec.h>

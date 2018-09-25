@@ -6,8 +6,8 @@
 #include "Transform.h"
 #include "Scene.h"
 #include "EngineTime.h"
-#include "Kinematics.h"
-#include "PhysicsMaster.h"
+#include "../Physics/Kinematics.h"
+#include "../Physics/PhysicsMaster.h"
 
 using namespace AlephEngine;
 

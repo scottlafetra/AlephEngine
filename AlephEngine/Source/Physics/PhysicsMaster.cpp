@@ -1,8 +1,8 @@
 #include "PhysicsMaster.h"
 
 #include "Kinematics.h"
-#include "Transform.h"
-#include "EngineTime.h"
+#include "../Core/Transform.h"
+#include "../Core/EngineTime.h"
 #include "Collision.h"
 #include "Gravity.h"
 #include <gmtl/Vec.h>

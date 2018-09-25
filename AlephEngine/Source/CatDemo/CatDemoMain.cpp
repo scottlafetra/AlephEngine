@@ -1,16 +1,16 @@
 #pragma once
 #include <cstdlib>
 #include <string>
-#include "MeshRenderer.h"
-#include "Component.h"
-#include "Camera.h"
-#include "Rotates.h"
+#include "../Rendering/MeshRenderer.h"
+#include "../Core/Component.h"
+#include "../Rendering/Camera.h"
+#include "../Rotates.h"
 #include "CatMotion.h"
-#include "Transform.h"
-#include "ctime"
-#include "Kinematics.h"
+#include "../Core/Transform.h"
+#include <ctime>
+#include "../Physics/Kinematics.h"
 #include "CatGravity.h"
-#include "Collision.h"
+#include "../Physics/Collision.h"
 #include <cmath>
 #include <vector>
 
@@ -158,12 +158,12 @@ void LoadCat(std::string name, Scene* scene, GLFWimage* texture, float xPos = 0,
 	catRenderCube->FetchComponent<Transform>()->Move( xPos, yPos, -3 + zPos );
 	float scale = (rand() % 100) / 100.f + 0.2;
 	catRenderCube->FetchComponent<Transform>()->Scale( scale );
-	/*
+	
 	catRenderCube->AddComponent<Rotates>();
 	catRenderCube->FetchComponent<Rotates>()->SetSpeed( 
 		(rand() % 200 - 100)/100.f,
 		( rand() % 200 - 100 ) / 100.f,
-		( rand() % 200 - 100 ) / 100.f );*/
+		( rand() % 200 - 100 ) / 100.f );
 
 
 	catRenderCube->AddComponent<Kinematics>()->mass = scale;

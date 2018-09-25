@@ -1,5 +1,5 @@
 #pragma once
-#include "Component.h"
+#include "./Core/Component.h"
 
 class Rotates : public Component, public UpdateCallback
 {

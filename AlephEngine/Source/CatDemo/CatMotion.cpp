@@ -1,7 +1,7 @@
 #include "CatMotion.h"
-#include "Transform.h"
-#include "EngineTime.h"
-#include "Kinematics.h"
+#include "../Core/Transform.h"
+#include "../Core/EngineTime.h"
+#include "../Physics/Kinematics.h"
 
 CatMotion::CatMotion( Entity* entity )
 	: Component( entity, Type<CatMotion>() ), myTransform( entity->FetchComponent<Transform>() )

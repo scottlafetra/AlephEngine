@@ -1,6 +1,6 @@
 #include "Rotates.h"
-#include "Transform.h"
-#include "EngineTime.h"
+#include "Core/Transform.h"
+#include "Core/EngineTime.h"
 
 /// <summary>
 /// A component for applying a constant rotation to the entity over time.

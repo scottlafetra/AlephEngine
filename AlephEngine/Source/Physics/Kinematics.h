@@ -4,8 +4,8 @@
 #include <gmtl/Quat.h>
 #include <gmtl/VecOps.h>
 
-#include "EngineTime.h"
-#include "Component.h"
+#include "../Core/EngineTime.h"
+#include "../Core/Component.h"
 
 namespace AlephEngine
 {
