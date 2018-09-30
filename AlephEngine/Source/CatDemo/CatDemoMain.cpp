@@ -14,6 +14,8 @@
 #include <cmath>
 #include <vector>
 
+#include "../SceneLoading/SceneLoader.h"
+
 
 using namespace AlephEngine;
 
@@ -260,7 +262,7 @@ int WinMain(int argn, char* argc[])
 {
 	//ECSTest();
 	//RenderTest();
-	CatDemo();
+	//CatDemo();
 
 	//Scene is deleted on end
 	return EXIT_SUCCESS;
@@ -270,7 +272,8 @@ int main(int argn, char* argc[])
 {
 	//ECSTest();
 	//RenderTest();
-	CatDemo();
+	//CatDemo();
+	SceneLoader::LoadScene( "TestScene.aleph" );
 
 	//Scene is deleted on end
 	return EXIT_SUCCESS;

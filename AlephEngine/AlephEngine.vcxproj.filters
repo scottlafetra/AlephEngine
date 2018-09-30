@@ -114,6 +114,9 @@
     <ClInclude Include="resource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Source\SceneLoading\SceneLoader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\lodepng.cpp">
@@ -167,6 +170,9 @@
     <ClCompile Include="Source\Physics\PhysicsMaster.cpp">
       <Filter>Source Files\Physics</Filter>
     </ClCompile>
+    <ClCompile Include="Source\SceneLoading\SceneLoader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="AlephIcon.png">
@@ -200,5 +206,6 @@
     <None Include="Source\Core\Entity.inl">
       <Filter>Header Files\Core</Filter>
     </None>
+    <None Include="TestScene.aleph" />
   </ItemGroup>
 </Project>
