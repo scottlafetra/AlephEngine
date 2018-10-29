@@ -5,11 +5,14 @@
 #include <gmtl/Generate.h>
 #include "../Core/Component.h"
 #include "../Core/Transform.h"
+#include "../SceneLoading/ComponentBuilder.h"
 
 namespace AlephEngine
 {
 	class Camera : public Component, RenderCallback
 	{
+		friend class CameraBuilder;
+		
 	private:
 		GLFWwindow* renderWindow;
 		int width, height;

@@ -142,6 +142,9 @@
     <ClInclude Include="..\Dependancies\rapidxml-1.13\rapidxml_iterators.hpp" />
     <ClInclude Include="..\Dependancies\rapidxml-1.13\rapidxml_print.hpp" />
     <ClInclude Include="..\Dependancies\rapidxml-1.13\rapidxml_utils.hpp" />
+    <ClInclude Include="Source\SceneLoading\Builders\BasicMeshRedererBuilder.h" />
+    <ClInclude Include="Source\SceneLoading\Builders\CameraBuilder.h" />
+    <ClInclude Include="Source\SceneLoading\ComponentBuilder.h" />
     <ClInclude Include="Source\SceneLoading\SceneLoader.h" />
     <ClInclude Include="Source\Rendering\Camera.h" />
     <ClInclude Include="Source\CatDemo\CatGravity.h" />
@@ -165,6 +168,10 @@
     <ClInclude Include="Source\Core\Utility.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Rendering\Shaders.cpp" />
+    <ClCompile Include="Source\SceneLoading\Builders\BasicMeshRedererBuilder.cpp" />
+    <ClCompile Include="Source\SceneLoading\Builders\CameraBuilder.cpp" />
+    <ClCompile Include="Source\SceneLoading\ComponentBuilder.cpp" />
     <ClCompile Include="Source\SceneLoading\SceneLoader.cpp" />
     <ClCompile Include="Source\Rendering\Camera.cpp" />
     <ClCompile Include="Source\CatDemo\CatGravity.cpp" />
@@ -208,7 +215,10 @@
     <None Include="Source\Core\Component.inl" />
     <None Include="Source\Core\Entity.inl" />
     <None Include="Source\Rendering\MeshRenderer.inl" />
-    <None Include="TestScene.aleph" />
+    <None Include="Source\SceneLoading\Builders\All.h" />
+    <None Include="TestScene.aleph">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

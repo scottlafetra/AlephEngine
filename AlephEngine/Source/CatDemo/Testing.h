@@ -1,7 +1,4 @@
 #pragma once
-#include "../Rendering/MeshRenderer.h"
-#include "../Core/Component.h"
-#include "../Rendering/Camera.h"
 #include "../Rotates.h"
 
 // Make testcube life easier

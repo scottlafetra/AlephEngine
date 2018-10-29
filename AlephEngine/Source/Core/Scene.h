@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string>
 #include <gmtl/Matrix.h>
+#include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include <list>
 #include <functional>

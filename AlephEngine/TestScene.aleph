@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <scene>
-  <entity name = "Camera">
+  <entity name="Camera">
     <transform>
       <location x="0" y="0" z="2"/>
     </transform>
-    <component class="Camera" fov="45" nearLimit="1" farLimit="1000"/>
+    <component class="Camera" fov="45" nearLimit="0" farLimit="1000"/>
   </entity>
 
   <entity name = "Background">
-    <transform scale="18">
-      <location x="0" y="0" z="-18"/>
-	</transform>
-    <component class="MeshRenderer&lt;UnlitTexture&gt;">
+    <transform scale="2">
+      <location x="0" y="0" z="-4"/>
+    </transform>
+    <component class="MeshRenderer&lt;StdUnlit&gt;">
         <image location="catBackground.png" type="quad"/>
     <!--TODO: implement proper texture and model loading settings-->
     </component>

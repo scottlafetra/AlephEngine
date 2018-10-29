@@ -1,20 +1,29 @@
 #pragma once
+
+
+
 #include <cstdlib>
 #include <string>
-#include "../Rendering/MeshRenderer.h"
-#include "../Core/Component.h"
-#include "../Rendering/Camera.h"
-#include "../Rotates.h"
-#include "CatMotion.h"
-#include "../Core/Transform.h"
-#include <ctime>
-#include "../Physics/Kinematics.h"
-#include "CatGravity.h"
-#include "../Physics/Collision.h"
 #include <cmath>
 #include <vector>
+#include <ctime>
+
+
+#include "../Core/Transform.h"
+#include "../Core/Component.h"
+
+#include "../Rendering/MeshRenderer.h"
+#include "../Rendering/Camera.h"
+
+#include "../Physics/Kinematics.h"
+#include "../Physics/Collision.h"
 
 #include "../SceneLoading/SceneLoader.h"
+
+#include "../Rotates.h"
+
+#include "CatGravity.h"
+#include "CatMotion.h"
 
 
 using namespace AlephEngine;
@@ -273,7 +282,11 @@ int main(int argn, char* argc[])
 	//ECSTest();
 	//RenderTest();
 	//CatDemo();
-	SceneLoader::LoadScene( "TestScene.aleph" );
+	Scene* scene = SceneLoader::LoadScene( "TestScene.aleph" );
+	PrintScene( scene );
+	scene->Play();
+
+	delete scene;
 
 	//Scene is deleted on end
 	return EXIT_SUCCESS;
