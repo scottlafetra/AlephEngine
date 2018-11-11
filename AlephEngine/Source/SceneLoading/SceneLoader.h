@@ -14,6 +14,12 @@ namespace AlephEngine
 		/// <param name="path"> The path to the scene file. </param>
 		/// <returns> The constructed scene. </returns>
 		static Scene* LoadScene( std::string path );
+
+	private:
+		/// <summary>
+		/// Completes any pending links that were created during scene loading.
+		/// </summary>
+		static void LinkScene();
 	};
 }
 

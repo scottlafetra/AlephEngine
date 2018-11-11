@@ -10,6 +10,7 @@ namespace AlephEngine
 	public:
 		CameraBuilder( Entity* entity );
 		void AddVar( std::string name, std::string value ) override;
+		void SetID( std::string id ) override;
 
 	private:
 		Camera * producing;

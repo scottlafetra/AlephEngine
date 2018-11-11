@@ -1,24 +1,20 @@
 #pragma once
-
-
 #include "../ComponentBuilder.h"
 #include "../../Core/Entity.h"
 
-
+#include "../../CatDemo/LinkTester.h"
 
 namespace AlephEngine
 {
 
-	class BasicMeshRedererBuilder : public IBuilder
+	class LinkTesterBuilder : public IBuilder
 	{
 	public:
-		BasicMeshRedererBuilder( Entity* entity );
+		LinkTesterBuilder( Entity* entity );
 		void AddVar( std::string name, std::string value ) override;
 		void SetID( std::string id ) override;
 
 	private:
-		Renderer * producing;
+		LinkTester * producing;
 	};
 }
-
-

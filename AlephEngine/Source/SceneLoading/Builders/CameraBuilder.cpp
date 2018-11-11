@@ -33,3 +33,8 @@ void CameraBuilder::AddVar( std::string name, std::string value )
 		std::cerr << "ERROR: No variable named \"" + name + "\" in the Camera component." << std::endl;
 	}
 }
+
+void AlephEngine::CameraBuilder::SetID( std::string id )
+{
+	componentIDs.emplace( id, producing );
+}

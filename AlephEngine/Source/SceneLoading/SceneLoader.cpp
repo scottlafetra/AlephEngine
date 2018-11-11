@@ -13,6 +13,7 @@
 #include "ComponentBuilder.h"
 
 #include <exception>
+#include <utility>
 
 using namespace AlephEngine;
 
@@ -93,8 +94,14 @@ Scene* SceneLoader::LoadScene( std::string path )
 
 						while( currentAttribute != nullptr )
 						{
+							
+							// if the attribute is an ID
+							if( !std::strcmp( currentAttribute->name(), "id" ) )
+							{
+								builder->SetID( currentAttribute->value() );
+							}
 							// If the attribute is not class
-							if( std::strcmp( currentAttribute->name(), "class" ) )
+							else if( std::strcmp( currentAttribute->name(), "class" ) )
 							{
 								builder->AddVar( currentAttribute->name(), currentAttribute->value() );
 							}
@@ -159,10 +166,29 @@ Scene* SceneLoader::LoadScene( std::string path )
 		currentEntity = currentEntity->next_sibling();
 	}
 
+	LinkScene();
+
 	// TODO: Return Scene
 	std::cout << "Printing scene file:" << std::endl;
 	std::cout << sceneDoc;
 	std::cout <<  "----------------------------------------------" << std::endl;
 
 	return scene;
+}
+
+void AlephEngine::SceneLoader::LinkScene()
+{
+	for( std::pair<std::string, Component**> unmatchedLink : IBuilder::componentLinks )
+	{
+		Component* match = IBuilder::componentIDs[unmatchedLink.first];
+
+		if( match == nullptr )
+		{
+			std::cerr << "ERROR: Invalid ID \"" << unmatchedLink.first << "\" provided for link." << std::endl;
+		}
+		else
+		{
+			(*unmatchedLink.second) = match;
+		}
+	}
 }

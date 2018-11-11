@@ -16,3 +16,8 @@ void BasicMeshRedererBuilder::AddVar( std::string name, std::string value )
 {
 	std::cerr << "ERROR: No variable named \"" + name + "\" in the MeshRenderer<Shaders::StdUnlit> component." << std::endl;
 }
+
+void BasicMeshRedererBuilder::SetID( std::string id )
+{
+	componentIDs.emplace( id, producing );
+}

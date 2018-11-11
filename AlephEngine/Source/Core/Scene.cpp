@@ -207,7 +207,8 @@ void Scene::Play()
 		EngineTime::UpdateTimes();
 
 		// Call component updates
-		for(UpdateCallback* updateCallback : updateCallbacks)
+		std::list<UpdateCallback*> updateCallbacksCpy = updateCallbacks;
+		for(UpdateCallback* updateCallback : updateCallbacksCpy)
 		{
 			updateCallback->Update();
 		}
@@ -216,7 +217,8 @@ void Scene::Play()
 		physicsMaster.StepPhysics();
 
 		// Call post move updates
-		for (PostMoveCallback* postMoveCallback : postMoveCallbacks)
+		std::list<PostMoveCallback*> postMoveCallbackCpy = postMoveCallbacks;
+		for (PostMoveCallback* postMoveCallback : postMoveCallbackCpy )
 		{
 			postMoveCallback->PostMove();
 		}
@@ -224,7 +226,8 @@ void Scene::Play()
 		// Render
 		glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 
-		for( RenderCallback* renderCallback : renderCallbacks )
+		std::list<RenderCallback*> renderCallbacksCpy = renderCallbacks;
+		for( RenderCallback* renderCallback : renderCallbacksCpy )
 		{
 			renderCallback->Render();
 		}
