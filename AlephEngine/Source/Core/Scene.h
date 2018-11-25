@@ -7,6 +7,7 @@
 #include <list>
 #include <functional>
 #include <vector>
+#include <unordered_map>
 #include "../Physics/PhysicsMaster.h"
 
 
@@ -33,7 +34,11 @@ namespace AlephEngine
 		static bool glewInitialized;
 
 		static std::vector<Scene*> scenes;
-		static std::vector<GLFWwindow*> windows;
+		static std::unordered_map<int, GLFWwindow*> windows;
+		static int nextWindowHandle;
+
+		int myWindowHandle;
+
 		std::list<Entity*> entities;
 
 		std::list<Kinematics* > allKinematics;
@@ -49,12 +54,14 @@ namespace AlephEngine
 		void FatalError( const std::string& errorMessage );
 
 	public:
-		Scene();
+		Scene( int windowHandle = 0 );
 		~Scene();
-		size_t CreateAlephWindow( const int& width, const int& height );
-		void SetWindowTitle( const std::string& title, const unsigned short index = 0 );
-		void SetWindowIcon( const std::string& fileName, const unsigned short index = 0 );
+		static size_t CreateAlephWindow( const int& width, const int& height );
+		static void SetWindowTitle( const std::string& title, const unsigned short index = 0 );
+		static void SetWindowIcon( const std::string& fileName, const unsigned short index = 0 );
 		void Play();
+
+		inline void SetWindowHandle( int newHandle ) { myWindowHandle = newHandle; }
 
 		Entity* AddEntity( const std::string& name );
 		void DeleteEntity( Entity * entity );
@@ -78,7 +85,7 @@ namespace AlephEngine
 		Entity*         FindEntityWithTag(std::string tag );
 		std::vector<Entity*> FindEntitiesWithTag(std::string tag );
 
-		inline std::vector<GLFWwindow*> GetWindows() { return windows; }
+		inline std::unordered_map<int, GLFWwindow*> GetWindows() { return windows; }
 
 		static void GLFWWindowClose( GLFWwindow* requestedClose );
 	};

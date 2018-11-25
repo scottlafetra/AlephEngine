@@ -70,7 +70,8 @@ void GLFWError( int error, const char* description )
 }
 
 std::vector<Scene*> Scene::scenes;
-std::vector<GLFWwindow*> Scene::windows;
+std::unordered_map<int, GLFWwindow*> Scene::windows;
+int Scene::nextWindowHandle = 0;
 
 bool Scene::initialized = false;
 bool Scene::glewInitialized = false;
@@ -78,8 +79,8 @@ bool Scene::glewInitialized = false;
 /// <summary>
 /// Scene ctor.
 /// </summary>
-Scene::Scene()
-	: rootTransform( new Transform( NULL ) )
+Scene::Scene( int windowHandle )
+	: rootTransform( new Transform( NULL ) ), myWindowHandle( windowHandle )
 {
 	scenes.push_back( this );
 
@@ -114,12 +115,21 @@ Scene::~Scene()
 /// <returns>The index of the created window.</returns>
 size_t Scene::CreateAlephWindow( const int& width, const int& height )
 {
+	if( !initialized )
+	{
+		glfwSetErrorCallback( GLFWError );
+		if( !glfwInit() )
+		{
+			std::cout << "Fatal Error - " << "GLFW failed to load" << std::endl;
+		}
+	}
+
 	glfwWindowHint( GLFW_RESIZABLE, GL_FALSE ); // Resizing not supported yet
 	glfwWindowHint( GLFW_OPENGL_DEBUG_CONTEXT, GL_TRUE );
 	GLFWwindow* window = glfwCreateWindow( width, height, "Aleph Null", NULL, NULL );
 	if ( !window )
 	{
-		FatalError("Window could not be created.");
+		std::cout << "Fatal Error - " << "Window could not be created." << std::endl;
 	}
 	
 	glfwMakeContextCurrent( window );
@@ -131,7 +141,7 @@ size_t Scene::CreateAlephWindow( const int& width, const int& height )
 		if( ( glewError = glewInit() ) != GLEW_OK )
 		{
 			printf( "%s\n", glewGetErrorString( glewError ) );
-			FatalError( "GLEW failed to load" );
+			std::cout << "Fatal Error - " << "GLEW failed to load" << std::endl;
 		}
 
 		//TODO: Evaluate nessesity
@@ -159,18 +169,19 @@ size_t Scene::CreateAlephWindow( const int& width, const int& height )
 	std::cout << "Using OpenGL " << glGetString( GL_VERSION ) << std::endl;
 
 	// Add to list
-	size_t newIndex = windows.size();
-	windows.push_back( window );
+	size_t newHandle = nextWindowHandle;
+	nextWindowHandle++;
+	windows.emplace( newHandle, window );
 
 	// Ensure close callback is caught
 	glfwSetWindowCloseCallback( window, GLFWWindowClose );
 
 	// Default Icon
-	SetWindowIcon( "AlephIcon.png" );
+	SetWindowIcon( "AlephIcon.png", newHandle );
 
 	glClearColor( 0 / 255.f, 102 / 255.f, 255/255.f, 1.0f );
 
-	return newIndex;
+	return newHandle;
 }
 
 /// <summary>
@@ -202,7 +213,7 @@ void Scene::Play()
 	glfwSetTime( 0 );
 
 	// Run until there are no more windows open
-	while( windows.size() > 0 )
+	while( myWindowHandle >= 0 )
 	{
 		EngineTime::UpdateTimes();
 
@@ -233,7 +244,7 @@ void Scene::Play()
 		}
 
 		// Push render to screen
-		glfwSwapBuffers( windows[ 0 ] );
+		glfwSwapBuffers( windows[ myWindowHandle ] );
 
 		// Process Events
 		glfwPollEvents();
@@ -358,8 +369,32 @@ std::vector<Entity*> Scene::FindEntitiesWithTag(std::string tag )
 /// <param name="requestedClose">A pointer to the window that had the close requested.</param>
 void Scene::GLFWWindowClose( GLFWwindow* requestedClose )
 {
+	size_t windowHandle = -1;
+
+	for( Scene* scene : scenes )
+	{
+		if( windows[scene->myWindowHandle] == requestedClose )
+		{
+			windowHandle = scene->myWindowHandle;
+			scene->myWindowHandle = -1;
+		}
+	}
+
+	// Find the indexx of the window
+	if( windowHandle == -1 )
+	{
+		for( auto window : windows )
+		{
+			if( window.second == requestedClose )
+			{
+				windowHandle = window.first;
+				break;
+			}
+		}
+	}
+
 	// Close window
-	windows.erase( remove( windows.begin(), windows.end(), requestedClose ), windows.end() );
+	windows.erase( windowHandle );
 	// GLFW handles actual window closure unless we say otherwise
 }
 

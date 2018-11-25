@@ -47,8 +47,6 @@ Scene* SceneLoader::LoadScene( std::string path )
 
 	// TODO: make windows not tied to scenes
 	Scene* scene = new Scene();
-	scene->CreateAlephWindow( 800, 600 );
-	scene->SetWindowTitle( "Loaded Window" );
 	
 	rapidxml::xml_node<char>* currentEntity = sceneDoc.first_node( "scene", 0 )->first_node();
 

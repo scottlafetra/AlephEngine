@@ -282,7 +282,15 @@ int main(int argn, char* argc[])
 	//ECSTest();
 	//RenderTest();
 	//CatDemo();
+	
+	// Setup window
+	int windowHandle = Scene::CreateAlephWindow( 800, 600 );
+
+	// Setup scene
 	Scene* scene = SceneLoader::LoadScene( "TestScene.aleph" );
+	scene->SetWindowHandle( windowHandle );
+	Scene::SetWindowTitle( "Loaded Window", windowHandle );
+	
 	PrintScene( scene );
 	scene->Play();
 
