@@ -168,11 +168,6 @@ Scene* SceneLoader::LoadScene( std::string path )
 
 	LinkScene();
 
-	// TODO: Return Scene
-	std::cout << "Printing scene file:" << std::endl;
-	std::cout << sceneDoc;
-	std::cout <<  "----------------------------------------------" << std::endl;
-
 	return scene;
 }
 
