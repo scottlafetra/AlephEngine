@@ -1,18 +1,18 @@
 #pragma once
 #include "../../CatDemo/Testing.h"
 
-#include "BasicMeshRedererBuilder.h"
+#include "BasicMeshRendererBuilder.h"
 #include "../../Rendering/MeshRenderer.h"
 
 
-BasicMeshRedererBuilder::BasicMeshRedererBuilder( Entity* entity )
+BasicMeshRendererBuilder::BasicMeshRendererBuilder( Entity* entity )
 {
 	producing = entity->AddComponent<MeshRenderer<Shaders::StdUnlit>>();
 	
 }
 
 // TODO: add ortho support
-void BasicMeshRedererBuilder::AddVar( std::string name, std::string value )
+void BasicMeshRendererBuilder::AddVar( std::string name, std::string value )
 {
 	if( name == "mesh" )
 	{
@@ -39,7 +39,7 @@ void BasicMeshRedererBuilder::AddVar( std::string name, std::string value )
 	}
 }
 
-void BasicMeshRedererBuilder::SetID( std::string id )
+void BasicMeshRendererBuilder::SetID( std::string id )
 {
 	componentIDs.emplace( id, producing );
 }

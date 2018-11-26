@@ -9,10 +9,10 @@
 namespace AlephEngine
 {
 
-	class BasicMeshRedererBuilder : public IBuilder
+	class BasicMeshRendererBuilder : public IBuilder
 	{
 	public:
-		BasicMeshRedererBuilder( Entity* entity );
+		BasicMeshRendererBuilder( Entity* entity );
 		void AddVar( std::string name, std::string value ) override;
 		void SetID( std::string id ) override;
 

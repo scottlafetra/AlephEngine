@@ -144,7 +144,8 @@
     <ClInclude Include="..\Dependancies\rapidxml-1.13\rapidxml_utils.hpp" />
     <ClInclude Include="Source\CatDemo\LinkTester.h" />
     <ClInclude Include="Source\CatDemo\LoadSceneAfterTime.h" />
-    <ClInclude Include="Source\SceneLoading\Builders\BasicMeshRedererBuilder.h" />
+    <ClInclude Include="Source\SceneLoading\Builders\BasicMeshRendererBuilder.h" />
+    <ClInclude Include="Source\SceneLoading\Builders\BasicTextureMeshRendererBuilder.h" />
     <ClInclude Include="Source\SceneLoading\Builders\CameraBuilder.h" />
     <ClInclude Include="Source\SceneLoading\Builders\LinkTesterBuilder.h" />
     <ClInclude Include="Source\SceneLoading\Builders\LoadSceneAfterTimeBuilder.h" />
@@ -175,7 +176,8 @@
     <ClCompile Include="Source\CatDemo\LinkTester.cpp" />
     <ClCompile Include="Source\CatDemo\LoadSceneAfterTime.cpp" />
     <ClCompile Include="Source\Rendering\Shaders.cpp" />
-    <ClCompile Include="Source\SceneLoading\Builders\BasicMeshRedererBuilder.cpp" />
+    <ClCompile Include="Source\SceneLoading\Builders\BasicMeshRendererBuilder.cpp" />
+    <ClCompile Include="Source\SceneLoading\Builders\BasicTextureMeshRendererBuilder.cpp" />
     <ClCompile Include="Source\SceneLoading\Builders\CameraBuilder.cpp" />
     <ClCompile Include="Source\SceneLoading\Builders\LinkTesterBuilder.cpp" />
     <ClCompile Include="Source\SceneLoading\Builders\LoadSceneAfterTimeBuilder.cpp" />

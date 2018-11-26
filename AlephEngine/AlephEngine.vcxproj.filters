@@ -123,9 +123,6 @@
     <ClInclude Include="Source\SceneLoading\Builders\CameraBuilder.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\SceneLoading\Builders\BasicMeshRedererBuilder.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Source\CatDemo\LinkTester.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -136,6 +133,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\SceneLoading\Builders\LoadSceneAfterTimeBuilder.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\SceneLoading\Builders\BasicMeshRendererBuilder.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\SceneLoading\Builders\BasicTextureMeshRendererBuilder.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -200,9 +203,6 @@
     <ClCompile Include="Source\SceneLoading\Builders\CameraBuilder.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\SceneLoading\Builders\BasicMeshRedererBuilder.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Rendering\Shaders.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -216,6 +216,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\SceneLoading\Builders\LoadSceneAfterTimeBuilder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\SceneLoading\Builders\BasicMeshRendererBuilder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\SceneLoading\Builders\BasicTextureMeshRendererBuilder.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

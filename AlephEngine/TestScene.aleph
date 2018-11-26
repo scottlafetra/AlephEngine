@@ -23,7 +23,7 @@
       <location x="2" y="0" z="-4"/>
     </transform>
     <component class="LinkTester" id="Test1" secretNum="2" link="Test2"/>
-    <component class="MeshRenderer&lt;StdUnlit&gt;" mesh="cube"/>
+    <component class="MeshRenderer&lt;UnlitTexture&gt;" mesh="cube" texture="CatTexture.png"/>
   </entity>
 
   <entity name = "Left Cube">

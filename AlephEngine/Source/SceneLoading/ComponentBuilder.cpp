@@ -12,7 +12,11 @@ IBuilder* AlephEngine::CreateComponentBuilder( Entity* entity, std::string class
 	}
 	else if( className == "MeshRenderer<StdUnlit>" )
 	{
-		return new BasicMeshRedererBuilder( entity );
+		return new BasicMeshRendererBuilder( entity );
+	}
+	else if( className == "MeshRenderer<UnlitTexture>" )
+	{
+		return new BasicTextureMeshRendererBuilder( entity );
 	}
 	else if( className == "LinkTester" )
 	{
