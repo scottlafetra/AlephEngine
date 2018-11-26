@@ -220,4 +220,8 @@ void AlephEngine::SceneLoader::LinkScene()
 			(*unmatchedLink.second) = match;
 		}
 	}
+
+	// Clear link registers
+	IBuilder::componentLinks.clear();
+	IBuilder::componentIDs.clear();
 }

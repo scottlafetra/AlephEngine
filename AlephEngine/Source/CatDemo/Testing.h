@@ -46,9 +46,19 @@ static const struct
 }
 testTri[ 3 ] =
 {//	      Verticies             Colors
-	{ -0.6f, -0.4f, 0.f,	1.f, 0.f, 0.f },
-	{ 0.6f, -0.4f, 0.f,	0.f, 1.f, 0.f },
-	{ 0.f,  0.6f, 0.f,	0.f, 0.f, 1.f }
+	{ -0.6f, -0.4f, 0.f,	RED },
+	{ 0.6f, -0.4f, 0.f,	GREEN },
+	{ 0.f,  0.6f, 0.f,	BLUE }
+},
+testQuad[ 6 ] =
+{
+	{ -0.5f, -0.5f, -0.5f, RED },
+	{ -0.5f,  0.5f, -0.5f, GREEN },
+	{  0.5f,  0.5f, -0.5f, BLUE },
+
+	{  0.5f,  0.5f, -0.5f, BLUE },
+	{  0.5f, -0.5f, -0.5f, YELLOW },
+	{ -0.5f, -0.5f, -0.5f, RED },
 },
 testCube[ 3 * 2 * 6 ] =
 {

@@ -288,10 +288,6 @@ int main(int argn, char* argc[])
 
 	// Setup scene
 	SceneLoader::OpenSceneAndPlay( "TestScene.aleph" );
-	
-
-	//delete scene2;
-	//delete scene;
 
 	//Scene is deleted on end
 	return EXIT_SUCCESS;
