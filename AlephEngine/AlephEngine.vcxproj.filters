@@ -132,6 +132,12 @@
     <ClInclude Include="Source\SceneLoading\Builders\LinkTesterBuilder.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Source\CatDemo\LoadSceneAfterTime.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\SceneLoading\Builders\LoadSceneAfterTimeBuilder.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\lodepng.cpp">
@@ -206,6 +212,12 @@
     <ClCompile Include="Source\SceneLoading\Builders\LinkTesterBuilder.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Source\CatDemo\LoadSceneAfterTime.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\SceneLoading\Builders\LoadSceneAfterTimeBuilder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="AlephIcon.png">
@@ -243,5 +255,6 @@
     <None Include="Source\SceneLoading\Builders\All.h">
       <Filter>Header Files</Filter>
     </None>
+    <None Include="TestScene2.aleph" />
   </ItemGroup>
 </Project>

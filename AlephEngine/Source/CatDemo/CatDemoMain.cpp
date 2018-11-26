@@ -287,14 +287,11 @@ int main(int argn, char* argc[])
 	int windowHandle = Scene::CreateAlephWindow( 800, 600 );
 
 	// Setup scene
-	Scene* scene = SceneLoader::LoadScene( "TestScene.aleph" );
-	scene->SetWindowHandle( windowHandle );
-	Scene::SetWindowTitle( "Loaded Window", windowHandle );
+	SceneLoader::OpenSceneAndPlay( "TestScene.aleph" );
 	
-	PrintScene( scene );
-	scene->Play();
 
-	delete scene;
+	//delete scene2;
+	//delete scene;
 
 	//Scene is deleted on end
 	return EXIT_SUCCESS;

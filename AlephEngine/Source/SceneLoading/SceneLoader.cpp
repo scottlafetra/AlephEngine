@@ -14,10 +14,12 @@
 
 #include <exception>
 #include <utility>
+#include <thread>
 
 using namespace AlephEngine;
 
-// Just print the scene for milestone 1
+std::stack<Scene*> SceneLoader::sceneStack = std::stack<Scene*>();
+
 Scene* SceneLoader::LoadScene( std::string path )
 {
 	std::ifstream sceneStream;
@@ -167,6 +169,40 @@ Scene* SceneLoader::LoadScene( std::string path )
 	LinkScene();
 
 	return scene;
+}
+
+void AlephEngine::SceneLoader::SwitchToScene( Scene * sceneToPlay, int windowHandle )
+{
+	// Remove anyone else using the window
+	for( Scene* scene : Scene::GetScenes() )
+	{
+		if( scene->GetWindowHandle() == windowHandle)
+		{
+			scene->SetWindowHandle( -1 );
+		}
+	}
+
+	sceneToPlay->SetWindowHandle( windowHandle );
+
+	// Add new scene to stack
+	sceneStack.push( sceneToPlay );
+}
+
+void AlephEngine::SceneLoader::OpenSceneAndPlay( std::string path, int windowHandle )
+{
+	Scene* scene = LoadScene( path );
+	scene->SetWindowHandle( windowHandle );
+	sceneStack.push( scene );
+
+	while( sceneStack.size() > 0 )
+	{
+		Scene* toPlay = sceneStack.top();
+		sceneStack.pop();
+
+		toPlay->Play();
+
+		delete toPlay;
+	}
 }
 
 void AlephEngine::SceneLoader::LinkScene()

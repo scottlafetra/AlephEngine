@@ -6,6 +6,7 @@ class LinkTester : public Component, UpdateCallback
 {
 public:
 	LinkTester( Entity* entity );
+	~LinkTester();
 
 	int secretNum;
 	LinkTester * link;

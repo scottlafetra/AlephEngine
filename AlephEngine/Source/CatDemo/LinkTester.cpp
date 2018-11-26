@@ -8,6 +8,12 @@ LinkTester::LinkTester( Entity* entity )
 	GetScene()->AddUpdateCallback( this );
 }
 
+LinkTester::~LinkTester()
+{
+	GetScene()->RemoveUpdateCallback( this );
+}
+
+
 
 void LinkTester::Update()
 {

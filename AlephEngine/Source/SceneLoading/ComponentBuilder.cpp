@@ -18,6 +18,10 @@ IBuilder* AlephEngine::CreateComponentBuilder( Entity* entity, std::string class
 	{
 		return new LinkTesterBuilder( entity );
 	}
+	else if( className == "LoadSceneAfterTime" )
+	{
+		return new LoadSceneAfterTimeBuilder( entity );
+	}
 	else
 	{
 		std::cerr << "Error: Classname \"" + className + "\" not found." << std::endl;

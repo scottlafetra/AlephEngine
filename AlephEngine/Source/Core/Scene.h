@@ -20,9 +20,9 @@ namespace AlephEngine
 	class Transform;
 	class Kinematics;
 	
-	class UpdateCallback  { public: virtual void Update() = 0; }; // Updates the game state once per frame
-	class PostMoveCallback{ public: virtual void PostMove() = 0; }; // Updates that need to occur after objects have moved
-	class RenderCallback { public: virtual void Render() = 0; }; // Used to call everything that should do some rendering
+	class UpdateCallback   { public: virtual void Update() = 0; }; // Updates the game state once per frame
+	class PostMoveCallback { public: virtual void PostMove() = 0; }; // Updates that need to occur after objects have moved
+	class RenderCallback   { public: virtual void Render() = 0; }; // Used to call everything that should do some rendering
 
 	class Scene
 	{
@@ -61,7 +61,8 @@ namespace AlephEngine
 		static void SetWindowIcon( const std::string& fileName, const unsigned short index = 0 );
 		void Play();
 
-		inline void SetWindowHandle( int newHandle ) { myWindowHandle = newHandle; }
+		void SetWindowHandle( int newHandle );
+		inline int GetWindowHandle() { return myWindowHandle;  }
 
 		Entity* AddEntity( const std::string& name );
 		void DeleteEntity( Entity * entity );
@@ -85,7 +86,8 @@ namespace AlephEngine
 		Entity*         FindEntityWithTag(std::string tag );
 		std::vector<Entity*> FindEntitiesWithTag(std::string tag );
 
-		inline std::unordered_map<int, GLFWwindow*> GetWindows() { return windows; }
+		inline static std::unordered_map<int, GLFWwindow*> GetWindows() { return windows; }
+		inline static std::vector<Scene*> GetScenes() { return scenes; }
 
 		static void GLFWWindowClose( GLFWwindow* requestedClose );
 	};

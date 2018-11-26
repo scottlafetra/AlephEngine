@@ -18,24 +18,20 @@
     </component>
   </entity>
 
-  <entity name = "Right Cube">
+  <entity name = "Bottom Cube">
     <transform scale="0.5">
-      <location x="2" y="0" z="-4"/>
+      <location x="0" y="2" z="-4"/>
     </transform>
-    <component class="LinkTester" id="Test1" secretNum="2" link="Test2"/>
+    <component class="LinkTester" id="Test1" secretNum="3" link="Test2"/>
     <component class="MeshRenderer&lt;StdUnlit&gt;"/>
   </entity>
 
-  <entity name = "Left Cube">
+  <entity name = "Top Cube">
     <transform scale="0.5">
-      <location x="-2" y="0" z="-4"/>
+      <location x="0" y="-2" z="-4"/>
     </transform>
-    <component class="LinkTester" id="Test2" secretNum="4" link="Test1"/>
+    <component class="LinkTester" id="Test2" secretNum="1" link="Test1"/>
     <component class="MeshRenderer&lt;StdUnlit&gt;"/>
-  </entity>
-
-  <entity name = "Game Controller">
-    <component class="LoadSceneAfterTime" timeToWait="2" sceneToLoad="TestScene2.aleph"/>
   </entity>
   
   

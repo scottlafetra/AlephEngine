@@ -17,7 +17,7 @@ void LinkTesterBuilder::AddVar( std::string name, std::string value )
 	}
 	else
 	{
-		std::cerr << "ERROR: No variable named \"" + name + "\" in the MeshRenderer<Shaders::StdUnlit> component." << std::endl;
+		std::cerr << "ERROR: No variable named \"" + name + "\" in the LinkTester component." << std::endl;
 	}
 }
 

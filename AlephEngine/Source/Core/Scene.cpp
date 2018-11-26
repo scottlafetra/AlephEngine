@@ -99,7 +99,14 @@ Scene::Scene( int windowHandle )
 /// </summary>
 Scene::~Scene()
 {
-	glfwTerminate();
+	scenes.erase( remove( scenes.begin(), scenes.end(), this ), scenes.end() );
+
+	if( scenes.size() == 0 )
+	{
+		// If you're the last out the door, perform cleanup
+		glfwTerminate();
+		glewInitialized = false;
+	}
 
 	for( Entity* entity : entities )
 	{
@@ -211,6 +218,7 @@ void Scene::Play()
 {
 	// Reset time
 	glfwSetTime( 0 );
+	glfwMakeContextCurrent( windows[myWindowHandle] );
 
 	// Run until there are no more windows open
 	while( myWindowHandle >= 0 )
@@ -235,6 +243,12 @@ void Scene::Play()
 		}
 
 		// Render
+
+		if( myWindowHandle < 0 ) // Leave if we've been told to
+		{
+			break;
+		}
+
 		glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 
 		std::list<RenderCallback*> renderCallbacksCpy = renderCallbacks;
@@ -249,6 +263,11 @@ void Scene::Play()
 		// Process Events
 		glfwPollEvents();
 	}
+}
+
+void AlephEngine::Scene::SetWindowHandle( int newHandle )
+{
+	myWindowHandle = newHandle;
 }
 
 /// <summary>
@@ -376,7 +395,8 @@ void Scene::GLFWWindowClose( GLFWwindow* requestedClose )
 		if( windows[scene->myWindowHandle] == requestedClose )
 		{
 			windowHandle = scene->myWindowHandle;
-			scene->myWindowHandle = -1;
+
+			scene->SetWindowHandle( -1 );
 		}
 	}
 
