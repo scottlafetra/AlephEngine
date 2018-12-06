@@ -33,6 +33,16 @@
     <component class="LinkTester" id="Test2" secretNum="1" link="Test1"/>
     <component class="MeshRenderer&lt;StdUnlit&gt;" mesh="cube"/>
   </entity>
-  
-  
+
+  <entity name = "Background">
+    <transform scale="15">
+      <location x="0" y="0" z="-6"/>
+    </transform>
+    <component class="MeshRenderer&lt;UnlitTexture&gt;" mesh="quad" texture="catBackground.png"/>
+  </entity>
+
+  <entity name = "Game Controller">
+    <component class="LoadSceneAfterTime" timeToWait="3" sceneToLoad="TestScene.aleph"/>
+  </entity>
+
 </scene>

@@ -26,6 +26,10 @@ IBuilder* AlephEngine::CreateComponentBuilder( Entity* entity, std::string class
 	{
 		return new LoadSceneAfterTimeBuilder( entity );
 	}
+	else if( className == "Rotates" )
+	{
+		return new RotatesBuilder( entity );
+	}
 	else
 	{
 		std::cerr << "Error: Classname \"" + className + "\" not found." << std::endl;

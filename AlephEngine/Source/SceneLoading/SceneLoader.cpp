@@ -10,11 +10,15 @@
 #include "../Core/Entity.h"
 #include "../Core/Transform.h"
 
+#include "../Core/EngineTime.h"
+
 #include "ComponentBuilder.h"
 
 #include <exception>
 #include <utility>
 #include <thread>
+
+
 
 using namespace AlephEngine;
 
@@ -24,6 +28,13 @@ Scene* SceneLoader::LoadScene( std::string path )
 {
 	std::ifstream sceneStream;
 	sceneStream.open( path );
+
+	if( sceneStream.fail() )
+	{
+		std::cerr << "IO error loading scene \"" << path << "\"" << std::endl;
+		return nullptr;
+	}
+	
 
 	// Read the file into memory
 	std::string sceneXML( 
@@ -155,6 +166,36 @@ Scene* SceneLoader::LoadScene( std::string path )
 						// Set Values
 						sceneEnity->FetchComponent<Transform>()->SetPosition(x, y, z);
 					}
+					else if( !strcmp( transformNode->name(), "rotation" ) )
+					{
+						// Find attributes
+						rapidxml::xml_attribute<char>* currentAttribute = transformNode->first_attribute();
+
+						float x = 0;
+						float y = 0;
+						float z = 0;
+
+						while( currentAttribute != nullptr )
+						{
+							if( !std::strcmp( currentAttribute->name(), "x" ) )
+							{
+								x = std::stof( currentAttribute->value() );
+							}
+							else if( !std::strcmp( currentAttribute->name(), "y" ) )
+							{
+								y = std::stof( currentAttribute->value() );
+							}
+							else if( !std::strcmp( currentAttribute->name(), "z" ) )
+							{
+								z = std::stof( currentAttribute->value() );
+							}
+
+							currentAttribute = currentAttribute->next_attribute();
+						}
+
+						// Set Values
+						sceneEnity->FetchComponent<Transform>()->SetRotation( x, y, z );
+					}
 
 					transformNode = transformNode->next_sibling();
 				}
@@ -191,6 +232,11 @@ void AlephEngine::SceneLoader::SwitchToScene( Scene * sceneToPlay, int windowHan
 void AlephEngine::SceneLoader::OpenSceneAndPlay( std::string path, int windowHandle )
 {
 	Scene* scene = LoadScene( path );
+	if( scene == nullptr )
+	{
+		std::cerr << "Error - Could not load scene \"" << path << "\"" << std::endl;
+	}
+
 	scene->SetWindowHandle( windowHandle );
 	sceneStack.push( scene );
 
@@ -199,6 +245,8 @@ void AlephEngine::SceneLoader::OpenSceneAndPlay( std::string path, int windowHan
 		Scene* toPlay = sceneStack.top();
 		sceneStack.pop();
 
+		glfwSetTime( 0 );
+		EngineTime::UpdateTimes();
 		toPlay->Play();
 
 		delete toPlay;

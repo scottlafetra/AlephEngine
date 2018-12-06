@@ -52,13 +52,13 @@ testTri[ 3 ] =
 },
 testQuad[ 6 ] =
 {
-	{ -0.5f, -0.5f, -0.5f, RED },
-	{ -0.5f,  0.5f, -0.5f, GREEN },
-	{  0.5f,  0.5f, -0.5f, BLUE },
-
-	{  0.5f,  0.5f, -0.5f, BLUE },
-	{  0.5f, -0.5f, -0.5f, YELLOW },
-	{ -0.5f, -0.5f, -0.5f, RED },
+	{ -0.5f, -0.5f, 0.0f, RED },
+	{ -0.5f,  0.5f, 0.0f, GREEN },
+	{  0.5f,  0.5f, 0.0f, BLUE },
+					   
+	{  0.5f,  0.5f, 0.0f, BLUE },
+	{  0.5f, -0.5f, 0.0f, YELLOW },
+	{ -0.5f, -0.5f, 0.0f, RED },
 },
 testCube[ 3 * 2 * 6 ] =
 {
@@ -179,13 +179,13 @@ catCube[ 3 * 2 * 6 ] =
 },
 texQuad[ 6 ] = 
 {//	  Verticies					    tex coord
-	{ CUBE_VERT_FRONT_TOP_LEFT,		0.f, 0.f },
-	{ CUBE_VERT_FRONT_BOTTOM_LEFT,	0.f, 1.f },
-	{ CUBE_VERT_FRONT_BOTTOM_RIGHT,	1.f, 1.f },
-										 
-	{ CUBE_VERT_FRONT_BOTTOM_RIGHT,	1.f, 1.f },
-	{ CUBE_VERT_FRONT_TOP_RIGHT,	1.f, 0.f },
-	{ CUBE_VERT_FRONT_TOP_LEFT,		0.f, 0.f },
+	{ -0.5f, -0.5f, 0.0f,	0.0f, 1.0f },
+	{ -0.5f,  0.5f, 0.0f,	0.0f, 0.0f },
+	{  0.5f,  0.5f, 0.0f,	1.0f, 0.0f },
+						 	
+	{  0.5f,  0.5f, 0.0f,	1.0f, 0.0f },
+	{  0.5f, -0.5f, 0.0f,	1.0f, 1.0f },
+	{ -0.5f, -0.5f, 0.0f,	0.0f, 1.0f }
 };
 
 // Test Components

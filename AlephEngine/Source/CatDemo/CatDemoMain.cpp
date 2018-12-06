@@ -7,6 +7,7 @@
 #include <cmath>
 #include <vector>
 #include <ctime>
+#include <iostream>
 
 
 #include "../Core/Transform.h"
@@ -267,15 +268,7 @@ void CatDemo( void )
 	scene.Play();
 }
 
-int WinMain(int argn, char* argc[])
-{
-	//ECSTest();
-	//RenderTest();
-	//CatDemo();
 
-	//Scene is deleted on end
-	return EXIT_SUCCESS;
-}
 
 int main(int argn, char* argc[])
 {
@@ -286,9 +279,24 @@ int main(int argn, char* argc[])
 	// Setup window
 	int windowHandle = Scene::CreateAlephWindow( 800, 600 );
 
-	// Setup scene
-	SceneLoader::OpenSceneAndPlay( "TestScene.aleph" );
+	// Play passed scenes
+	if( argn >= 2 )
+	{
+		SceneLoader::OpenSceneAndPlay( argc[1] );
+		std::cout << argc[1] << std::endl;
+	}
+	
 
 	//Scene is deleted on end
 	return EXIT_SUCCESS;
+}
+
+int WinMain( int argn, char* argc[] )
+{
+	//ECSTest();
+	//RenderTest();
+	//CatDemo();
+
+	//Scene is deleted on end
+	return main( argn, argc );
 }

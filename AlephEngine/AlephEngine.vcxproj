@@ -131,7 +131,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalLibraryDirectories>$(ProjectDir)\..\Dependancies\lib</AdditionalLibraryDirectories>
       <AdditionalDependencies>opengl32.lib;glfw3.lib;glew32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
     </Link>
     <PostBuildEvent>
       <Command>copy $(ProjectDir)AlephIcon.png  $(OutDir)</Command>
@@ -149,6 +149,7 @@
     <ClInclude Include="Source\SceneLoading\Builders\CameraBuilder.h" />
     <ClInclude Include="Source\SceneLoading\Builders\LinkTesterBuilder.h" />
     <ClInclude Include="Source\SceneLoading\Builders\LoadSceneAfterTimeBuilder.h" />
+    <ClInclude Include="Source\SceneLoading\Builders\RotatesBuilder.h" />
     <ClInclude Include="Source\SceneLoading\ComponentBuilder.h" />
     <ClInclude Include="Source\SceneLoading\SceneLoader.h" />
     <ClInclude Include="Source\Rendering\Camera.h" />
@@ -181,6 +182,7 @@
     <ClCompile Include="Source\SceneLoading\Builders\CameraBuilder.cpp" />
     <ClCompile Include="Source\SceneLoading\Builders\LinkTesterBuilder.cpp" />
     <ClCompile Include="Source\SceneLoading\Builders\LoadSceneAfterTimeBuilder.cpp" />
+    <ClCompile Include="Source\SceneLoading\Builders\RotatesBuilder.cpp" />
     <ClCompile Include="Source\SceneLoading\ComponentBuilder.cpp" />
     <ClCompile Include="Source\SceneLoading\SceneLoader.cpp" />
     <ClCompile Include="Source\Rendering\Camera.cpp" />

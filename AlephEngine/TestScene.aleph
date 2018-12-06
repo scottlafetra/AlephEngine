@@ -32,10 +32,18 @@
     </transform>
     <component class="LinkTester" id="Test2" secretNum="4" link="Test1"/>
     <component class="MeshRenderer&lt;StdUnlit&gt;" mesh="cube"/>
+    <component class="Rotates" ySpeed="1"/>
+  </entity>
+
+  <entity name = "Background">
+    <transform scale="15">
+      <location x="0" y="0" z="-6"/>
+    </transform>
+    <component class="MeshRenderer&lt;UnlitTexture&gt;" mesh="quad" texture="catBackground.png"/>
   </entity>
 
   <entity name = "Game Controller">
-    <component class="LoadSceneAfterTime" timeToWait="2" sceneToLoad="TestScene2.aleph"/>
+    <component class="LoadSceneAfterTime" timeToWait="3" sceneToLoad="TestScene2.aleph"/>
   </entity>
   
   
